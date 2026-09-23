@@ -4,7 +4,8 @@ import SherlockMePlatform
 
 /// SherlockMe's one behaviour. It reads the Touch ID lines off the log (`TouchIDLogStream`), runs them
 /// through `LockRule`, and locks when the rule says so. Every decision is the rule's; this carries the lines
-/// in and the actions out, and starts the stream again when it ends.
+/// in and the actions out, starts the stream again when it ends, and settles each new stream against the
+/// window server (`LockRule.settle`).
 ///
 /// **Everything it does runs on one serial queue of its own**, never the main thread, so a window being drawn
 /// never delays a lock. The menu and the Health page read `status`, a copy kept under a lock.
@@ -85,6 +86,12 @@ final class TouchIDGuard: @unchecked Sendable {
         streamStarted = Date()
         update { $0.watcher = .watching }
         Log.touchID.notice("watching the Touch ID key, the screen \(self.rule.screenIsLocked ? "locked" : "unlocked", privacy: .public)")
+        // A stream shows nothing logged before it attached: a lock that landed meanwhile is taken from the
+        // window server once the stream has settled.
+        queue.asyncAfter(deadline: .now() + K.watchSettle) { [weak self] in
+            guard let self, self.running, self.stream === stream else { return }
+            self.perform(self.rule.settle(screenIsLocked: LoginSession.screenIsLocked, at: Date()))
+        }
     }
 
     private func streamEnded(status: Int32) {
@@ -106,14 +113,6 @@ final class TouchIDGuard: @unchecked Sendable {
 
     private func handle(_ event: TouchIDEvent, at time: Date) {
         Log.touchID.debug("\(String(describing: event), privacy: .public) at \(time.timeIntervalSince1970, privacy: .public)")
-        // The log can miss a lock: one that lands while a stream is starting is never read. A press on a Mac
-        // the window server says is locked is then a press on the lock screen, unless SherlockMe locked it
-        // itself within `K.sameKeyPress`, where the log's own line may simply not have come yet.
-        if event == .keyDown, !rule.screenIsLocked, LoginSession.screenIsLocked,
-           status.lastLock.map({ Date().timeIntervalSince($0) >= K.sameKeyPress }) ?? true {
-            Log.touchID.notice("a press on a Mac the log did not say was locked: taking it as locked")
-            perform(rule.handle(.screenLocked, at: time))
-        }
         perform(rule.handle(event, at: time))
     }
 

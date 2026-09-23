@@ -48,6 +48,11 @@ public enum K {
     /// A stream that ran this long before it ended was working: its end starts the waits over.
     public static let watchSteadyAfter: TimeInterval = 60
 
+    /// How long after `log stream` starts the rule takes the window server's word for a lock the stream may
+    /// not have shown: a stream shows nothing logged before it attached. Not measured: it leaves the stream
+    /// room to attach, and a lock so soon after a start is rare.
+    public static let watchSettle: TimeInterval = 2
+
     // MARK: - Updates
 
     /// How long after launch the first check nobody asked for is made. Late enough that it never competes

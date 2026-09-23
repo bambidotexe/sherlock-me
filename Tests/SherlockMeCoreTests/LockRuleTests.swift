@@ -143,4 +143,24 @@ final class LockRuleTests: XCTestCase {
     func testAnUnlockWithNoPressIsNotTheRulesBusiness() {
         XCTAssertEqual(actions([(0, .screenLocked), (0.1, .readStart), (0.2, .fingerOn), (0.9, .screenUnlocked)]), [])
     }
+
+    // MARK: A stream that has just started
+
+    /// A lock the log did not show, taken from the window server: the press that follows is a press on the
+    /// lock screen, and the unlock it asks for is left alone.
+    func testALockTheLogMissedIsTakenFromTheWindowServer() {
+        var rule = LockRule(screenIsLocked: false)
+        XCTAssertEqual(rule.settle(screenIsLocked: true, at: at(0)), [])
+        XCTAssertTrue(rule.screenIsLocked)
+        XCTAssertEqual(rule.handle(.keyDown, at: at(1)), [])
+        XCTAssertEqual(rule.handle(.readStart, at: at(1.1)), [])
+        XCTAssertEqual(rule.handle(.fingerOn, at: at(1.15)), [])
+        XCTAssertEqual(rule.handle(.screenUnlocked, at: at(1.8)), [])
+    }
+
+    func testAnUnlockIsNeverTakenFromTheWindowServer() {
+        var rule = LockRule(screenIsLocked: true)
+        XCTAssertEqual(rule.settle(screenIsLocked: false, at: at(0)), [])
+        XCTAssertTrue(rule.screenIsLocked)
+    }
 }

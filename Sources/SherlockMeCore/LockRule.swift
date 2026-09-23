@@ -124,6 +124,14 @@ public struct LockRule: Sendable {
         return [.relock]
     }
 
+    /// The window server's answer, for a lock the log may not have shown: a stream shows nothing logged
+    /// before it attached. Only a lock is taken this way. Taking an unlock could start a relock on another
+    /// word than the log's; a lock missed the other way leaves at most one press to macOS.
+    public mutating func settle(screenIsLocked locked: Bool, at time: Date) -> [Action] {
+        guard locked, !screenIsLocked else { return [] }
+        return handle(.screenLocked, at: time)
+    }
+
     private mutating func unlocked(at time: Date) -> [Action] {
         guard var current = press, time.timeIntervalSince(current.lockedAt) < K.relockWindow else { return [] }
         let read = current.readStart

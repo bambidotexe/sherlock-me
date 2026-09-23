@@ -67,9 +67,9 @@ sensor and unlocks the Mac again, 1.1 to 1.4 s after the press (`docs/macOS.md`)
    gives up a relock still to come), a finger that arrives later in the read, a password, an Apple Watch, an
    unlock after the window, and any unlock that follows no press.
 
-**The log can miss a lock** that lands while a stream is starting. A press on a Mac the window server says is
-locked is then a press on the lock screen, unless SherlockMe locked the Mac itself within `K.sameKeyPress`
-(1 s), where the log's own line may not have come yet.
+**The log can miss a lock** that lands while a stream is starting: a stream shows nothing logged before it
+attached. `K.watchSettle` (2 s) after each start, a lock the window server reports and the rule has not seen
+is taken as read. An unlock is never taken that way.
 
 **When it cannot watch**, the key does exactly what macOS makes it do, and the menu and the Health page say
 why:
