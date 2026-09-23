@@ -28,7 +28,7 @@ SherlockMeCore  ←  SherlockMePlatform  ←  SherlockMeApp
 | | `Localization`, `Strings*` | Every sentence the user reads, in both languages. |
 | Platform | `TouchIDLogStream`, `SessionAgent`, `LoginSession` | The feature's system boundary: the `log stream` child, loginwindow's immediate lock through the private login.framework, whether the screen is locked and whether the user is an administrator. |
 | | `LoginItem`, `SettingsStore`, `Log` | The rest of the system boundary. |
-| | `CrashReports`, `ProcessStats` | What the Health page reads about the app itself: its crash reports, its age and memory. |
+| | `CrashReports` | What the Health page reads about the app itself: its crash reports. |
 | | `UpdateChecker` + `UpdateDownload`, `UpdateStager`, `CodeSignature`, `UpdateInstaller`, `DetachedProcess` | The update's I/O. The only network code in the app. |
 | | `Uninstall` | The registrations an uninstall gives back. |
 | App | `SherlockMeMain`, `AppDelegate`, `MenuBarController`, `TouchIDGuard` | The app, and the one object that runs the behaviour: the stream's lines into the rule, the rule's actions out. |

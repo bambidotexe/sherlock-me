@@ -21,10 +21,6 @@ struct HealthPage: View {
         let readings = HealthReport.readings(for: facts)
         SettingsPage {
             SettingsGroup(title: t.healthTitle, warnings: checks.warnings) {
-                // TEMPLATE: an app always has checks of its own, and drops this line.
-                if checks.isEmpty {
-                    StatusRow(AppIdentity.name, mark: .good(t.everythingWorks))
-                }
                 ForEach(checks) { row in
                     StatusRow(row.label, mark: StatusMark(row.level, row.word)).help(row.detail ?? "")
                 }

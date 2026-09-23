@@ -7,8 +7,8 @@ import SherlockMeCore
 /// The tables are Swift, so "the French is missing" is a compile error rather than a test failure. What is
 /// left for a test is the text itself: the rules the owner fitted by eye, which no compiler can see.
 ///
-/// TEMPLATE: every table the app adds gets its accessors listed in `everySentence`, one line per sentence.
-/// A table added without a line here is a table nothing checks, and the compiler cannot say so.
+/// Every accessor of every table is listed in `everySentence`, one line per sentence. A table or a sentence
+/// added without a line here is one nothing checks, and the compiler cannot say so.
 final class LocalizationTests: XCTestCase {
     /// Every dash that is longer than the one on the keyboard. None of them may appear in anything a user
     /// reads: two sentences, a comma or a colon instead.
@@ -23,7 +23,10 @@ final class LocalizationTests: XCTestCase {
 
         let menu = Loc.menu
         for pair in [("menu.launchAtLogin", menu.launchAtLogin),
-                     ("menu.settings", menu.settings), ("menu.quit", menu.quit)] { add(pair.0, pair.1) }
+                     ("menu.settings", menu.settings), ("menu.quit", menu.quit),
+                     ("menu.watching", menu.watching),
+                     ("menu.stoppedStartingAgain", menu.stoppedStartingAgain),
+                     ("menu.needsAdministrator", menu.needsAdministrator)] { add(pair.0, pair.1) }
 
         let main = Loc.mainMenu
         for pair in [("mainMenu.window", main.window), ("mainMenu.close", main.close),
@@ -107,14 +110,17 @@ final class LocalizationTests: XCTestCase {
         let health = settings.health
         for pair in [("health.healthTitle", health.healthTitle),
                      ("health.informationTitle", health.informationTitle),
-                     ("health.everythingWorks", health.everythingWorks),
                      ("health.checkAgainButton", health.checkAgainButton),
-                     ("health.runningForLabel", health.runningForLabel),
+                     ("health.watchingLabel", health.watchingLabel), ("health.running", health.running),
+                     ("health.stopped", health.stopped), ("health.stoppedFix", health.stoppedFix),
+                     ("health.needsAdministratorFix", health.needsAdministratorFix),
+                     ("health.lastLockLabel", health.lastLockLabel),
+                     ("health.lastRelockLabel", health.lastRelockLabel), ("health.noneYet", health.noneYet),
+                     ("health.ago.now", health.ago(seconds: 12)), ("health.ago.minutes", health.ago(seconds: 720)),
                      ("health.duration.seconds", health.duration(seconds: 12)),
                      ("health.duration.minutes", health.duration(seconds: 720)),
                      ("health.duration.hours", health.duration(seconds: 11_520)),
                      ("health.duration.days", health.duration(seconds: 190_000)),
-                     ("health.memoryLabel", health.memoryLabel), ("health.megabytes", health.megabytes(48)),
                      ("health.crashesLabel", health.crashesLabel(days: 7)),
                      ("health.lastCrash", health.lastCrash("2026-09-21 10:10")),
                      ("health.crashesFix", health.crashesFix)] { add(pair.0, pair.1) }

@@ -13,4 +13,11 @@ final class WatcherTests: XCTestCase {
         XCTAssertEqual(WatchRestart.failures(previous: 3, ranFor: 2), 4)
         XCTAssertEqual(WatchRestart.failures(previous: 0, ranFor: 0), 1)
     }
+
+    func testTheMenuLineFollowsTheWatcher() {
+        let menu = Loc.menu
+        XCTAssertEqual(menu.status(.watching), menu.watching)
+        XCTAssertEqual(menu.status(.stopped), menu.stoppedStartingAgain)
+        XCTAssertEqual(menu.status(.needsAdministrator), menu.needsAdministrator)
+    }
 }

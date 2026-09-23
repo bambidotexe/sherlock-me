@@ -3,20 +3,21 @@ import Foundation
 /// Everything the Health page reports, as values. The app gathers them (`Platform` reads the system, `App`
 /// reads its own state); this layer turns them into the page's two tables, so what a fact reads as, in which
 /// colour and with which sentence, is decided here and tested.
-///
-/// TEMPLATE: the app's own facts go here, each a plain value: a permission is a `Bool` read with the
-/// permission's reader, a service is what it last reported, a reading is a number or an optional date.
 public struct HealthFacts: Equatable, Sendable {
-    /// How long this process has been running, nil when the system would not say.
-    public var runningSeconds: TimeInterval?
-    /// The memory this process holds, as Activity Monitor counts it; nil when the system would not say.
-    public var memoryBytes: UInt64?
+    /// Whether SherlockMe can see the Touch ID key.
+    public var watcher: WatcherState
+    /// How long ago the Touch ID key last locked the Mac, and the last unwanted unlock was caught; nil
+    /// before the first.
+    public var sinceLastLock: TimeInterval?
+    public var sinceLastRelock: TimeInterval?
     /// When each crash report of this app in the last `K.healthCrashWindow` was written, newest first.
     public var recentCrashes: [Date]
 
-    public init(runningSeconds: TimeInterval?, memoryBytes: UInt64?, recentCrashes: [Date]) {
-        self.runningSeconds = runningSeconds
-        self.memoryBytes = memoryBytes
+    public init(watcher: WatcherState, sinceLastLock: TimeInterval?, sinceLastRelock: TimeInterval?,
+                recentCrashes: [Date]) {
+        self.watcher = watcher
+        self.sinceLastLock = sinceLastLock
+        self.sinceLastRelock = sinceLastRelock
         self.recentCrashes = recentCrashes
     }
 }
@@ -29,35 +30,40 @@ public struct HealthFacts: Equatable, Sendable {
 /// setting that does not stop the app), and neither is a reading. The skill
 /// `macos-building-settings-pages` (*The Health page*) holds the rules and every app's list.
 public enum HealthReport {
-    /// The Health table, in page order.
-    ///
-    /// TEMPLATE: the app's own checks go first, one line each and always there: every permission and every
-    /// setup the onboarding asks for (`HealthRules.grant(held:required:)`, with the wizard's own
-    /// `required`), then the service or the sensor the feature rests on. A check that has nothing to say
-    /// while things are fine (a flag that must hold while armed, a list that could not be read) is a line
-    /// only while it is wrong. Then `crashes`. `HealthLimits.checks` is the ceiling, with everything that
-    /// can go wrong gone wrong at once.
+    /// The Health table, in page order: the one mechanism SherlockMe rests on, always there, then the
+    /// crashes while there are some. SherlockMe asks for no permission and sets nothing up, so there is no
+    /// grant line.
     public static func checks(for facts: HealthFacts) -> [HealthRow] {
-        [crashes(facts.recentCrashes)].compactMap { $0 }
+        [watching(facts.watcher), crashes(facts.recentCrashes)].compactMap { $0 }
     }
 
-    /// The Information table, in page order.
-    ///
-    /// TEMPLATE: replace these with what is worth knowing about the app's own job, at most
-    /// `HealthLimits.readings`: the last time the thing it watches happened, the value its sensor reads,
-    /// what it is doing right now. Keep *Running for* and *Memory used* only when the app has nothing
-    /// better to say.
+    /// The Information table: when each of the two things SherlockMe does last happened, *None yet* until
+    /// the first. Nothing on an account that cannot read the log, where SherlockMe does nothing.
     public static func readings(for facts: HealthFacts) -> [InfoRow] {
+        guard facts.watcher != .needsAdministrator else { return [] }
         let t = Loc.settings.health
-        var rows: [InfoRow] = []
-        if let seconds = facts.runningSeconds {
-            rows.append(InfoRow(id: "running for", label: t.runningForLabel, value: t.duration(seconds: seconds)))
+        return [
+            InfoRow(id: "last lock", label: t.lastLockLabel,
+                    value: facts.sinceLastLock.map { t.ago(seconds: $0) } ?? t.noneYet),
+            InfoRow(id: "last relock", label: t.lastRelockLabel,
+                    value: facts.sinceLastRelock.map { t.ago(seconds: $0) } ?? t.noneYet),
+        ]
+    }
+
+    /// Watching the Touch ID key: one line whatever stops it (one cause, one line), green while the log is
+    /// read, red while it is not, with the fix that matches the cause.
+    public static func watching(_ state: WatcherState) -> HealthRow {
+        let t = Loc.settings.health
+        switch state {
+        case .watching:
+            return HealthRow(id: "touch id key", label: t.watchingLabel, level: .good, word: t.running)
+        case .stopped:
+            return HealthRow(id: "touch id key", label: t.watchingLabel, level: .failure, word: t.stopped,
+                             fix: t.stoppedFix)
+        case .needsAdministrator:
+            return HealthRow(id: "touch id key", label: t.watchingLabel, level: .failure, word: t.stopped,
+                             fix: t.needsAdministratorFix)
         }
-        if let bytes = facts.memoryBytes {
-            rows.append(InfoRow(id: "memory", label: t.memoryLabel,
-                                value: t.megabytes(Int((Double(bytes) / 1_048_576).rounded()))))
-        }
-        return rows
     }
 
     /// The line every app of the family ends its Health table with, **only while there is a crash** in the

@@ -21,7 +21,9 @@ TEMPLATE: one line per thing to do and what to expect, as `- [ ]` items.
 
 ## 2. This app's Settings
 
-- [ ] TEMPLATE: the feature page, every row, and that each setting survives a quit and relaunch.
+- [ ] There is no feature page. Health: *Watching the Touch ID key*, green *Running*; the two readings read
+      *None yet*, then how long ago after a press and after a caught unlock (Check Again). The menu's status
+      line reads *Watching the Touch ID key*.
 
 ## 3. This app's wizard
 

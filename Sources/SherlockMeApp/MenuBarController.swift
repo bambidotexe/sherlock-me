@@ -46,20 +46,23 @@ final class MenuBarController: NSObject, NSMenuDelegate {
     // MARK: - The menu
 
     /// The family's order: the feature's own state first, a separator, Launch at Login, a separator, the
-    /// read-only status lines, a separator, Settings…, a separator, Quit. This app has no feature yet, so
-    /// the first two groups are absent.
+    /// read-only status lines, a separator, Settings…, a separator, Quit. SherlockMe has no switch of its
+    /// own, so the first group is absent and its one status line says what it is doing.
     func menuNeedsUpdate(_ menu: NSMenu) {
         menu.removeAllItems()
         let words = Loc.menu
-
-        // TEMPLATE: the feature's own switch and state go first, then a separator, then a read-only line
-        // saying what the app is doing right now (`isEnabled = false`), then a separator.
 
         let login = NSMenuItem(title: words.launchAtLogin, action: #selector(toggleLaunchAtLogin),
                                keyEquivalent: "")
         login.target = self
         login.state = LoginItem.isEnabled ? .on : .off
         menu.addItem(login)
+        menu.addItem(.separator())
+
+        let status = NSMenuItem(title: words.status(TouchIDGuard.shared.status.watcher), action: nil,
+                                keyEquivalent: "")
+        status.isEnabled = false
+        menu.addItem(status)
         menu.addItem(.separator())
 
         let settings = NSMenuItem(title: words.settings, action: #selector(openSettingsItem),

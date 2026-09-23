@@ -97,17 +97,14 @@ numbers and its copy are the `macos-building-settings-pages` skill's, not this d
 | | Quit | one destructive button |
 | | Uninstall | one destructive button, with a warning that never goes away |
 | **System** | Start over | one button, *Show Onboarding Again*, which opens a fresh wizard at its first page |
-| **Health** | Health | the checks, green, orange or red, never blue: in SherlockMe only *Crashes in the last 7 days* (`K.healthCrashWindow`, read from `~/Library/Logs/DiagnosticReports`), a count in orange with the last one's date as the tooltip, while there is one; *Everything works* in green in its place while there is none · **Check Again**, with a spinner beside it for at least `K.healthMinimumBusy` (0.5 s) |
-| | Information | *Running for* and *Memory used*, in blue |
+| **Health** | Health | the checks, green, orange or red, never blue: **Watching the Touch ID key**, always there, green *Running* while the log is read, red *Stopped* while it is not, with the fix that matches why (SherlockMe starts the stream again by itself; only an administrator account can read the log); *Crashes in the last 7 days* (`K.healthCrashWindow`, read from `~/Library/Logs/DiagnosticReports`), a count in orange with the last one's date as the tooltip, only while there is one · **Check Again**, with a spinner beside it for at least `K.healthMinimumBusy` (0.5 s) |
+| | Information | *Last lock with the Touch ID key* and *Last unlock caught*, how long ago, *None yet* before the first, in blue; neither on an account that cannot read the log |
 | **Tip** | the app icon beside one sentence, in a card with no title | every feature is free and stays free, and a coffee is how the project is supported |
 | | One-time tip | the Ko-fi cup, *A cup of coffee*, what it is, and a button naming the smallest tip the page takes (`SupportLink.smallestTip`, 5 €). It opens `https://ko-fi.com/bambidotexe` in the browser; nothing is paid inside the app. |
 
-TEMPLATE: a feature page goes between General and System, and the app's own switches live on it. The Health
-table gains, before the crash line, one line per permission and per setup the wizard asks for (red when the
-wizard marks it required, orange otherwise) and one for the service, listener or sensor the feature rests on;
-a check with nothing to say while fine is a line only while it is wrong. The Information table's two readings
-give way to the app's own (the last time the feature acted, a sensor's value), five at most. The
-`*Everything works*` stand-in goes: an app always has checks of its own.
+SherlockMe has no setting of its own, so there is no feature page. It asks for no permission and sets nothing
+up, so its Health table has no grant line: the one mechanism it rests on is the log stream, one line whatever
+stops it.
 
 **Health** is two tables and nothing else, and it reports and changes nothing: each orange or red line says
 where it is put right, in a warning under the table. A preference is never on it, and neither are the
@@ -130,13 +127,16 @@ Rebuilt from scratch every time it is opened, so it is never a language or a sta
 ```
 Launch at Login             ✓
 ──────────
+Watching the Touch ID key
+──────────
 Settings…                   ⌘,
 ──────────
 Quit SherlockMe               ⌘Q
 ```
 
-TEMPLATE: the feature's own switch comes first, then a separator; a read-only line saying what the app is
-doing right now sits above Settings…, with a separator on each side.
+The line between the separators is read-only and says what SherlockMe is doing: *Watching the Touch ID key*;
+*Touch ID key not watched: starting again* while the stream is started again; *Touch ID key not watched: not
+an administrator* on an account that cannot read the log. SherlockMe has no switch of its own.
 
 Hiding the icon leaves the app working. Opening the bundle again from the Applications folder or Spotlight
 is then the way back to the Settings window.
