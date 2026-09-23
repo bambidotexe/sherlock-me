@@ -10,6 +10,7 @@ public final class TouchIDLogStream: @unchecked Sendable {
     private let queue: DispatchQueue
     private let executable: URL
     private let arguments: [String]
+    private let uid: UInt32
     private let onEvent: (Date, TouchIDEvent) -> Void
     private let onEnd: (Int32) -> Void
 
@@ -20,15 +21,18 @@ public final class TouchIDLogStream: @unchecked Sendable {
     private var finished = false
 
     /// The real stream is `/usr/bin/log stream --style ndjson` with `TouchIDLog.predicate`; a test passes a
-    /// stand-in that prints lines of its own.
+    /// stand-in that prints lines of its own. `uid` is the session whose lock and unlock are this app's: the
+    /// user it runs as, and another one's session in front is not read as this one.
     public init(queue: DispatchQueue,
                 executable: URL = URL(fileURLWithPath: "/usr/bin/log"),
                 arguments: [String] = ["stream", "--style", "ndjson", "--predicate", TouchIDLog.predicate],
+                uid: UInt32 = getuid(),
                 onEvent: @escaping (Date, TouchIDEvent) -> Void,
                 onEnd: @escaping (Int32) -> Void) {
         self.queue = queue
         self.executable = executable
         self.arguments = arguments
+        self.uid = uid
         self.onEvent = onEvent
         self.onEnd = onEnd
     }
@@ -70,7 +74,7 @@ public final class TouchIDLogStream: @unchecked Sendable {
         while let newline = buffer.firstIndex(of: UInt8(ascii: "\n")) {
             let line = buffer[buffer.startIndex..<newline]
             buffer.removeSubrange(buffer.startIndex...newline)
-            if let (time, event) = TouchIDLog.parse(Data(line)) { onEvent(time, event) }
+            if let (time, event) = TouchIDLog.parse(Data(line), uid: uid) { onEvent(time, event) }
         }
     }
 

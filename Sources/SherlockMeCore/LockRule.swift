@@ -2,8 +2,15 @@ import Foundation
 
 /// SherlockMe's behaviour, as a value: what the log says, with the time it says it, in; what to do, out. It
 /// never reads a clock and never touches the Mac, so every sentence below is a test (`LockRuleTests`), and a
-/// recording of the log plays through it (`RulePlayer`). `docs/functional.md` §1 states the same rule in words.
+/// recording of the log plays through it (`RulePlayer`, `LockRuleReplayTests`). `docs/functional.md` §1
+/// states the same rule in words.
 ///
+/// 0. **While anyone holds loginwindow's Touch ID hold, a press of the key is macOS's.** coreautha takes the
+///    hold the moment any read of the sensor begins, an app authenticating or the lock screen, and loginwindow
+///    keeps it `K.holdDebounce` after the read ends and drops one nobody gave back `K.holdTimeout` after it
+///    was last taken. loginwindow refuses to lock on the key while it is held, and so does SherlockMe: a
+///    finger authenticating in an app that clicks the sensor locks nothing. If macOS locks anyway, that lock
+///    is followed (1).
 /// 1. **The Touch ID key goes down while the screen is unlocked: lock now.** That press is the current one.
 ///    A press whose key line was not read, known only from loginwindow locking on it, becomes the current
 ///    one the same way, with nothing to lock.
@@ -28,6 +35,9 @@ public struct LockRule: Sendable {
         case followedMacOSLock
         /// For the log alone: an unlock soon after a lock the rule follows, left alone, and why.
         case leftUnlocked(Reason)
+        /// For the log alone: the key went down while `holder` held loginwindow's Touch ID hold, and the
+        /// press is macOS's, which refuses it.
+        case leftToMacOS(holder: String)
     }
 
     public enum Reason: Equatable, Sendable {
@@ -49,6 +59,9 @@ public struct LockRule: Sendable {
     /// The press the rule follows, while it can still be relocked or reported on.
     private var press: Press?
 
+    /// loginwindow's Touch ID hold, by the pid holding it.
+    private var holds: [Int32: Hold] = [:]
+
     private struct Press: Sendable {
         /// When the rule last locked for it, or macOS did: the key going down, then the relock.
         var lockedAt: Date
@@ -59,6 +72,12 @@ public struct LockRule: Sendable {
         var relockDue: Date?
         /// The key was pressed on the lock screen after this press's lock.
         var cancelled = false
+    }
+
+    private struct Hold: Sendable {
+        var client: String
+        /// When loginwindow drops it, unless it is taken again first.
+        var until: Date
     }
 
     public init(screenIsLocked: Bool) {
@@ -73,6 +92,7 @@ public struct LockRule: Sendable {
                 press?.relockDue = nil
                 return []
             }
+            if let holder = holder(at: time) { return [.leftToMacOS(holder: holder)] }
             press = Press(lockedAt: time)
             return [.lock]
         case .macOSLocksForKey:
@@ -107,6 +127,10 @@ public struct LockRule: Sendable {
         case .screenUnlocked:
             screenIsLocked = false
             return unlocked(at: time)
+        case .holdTaken(let client, let pid):
+            holds[pid] = Hold(client: client, until: time.addingTimeInterval(K.holdTimeout))
+        case .holdCleared(let client, let pid):
+            holds[pid] = Hold(client: client, until: time.addingTimeInterval(K.holdDebounce))
         }
         return []
     }
@@ -130,6 +154,17 @@ public struct LockRule: Sendable {
     public mutating func settle(screenIsLocked locked: Bool, at time: Date) -> [Action] {
         guard locked, !screenIsLocked else { return [] }
         return handle(.screenLocked, at: time)
+    }
+
+    /// The lock the rule asked for was refused, or could not be made: the key did nothing, so there is no
+    /// press to follow. If macOS then locks on that press, its lock is followed like any other.
+    public mutating func lockFailed() { press = nil }
+
+    /// Who holds loginwindow's Touch ID hold at `time`; holds that have lapsed are forgotten. With several,
+    /// the one that lasts longest.
+    private mutating func holder(at time: Date) -> String? {
+        holds = holds.filter { $0.value.until > time }
+        return holds.values.max { $0.until < $1.until }?.client
     }
 
     private mutating func unlocked(at time: Date) -> [Action] {

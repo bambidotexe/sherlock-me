@@ -17,6 +17,7 @@ public enum Log {
     /// is the line that shows it (the shared pitfalls, *Onboarding*).
     public static let onboarding = Logger(subsystem: AppIdentity.logSubsystem, category: "onboarding")
     /// The Touch ID key: the log stream starting, ending and starting again, every lock and relock with
-    /// loginwindow's answer, every unlock left alone and why, and at `debug` every line the rule was given.
+    /// loginwindow's answer, every press left to macOS and why (who held the hold, another session at the
+    /// keyboard), every unlock left alone and why, and at `debug` every line the rule was given.
     public static let touchID = Logger(subsystem: AppIdentity.logSubsystem, category: "touchid")
 }

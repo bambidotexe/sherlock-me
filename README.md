@@ -59,11 +59,16 @@ of reading counts as the one that pressed the key. Lift your finger and put it b
 be slower than that: the author tried hard to beat it and couldn't. A click of the key on the lock screen,
 your password, or a touch that comes any later are all left alone.
 
+**4. Touch ID in your other apps is untouched.** While an app reads your finger (a password manager, `sudo`,
+the App Store, System Settings), macOS ignores a click of the sensor, and so does SherlockMe: the key locks
+only where macOS would let it. The same goes for the 3 s after a Touch ID unlock, which macOS ignores too.
+
 | You do | What happens |
 |---|---|
 | Click the Touch ID key | The Mac locks the instant the key goes down |
 | Leave your finger on the key after the click | If the lock screen unlocks with it, SherlockMe locks the Mac again half a second later, once |
 | Touch the sensor on the lock screen, click the key there, or type your password | The Mac unlocks, and stays unlocked |
+| Click the sensor while an app is reading your finger | Nothing, as macOS does: the authentication goes on |
 
 - There is nothing to set up and nothing to choose, and SherlockMe asks for no permission.
 - It needs an **administrator account**: it watches the key through the Mac's own log, which only an

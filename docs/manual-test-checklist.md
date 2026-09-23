@@ -29,12 +29,20 @@ Terminal: it says what SherlockMe decided at each press.
       "unlock left alone".
 - [ ] Click the key on the lock screen to unlock: it stays unlocked.
 - [ ] Unlock with the password: it stays unlocked.
-- [ ] Click the key within 3 s of a Touch ID unlock: it locks (macOS alone ignores such a press).
+- [ ] Click the key within 3 s of a Touch ID unlock: nothing happens, as macOS alone; the log says "left to
+      macOS", naming coreautha. Click it 4 s after: it locks.
+- [ ] With a Touch ID prompt up in another app (System Settings › Touch ID & Password, or `sudo` on a
+      terminal with Touch ID for sudo), click the sensor: the Mac does not lock and the authentication goes
+      on; the log says "left to macOS". Cancel the prompt and click the key 4 s later: it locks.
+- [ ] With a second account logged in (fast user switching), from that account click the key: SherlockMe's
+      log says nothing, or "another session at the keyboard: left to macOS", and that account's Mac does what
+      macOS makes it do. Back in yours, the first click locks at once.
 - [ ] With the lid open, the same presses on the built-in button. If the log says "macOS locked on a press
       whose key line was not read", its press does not reach biometrickitd's key line: write it in
       `docs/macOS.md`.
 - [ ] At every press, nothing odd when loginwindow's own lock arrives after SherlockMe's: no second lock
-      screen, no flash, the login box there. Anything seen goes in `docs/pitfalls.md`.
+      screen, no flash, the login box there. loginwindow declines it (`docs/macOS.md`); anything seen goes in
+      `docs/pitfalls.md`.
 - [ ] Quit SherlockMe: `pgrep -lf 'log stream --style ndjson'` lists nothing of SherlockMe's, and a click with
       the finger left on the key locks and unlocks again, as macOS does alone.
 - [ ] Leave SherlockMe running for an hour on battery: in Activity Monitor, the CPU and energy of `log`,

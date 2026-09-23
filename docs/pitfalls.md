@@ -94,6 +94,21 @@ new measurement that says otherwise.**
 - **Rule.** A hold comes back only with a measurement that SherlockMe's lock alone is not enough, and then
   with a way to give it back that survives a crash.
 
+### 11. Locking on every click of the key interrupts an authentication in another app
+- **Symptom.** With a Touch ID prompt up in an app (a password manager, `sudo`, the App Store, System
+  Settings enrolling a finger), a finger that presses the sensor hard enough to click it would lock the Mac;
+  the resting finger then unlocks it and the relock locks it again, the authentication gone.
+- **Measured.** On one day of the owner's Mac, 11 reads of the sensor were made with the screen unlocked.
+  coreautha held loginwindow's Touch ID hold within 1 ms of 10 of them beginning, System Settings' Touch ID
+  pane the 11th, and loginwindow ignores the key while any hold is held (`touchID Screenlock blocked
+  assertion, do not lock the screen`, 49 times that day). macOS therefore ignores such a click; a rule that
+  locks on every key-down does not.
+- **What holds.** The rule follows the hold from loginwindow's own lines and leaves the key to macOS while it
+  is held, with loginwindow's 3 s debounce and 60 s lapse (`functional.md` §1). The relock is not the key
+  and never waits for it.
+- **Rule.** SherlockMe locks on the key only where loginwindow would. A hold it could not see is the one
+  exception (*Open issues*).
+
 ---
 
 ## Open issues
@@ -111,3 +126,11 @@ Known, bounded, and left alone.
   on that lock screen before then is taken for a press on an unlocked Mac, and the unlock it asks for can be
   relocked once. It needs a stream start, a lock in the moment before the stream attaches, and a press within
   2 s; and the settle assumes the stream attaches within 2 s, which is not measured.
+- **A hold taken before a stream attached is unknown to the rule** until loginwindow drops it, 3 s after the
+  read ends or 60 s after it was last taken: a click of the sensor during that one read locks the Mac, as it
+  would without SherlockMe's rule 1. It needs a stream start (launch, or a restart after the stream ended)
+  while an app is reading the sensor. Nothing an app can reach asks loginwindow who holds it.
+- **loginwindow's own debounce after a session comes on console** (`Last on console was less than debounce
+  time, ignore touchID press`) is not followed: a press of the key in the first moments after a login or a
+  switch to this user locks with SherlockMe where macOS alone would wait. The press is the user's own, and
+  the moment is not measured.

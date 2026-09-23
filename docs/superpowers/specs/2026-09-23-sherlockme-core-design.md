@@ -207,4 +207,26 @@ line that a macOS update changes is not detected: SherlockMe follows the press f
 the relock still comes, and the Health page stays green. The screen's state comes from loginwindow's own log
 lines of `com.apple.screenIsLocked` and `com.apple.screenIsUnlocked`, not from subscribing to the
 notifications, so every event reaches the rule from one stream with the log's own times. And the replay of the
-owner's recorded presses is written and held for the owner (the plan's *Replay the owner's recordings*).
+owner's recorded presses is `LockRuleReplayTests`.
+
+## What the first walk decided
+
+The owner installed the build and walked `docs/manual-test-checklist.md` §1 on the Magic Keyboard; a review
+of that day's log then measured what the build had left open, and changed one rule.
+
+1. **loginwindow's own lock, arriving after SherlockMe's, declines** with the shield already up
+   (`shieldShowing:1`, 16 presses of 16): open question 1 is settled with no hold, and nothing odd follows
+   the second lock.
+2. **The key is macOS's while anyone holds loginwindow's Touch ID hold.** coreautha takes that hold the moment
+   any read of the sensor begins, an app's Touch ID prompt as much as the lock screen's (10 of the day's 11
+   reads made with the screen unlocked; System Settings' Touch ID pane the 11th), and loginwindow ignores the
+   key while it is held. The rule above locked on every key-down, and so would have locked in the middle of an
+   authentication in another app, where the resting finger would then have unlocked and the relock locked
+   again. The rule now reads the hold from loginwindow's own lines, with its 3 s debounce and 60 s lapse, and
+   leaves such a press to macOS. That covers the 3 s after a Touch ID unlock as well, where the key now does
+   what macOS makes it do: nothing. The relock is not the key and never waits for the hold.
+3. **Another user's session** is not this one: its loginwindow's lines carry its uid and are dropped, and
+   nothing is locked while this session is not at the keyboard.
+4. **The lock screen makes one read per lock** (188 of 188), and a NO-MATCH continues that read rather than
+   starting another, so a finger seen at the start of "the read" is seen at the start of the only one.
+5. **The stream costs nothing worth a setting**: 0.7 s of CPU for the `log` child in half an hour.

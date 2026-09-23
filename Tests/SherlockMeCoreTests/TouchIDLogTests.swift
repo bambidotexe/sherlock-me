@@ -29,6 +29,42 @@ final class TouchIDLogTests: XCTestCase {
         XCTAssertNil(TouchIDLog.event(process: "coreauthd", message: "touchIDButtonPressed: 1"))
     }
 
+    /// loginwindow's Touch ID hold, taken and given back, as loginwindow logs it: who holds it, by name and
+    /// pid. The other lines of the same method (the list of holders, "already has an assertion", the
+    /// return code) carry the method's name too and are not events.
+    func testTheHoldLinesAreRead() {
+        let session = "loginwindow"
+        XCTAssertEqual(TouchIDLog.event(process: session, message: "-[LWTouchIDLockScreen addNewTouchIDBlockScreenLockAssertionForClient:withPID:] | addNewTouchIDBlockScreenLockAssertionForClient: coreautha, with PID: 35068"),
+                       .holdTaken(client: "coreautha", pid: 35068))
+        XCTAssertEqual(TouchIDLog.event(process: session, message: "-[LWTouchIDLockScreen clearTouchIDBlockScreenLockAssertionForClient:withPID:withDebounce:] | clearTouchIDBlockScreenLockAssertionForClient: coreautha, with PID: 35068"),
+                       .holdCleared(client: "coreautha", pid: 35068))
+        // System Settings' Touch ID pane, as it names itself on a French Mac: spaces, non-breaking spaces
+        // and parentheses are all the client's name.
+        XCTAssertEqual(TouchIDLog.event(process: session, message: "-[LWTouchIDLockScreen addNewTouchIDBlockScreenLockAssertionForClient:withPID:] | addNewTouchIDBlockScreenLockAssertionForClient: Touch\u{A0}ID et mot de passe (Réglages\u{A0}Système), with PID: 80399"),
+                       .holdTaken(client: "Touch\u{A0}ID et mot de passe (Réglages\u{A0}Système)", pid: 80399))
+        XCTAssertNil(TouchIDLog.event(process: session, message: "-[LWTouchIDLockScreen addNewTouchIDBlockScreenLockAssertionForClient:withPID:] | 35068 already has an assertion, resetting timeout"))
+        XCTAssertNil(TouchIDLog.event(process: session, message: "-[LWTouchIDLockScreen addNewTouchIDBlockScreenLockAssertionForClient:withPID:] | current assertions: {\n    35068 = \"811892240.795993\";\n}"))
+        XCTAssertNil(TouchIDLog.event(process: session, message: "-[LWTouchIDLockScreen clearTouchIDBlockScreenLockAssertionForClient:withPID:withDebounce:] | returning: 0"))
+        XCTAssertNil(TouchIDLog.event(process: session, message: "-[LWTouchIDLockScreen addNewTouchIDBlockScreenLockAssertionForClient:withPID:] | addNewTouchIDBlockScreenLockAssertionForClient: coreautha, with PID: none"))
+        XCTAssertNil(TouchIDLog.event(process: "coreautha", message: "| addNewTouchIDBlockScreenLockAssertionForClient: coreautha, with PID: 35068"))
+    }
+
+    /// The screen's lock and unlock are posted per session, with the user's id as the object. With another
+    /// user's session in front, its loginwindow's lines are not this session's; a line that names no session
+    /// is taken as this one's, so a macOS that stops writing the id costs nothing.
+    func testAnotherSessionsLockAndUnlockAreNotOurs() {
+        let session = "loginwindow"
+        let locked = "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsLocked, with object:"
+        XCTAssertEqual(TouchIDLog.event(process: session, message: locked + "501", uid: 501), .screenLocked)
+        XCTAssertNil(TouchIDLog.event(process: session, message: locked + "502", uid: 501))
+        XCTAssertNil(TouchIDLog.event(process: session, message: locked + "5011", uid: 501))
+        XCTAssertEqual(TouchIDLog.event(process: session, message: "sendDistributedNotification: com.apple.screenIsUnlocked", uid: 501),
+                       .screenUnlocked)
+        let line = #"{"timestamp":"2026-09-23 11:48:21.839592+0200","processImagePath":"/System/Library/CoreServices/loginwindow.app/Contents/MacOS/loginwindow","eventMessage":"sendDistributedNotification: com.apple.screenIsLocked, with object:502"}"#
+        XCTAssertNil(TouchIDLog.parse(Data(line.utf8), uid: 501))
+        XCTAssertEqual(TouchIDLog.parse(Data(line.utf8), uid: 502)?.event, .screenLocked)
+    }
+
     func testALineOfTheStream() throws {
         let line = #"{"timestamp":"2026-09-23 11:48:21.425235+0200","processImagePath":"\/usr\/libexec\/biometrickitd","eventMessage":"touchIDButtonPressed: 1","messageType":"Default"}"#
         let parsed = try XCTUnwrap(TouchIDLog.parse(Data(line.utf8)))
@@ -48,7 +84,9 @@ final class TouchIDLogTests: XCTestCase {
         for text in ["\"biometrickitd\"", "touchIDButtonPressed: 1", "match:withOptions",
                      "statusMessage:withData:timestamp: 63,", "statusMessage:withData:timestamp: 64,",
                      "\"loginwindow\"", "sendDistributedNotification: com.apple.screenIs",
-                     "calling to lock screen immediate"] {
+                     "calling to lock screen immediate",
+                     "| addNewTouchIDBlockScreenLockAssertionForClient: ",
+                     "| clearTouchIDBlockScreenLockAssertionForClient: "] {
             XCTAssertTrue(TouchIDLog.predicate.contains(text), text)
         }
     }

@@ -14,8 +14,8 @@ in the code is the one that counts.
 **SherlockMe must never leave the Touch ID key unable to lock the Mac, and never undo an unlock the user made
 on purpose.** The sections below are the rules the app follows; these are the rules every other one is held
 to. **A request that would loosen one is a conflict** under step 2 of `docs/shared/workflow.md`: the rule is
-quoted to the owner, and nothing changes until the owner has said so for that rule. `LockRuleTests` pins 2
-and 3.
+quoted to the owner, and nothing changes until the owner has said so for that rule. `LockRuleTests` pins 2,
+3 and 4.
 
 1. **It holds nothing in macOS**: no hold on loginwindow, no preference, no Touch ID setting. Whenever
    SherlockMe is not running, has crashed or cannot read the log, the key does exactly what macOS makes it
@@ -25,9 +25,15 @@ and 3.
    sensor as it began to read. §1.
 3. **A press of the key on the lock screen, a password, a touch later in the read and every unlock outside
    that window are left alone.** §1.
-4. **It never touches the Touch ID settings, and never runs anything as root.** §1.
-5. **It asks for no permission.** §4.
-6. **Nothing it does waits on the main thread**, so a window being drawn never delays a lock.
+4. **It never locks on a press macOS itself ignores for a read of the sensor.** While an app, System
+   Settings or the lock screen reads the sensor, and for `K.holdDebounce` (3 s) after, loginwindow holds
+   its Touch ID hold and ignores the key; SherlockMe leaves such a press to macOS, so a finger
+   authenticating in another app that clicks the sensor locks nothing. §1.
+5. **It touches nothing outside its own session**: another user's lock and unlock are not its, and nothing
+   is locked while another session is at the keyboard. §1.
+6. **It never touches the Touch ID settings, and never runs anything as root.** §1.
+7. **It asks for no permission.** §4.
+8. **Nothing it does waits on the main thread**, so a window being drawn never delays a lock.
    `docs/architecture.md`, *Threading*.
 
 ## 1. The feature
@@ -45,33 +51,53 @@ sensor and unlocks the Mac again, 1.1 to 1.4 s after the press (`docs/macOS.md`)
 | loginwindow `handleSystemEvent:` … `calling to lock screen immediate` | macOS locking on the key itself, 0.31 s after it went down |
 | biometrickitd `match:withOptions:` | something started reading the sensor |
 | biometrickitd status 63, status 64 | a finger arrived on the sensor, left it; reported only while it is read |
-| loginwindow `com.apple.screenIsLocked`, `com.apple.screenIsUnlocked` | the screen locked, unlocked |
+| loginwindow `com.apple.screenIsLocked`, `com.apple.screenIsUnlocked`, `with object:<uid>` | this session's screen locked, unlocked; another user's session is not read |
+| loginwindow `addNewTouchIDBlockScreenLockAssertionForClient: <client>, with PID: <pid>` | someone took loginwindow's Touch ID hold, under which loginwindow ignores the key: coreautha, the moment any read of the sensor begins |
+| loginwindow `clearTouchIDBlockScreenLockAssertionForClient: …` | the hold given back, which loginwindow keeps `K.holdDebounce` (3 s) more |
 
 **What it does** (`LockRule`), on the log's own times:
 
-1. **The key goes down while the screen is unlocked: SherlockMe locks the Mac at once**, with loginwindow's
+1. **While anyone holds loginwindow's Touch ID hold, a press of the key is macOS's.** coreautha takes the
+   hold the moment any read of the sensor begins (an app's Touch ID prompt, System Settings enrolling a
+   finger, the lock screen) and loginwindow keeps it `K.holdDebounce` (3 s) after the read ends, dropping
+   one nobody gave back `K.holdTimeout` (60 s) after it was last taken. loginwindow ignores the key while
+   it is held, and so does SherlockMe: a finger authenticating in another app that clicks the sensor locks
+   nothing, and a click within 3 s of a Touch ID unlock does what macOS makes it do. If macOS locks on such
+   a press anyway, that lock is followed (2). Measured: coreautha took the hold within 1 ms of 10 of the 11
+   reads made with the screen unlocked on one day of the owner's Mac, System Settings' Touch ID pane the
+   11th (`docs/macOS.md`).
+2. **The key goes down while the screen is unlocked: SherlockMe locks the Mac at once**, with loginwindow's
    own immediate lock (`SACLockScreenImmediate`). Measured: locked 0.09 to 0.14 s after the key went down,
-   where macOS alone takes 0.38 s. That press is the current one. A press whose key line was not read, known
-   only from macOS locking on it, becomes the current one the same way.
-2. **The lock screen starts reading the sensor within `K.readAfterLock` (3 s) of that lock**: when it did is
-   kept.
-3. **A finger seen within `K.restingFinger` (0.5 s) of that read beginning was already there**: the finger
+   where macOS alone takes 0.38 s; loginwindow's own lock on the same press, 0.31 s after the key, declines
+   with the shield already up (16 presses of 16). That press is the current one. A press whose key line was
+   not read, known only from macOS locking on it, becomes the current one the same way. A lock loginwindow
+   refuses leaves no press: the key did nothing, and macOS's own lock on it, if it comes, is followed.
+3. **The lock screen starts reading the sensor within `K.readAfterLock` (3 s) of that lock**: when it did is
+   kept. The lock screen makes one read per lock, and a finger that fails to match is read again inside that
+   same read (188 locks of 188).
+4. **A finger seen within `K.restingFinger` (0.5 s) of that read beginning was already there**: the finger
    that pressed the key, resting. One that leaves within `K.keyBlip` (0.1 s) was the key coming up, and is
    forgotten.
-4. **The screen unlocks within `K.relockWindow` (6 s) of the lock, with that finger still on the sensor or
+5. **The screen unlocks within `K.relockWindow` (6 s) of the lock, with that finger still on the sensor or
    gone at most `K.matchAfterLift` (0.5 s) before: SherlockMe locks the Mac again `K.relockDelay` (0.5 s)
    later**, if the screen has stayed unlocked. Once per press (`K.relocksPerPress`). The Mac is unlocked for
    about 0.6 s in between, and in every measured run a Mac locked again stayed locked until the owner
-   unlocked it.
-5. **Everything else is left alone**: the key pressed on the lock screen (the user unlocking, which also
+   unlocked it. The hold the lock screen takes for its read never stops the relock: it is not the key.
+6. **Everything else is left alone**: the key pressed on the lock screen (the user unlocking, which also
    gives up a relock still to come), a finger that arrives later in the read, a password, an Apple Watch, an
    unlock after the window, and any unlock that follows no press.
+
+**Only this session, at the keyboard.** The screen's lock and unlock are read for the user SherlockMe runs as
+(`with object:<uid>`): another user's session is not this one's. With another session at the keyboard (fast
+user switching), nothing is locked, and the log says so.
 
 **The log can miss a lock** that lands while a stream is starting: a stream shows nothing logged before it
 attached. `K.watchSettle` (2 s) after each start, a lock the window server reports and the rule has not seen
 is taken as read. An unlock is never taken that way. Before that moment is the one exception to §0's third
 guarantee: a press on a lock screen the log missed is taken for a press on an unlocked Mac, and the unlock it
-asks for can be relocked once.
+asks for can be relocked once. A hold taken before the stream attached is unknown to it the same way, for as
+long as loginwindow keeps it (60 s at most): a click during that one read locks, the one exception to §0's
+fourth guarantee.
 
 **When it cannot watch**, the key does exactly what macOS makes it do, and the menu and the Health page say
 why:
@@ -83,8 +109,9 @@ why:
   the waits over. Each start reads again whether the screen is locked and forgets any press under way.
 
 **What it logs**, category `touchid`: the stream starting, ending and starting again; every lock and relock
-with loginwindow's answer; every unlock left alone soon after a lock, and why; at `debug`, every line the
-rule was given.
+with loginwindow's answer; every press left to macOS, naming who held the hold or that another session was
+at the keyboard; every unlock left alone soon after a lock, and why; at `debug`, every line the rule was
+given.
 
 ## 2. Settings
 

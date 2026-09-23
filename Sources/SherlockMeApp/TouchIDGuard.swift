@@ -12,6 +12,7 @@ import SherlockMePlatform
 ///
 /// **It holds nothing in macOS** (`docs/functional.md` §0): no hold on loginwindow, no preference, no setting.
 /// Whenever it is not running or cannot read the log, the Touch ID key does exactly what macOS makes it do.
+/// **It locks only the session at the keyboard**: with another user's session in front, the key is theirs.
 final class TouchIDGuard: @unchecked Sendable {
     static let shared = TouchIDGuard()
 
@@ -54,14 +55,21 @@ final class TouchIDGuard: @unchecked Sendable {
     }
 
     /// Stops the stream before the process goes: a quit, an update's install and the uninstall all leave
-    /// through `NSApp.terminate`. Synchronous: when this returns, the `log` child has been sent its end
-    /// (`terminate()`, nothing waits for it to exit), and no line or end of it reaches the rule.
+    /// through `NSApp.terminate`. When this returns, the `log` child has been sent its end (`terminate()`,
+    /// nothing waits for it to exit) and no line or end of it reaches the rule; or `K.watchStopWait` has
+    /// passed with the queue held by a lock call loginwindow has not answered, in which case the quit goes
+    /// on without it and the child ends by itself at its next line.
     func stop() {
-        queue.sync { [self] in
+        let stopped = DispatchSemaphore(value: 0)
+        queue.async { [self] in
             running = false
             stream?.stop()
             stream = nil
             update { $0.watcher = .stopped }
+            stopped.signal()
+        }
+        if stopped.wait(timeout: .now() + K.watchStopWait) == .timedOut {
+            Log.touchID.error("the Touch ID queue did not stop within \(K.watchStopWait) s; quitting without it")
         }
     }
 
@@ -70,7 +78,8 @@ final class TouchIDGuard: @unchecked Sendable {
     private func startStream() {
         guard running else { return }
         // A fresh rule each time: a press that was under way when a stream ended is forgotten, which can
-        // only cost a relock, never make one in error.
+        // only cost a relock, never make one in error. A hold taken before the stream attached is unknown to
+        // it as well, for as long as loginwindow keeps it (`docs/pitfalls.md`, *Open issues*).
         rule = LockRule(screenIsLocked: LoginSession.screenIsLocked)
         let stream = TouchIDLogStream(queue: queue,
                                       onEvent: { [weak self] time, event in self?.handle(event, at: time) },
@@ -124,14 +133,26 @@ final class TouchIDGuard: @unchecked Sendable {
         for action in actions {
             switch action {
             case .lock:
+                guard LoginSession.isOnConsole else {
+                    Log.touchID.notice("the Touch ID key went down with another session at the keyboard: left to macOS")
+                    rule.lockFailed()
+                    continue
+                }
                 let result = SessionAgent.lockScreen()
                 if result == 0 {
                     update { $0.lastLock = Date() }
                     Log.touchID.notice("the Touch ID key went down: locked")
                 } else {
+                    // Nothing locked, so there is no press to follow; macOS's own lock on it, if it comes,
+                    // is followed instead.
+                    rule.lockFailed()
                     Log.touchID.error("the Touch ID key went down: the lock failed, result \(result)")
                 }
             case .relock:
+                guard LoginSession.isOnConsole else {
+                    Log.touchID.notice("the relock was due with another session at the keyboard: left alone")
+                    continue
+                }
                 let result = SessionAgent.lockScreen()
                 if result == 0 {
                     update { $0.lastRelock = Date() }
@@ -150,6 +171,8 @@ final class TouchIDGuard: @unchecked Sendable {
                 Log.touchID.notice("macOS locked on a press whose key line was not read: following that press")
             case .leftUnlocked(let reason):
                 Log.touchID.notice("unlock left alone: \(String(describing: reason), privacy: .public)")
+            case .leftToMacOS(let holder):
+                Log.touchID.notice("the Touch ID key went down while \(holder, privacy: .public) holds loginwindow's Touch ID hold: left to macOS")
             }
         }
     }

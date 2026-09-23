@@ -110,8 +110,8 @@ make release     # skill: macos-publish-release. The same, plus tag, push, GitHu
 - `/usr/bin/log stream --predicate 'subsystem == "dev.rubens.SherlockMe"' --level debug` — the app's log
   (`log` alone is a zsh builtin, hence the full path). Categories: `app`, `update`, `onboarding` (the
   wizard's poll, the stepping button's word, and at `debug` where that button actually is), `touchid` (the
-  stream starting and ending, every lock and relock, every unlock left alone and why, and at `debug` every
-  line the rule was given).
+  stream starting and ending, every lock and relock, every press left to macOS and why, every unlock left
+  alone and why, and at `debug` every line the rule was given).
 - `SHERLOCKME_UPDATE_FEED=file:///…/latest.json` in the installed app's environment replaces GitHub's reply
   with a stand-in, which is how the whole update is walked offline (`docs/shared/manual-test-checklist.md`).
 
@@ -157,6 +157,9 @@ restated. This app's own:
 - **A relock needs every condition of the rule**: a press SherlockMe followed, the lock screen's read within
   3 s, a finger in its first half-second, the unlock within 6 s, once. Each one is what keeps a deliberate
   unlock alone; widening one to catch more undoes one (`docs/pitfalls.md` 6).
+- **A press macOS ignores for a read of the sensor is macOS's**: while anyone holds loginwindow's Touch ID
+  hold (an app or the lock screen reading the sensor, and 3 s after), SherlockMe does not lock on the key,
+  and it never locks while another session is at the keyboard. `LockRuleTests` pins it (`functional.md` §0).
 - **Nothing locks the Mac unless the owner is at the keyboard and has said so**: no test, no probe run, no
   build step. `SessionAgentTests` looks the call up and never makes it.
 - **Everything the key does runs on `TouchIDGuard`'s queue**, never on the main thread.
@@ -165,7 +168,7 @@ restated. This app's own:
 ## Traps
 
 `docs/shared/pitfalls.md` is the family's list and `docs/pitfalls.md` this app's own, with the measurements.
-The six that cost the most:
+The seven that cost the most:
 
 - A lock that waits for the key to come up does not stop a resting finger, and neither does putting the
   displays to sleep first (pitfalls 1, 2).
@@ -177,6 +180,9 @@ The six that cost the most:
 - `DisableScreenLockImmediate` stops every immediate lock, SherlockMe's included, and outlives the app
   (pitfalls 7).
 - A Touch ID hold outlives the process that took it, for up to 60 s (pitfalls 10).
+- Locking on every click of the key interrupts an authentication in another app: coreautha holds
+  loginwindow's Touch ID hold for every read of the sensor, and loginwindow ignores the key meanwhile
+  (pitfalls 11).
 
 ## Status
 
@@ -187,9 +193,10 @@ Known limitations, in plain words:
 
 - **Nothing is published**, so every update check answers *No release published yet* until the repository is
   public and carries a release.
-- **The feature has not been walked on hardware.** It has not been installed or run.
-  `docs/manual-test-checklist.md` §1 is the walk, with the built-in button (every measurement used the Magic
-  Keyboard, the lid closed) and loginwindow's own lock arriving after SherlockMe's.
+- **The owner has walked the feature on the Magic Keyboard, the lid closed**: the instant lock, the relock,
+  presses on the lock screen, and loginwindow's own lock declining after SherlockMe's. Not walked yet
+  (`docs/manual-test-checklist.md` §1): the built-in button, a click of the sensor during another app's
+  Touch ID read, a second user's session, an account that is not an administrator.
 - **The replay of the owner's recorded presses** (`Tools/touchprobe/fixtures/`) through the rule is written
   in the build plan (`docs/superpowers/plans/2026-09-23-sherlockme-core.md`, *Replay the owner's recordings*)
   and not in the tree yet.

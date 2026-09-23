@@ -53,6 +53,20 @@ public enum K {
     /// room to attach, and a lock so soon after a start is rare.
     public static let watchSettle: TimeInterval = 2
 
+    /// loginwindow's Touch ID hold, under which it refuses to lock on the key. loginwindow drops a hold this
+    /// long after it was last taken, whatever became of its holder (`touchIDBlockScreenLockAssertionTimeout`:
+    /// "using timeout of: 60 seconds" at every take).
+    public static let holdTimeout: TimeInterval = 60
+
+    /// A hold given back is kept this much longer: loginwindow's own debounce ("assertion timeout set to
+    /// 3.000000 seconds from now", 302 releases of 302 on one day of the owner's Mac).
+    public static let holdDebounce: TimeInterval = 3
+
+    /// How long a quit waits for the Touch ID queue to have stopped the stream. The one thing that can hold
+    /// that queue is the lock call, a round trip to loginwindow; a quit is not held to it, and a `log` child
+    /// left running ends by itself at its next line.
+    public static let watchStopWait: TimeInterval = 2
+
     // MARK: - Updates
 
     /// How long after launch the first check nobody asked for is made. Late enough that it never competes

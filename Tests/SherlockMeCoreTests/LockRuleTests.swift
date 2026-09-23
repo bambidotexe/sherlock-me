@@ -144,6 +144,84 @@ final class LockRuleTests: XCTestCase {
         XCTAssertEqual(actions([(0, .screenLocked), (0.1, .readStart), (0.2, .fingerOn), (0.9, .screenUnlocked)]), [])
     }
 
+    // MARK: loginwindow's Touch ID hold
+
+    private let coreautha = "coreautha"
+
+    /// An app reading the sensor, its prompt up, holds loginwindow's Touch ID hold from the moment the read
+    /// starts; loginwindow refuses the key's lock while it is held. A click of the key meanwhile is the finger
+    /// authenticating, and the press is macOS's.
+    func testTheKeyDuringAnotherAppsReadIsLeftToMacOS() {
+        XCTAssertEqual(actions([(0, .holdTaken(client: coreautha, pid: 35068)), (1.5, .keyDown)]),
+                       [.leftToMacOS(holder: coreautha)])
+    }
+
+    /// The hold given back is kept `K.holdDebounce` more, as loginwindow keeps it.
+    func testTheHoldOutlivesTheReadByItsDebounce() {
+        let read: [(TimeInterval, TouchIDEvent)] = [(0, .holdTaken(client: coreautha, pid: 35068)),
+                                                    (2, .holdCleared(client: coreautha, pid: 35068))]
+        XCTAssertEqual(actions(read + [(4.9, .keyDown)]), [.leftToMacOS(holder: coreautha)])
+        XCTAssertEqual(actions(read + [(5.1, .keyDown)]), [.lock])
+    }
+
+    /// A hold nobody gives back lapses `K.holdTimeout` after it was last taken, as it does in loginwindow;
+    /// taking it again starts that over.
+    func testAHoldNotGivenBackLapsesAfterAMinute() {
+        let taken: (TimeInterval, TouchIDEvent) = (0, .holdTaken(client: coreautha, pid: 35068))
+        XCTAssertEqual(actions([taken, (59, .keyDown)]), [.leftToMacOS(holder: coreautha)])
+        XCTAssertEqual(actions([taken, (61, .keyDown)]), [.lock])
+        XCTAssertEqual(actions([taken, (50, .holdTaken(client: coreautha, pid: 35068)), (100, .keyDown)]),
+                       [.leftToMacOS(holder: coreautha)])
+    }
+
+    /// Every holder counts: the key is macOS's until the last hold has lapsed.
+    func testEveryHolderCounts() {
+        let steps = actions([(0, .holdTaken(client: coreautha, pid: 1)), (0, .holdTaken(client: "touchprobe", pid: 2)),
+                             (1, .holdCleared(client: coreautha, pid: 1)), (5, .keyDown)])
+        XCTAssertEqual(steps, [.leftToMacOS(holder: "touchprobe")])
+    }
+
+    /// A press left to macOS that macOS then locks on (the hold lapsed between the two) is followed like any
+    /// other press whose lock is macOS's.
+    func testMacOSsOwnLockOnAPressLeftToItIsFollowed() {
+        let steps = actions([(0, .holdTaken(client: coreautha, pid: 35068)), (1, .keyDown), (1.31, .macOSLocksForKey),
+                             (1.4, .screenLocked), (1.45, .readStart), (1.5, .fingerOn), (2.2, .screenUnlocked)])
+        XCTAssertEqual(steps, [.leftToMacOS(holder: coreautha), .followedMacOSLock, .wake(at: at(2.7)), .relock])
+    }
+
+    /// The lock screen's own read holds it too, and gives it back with the debounce as it unlocks: a click
+    /// within 3 s of a Touch ID unlock is macOS's, which ignores it.
+    func testTheKeyRightAfterATouchIDUnlockIsLeftToMacOS() {
+        let unlock: [(TimeInterval, TouchIDEvent)] = [
+            (0, .screenLocked), (0.02, .holdTaken(client: coreautha, pid: 35068)), (0.03, .readStart),
+            (1.0, .fingerOn), (1.5, .holdCleared(client: coreautha, pid: 35068)), (1.6, .screenUnlocked),
+        ]
+        XCTAssertEqual(actions(unlock + [(2.0, .keyDown)], screenIsLocked: true), [.leftToMacOS(holder: coreautha)])
+        XCTAssertEqual(actions(unlock + [(4.6, .keyDown)], screenIsLocked: true), [.lock])
+    }
+
+    /// The relock is not the key: the hold the lock screen takes for its read, and its debounce after the
+    /// unwanted unlock, never stop it.
+    func testTheHoldNeverStopsTheRelock() {
+        let press: [(TimeInterval, TouchIDEvent)] = [
+            (0, .keyDown), (0.2, .screenLocked), (0.22, .holdTaken(client: coreautha, pid: 35068)),
+            (0.25, .readStart), (0.3, .fingerOn), (1.0, .holdCleared(client: coreautha, pid: 35068)),
+            (1.1, .screenUnlocked),
+        ]
+        XCTAssertEqual(actions(press), [.lock, .wake(at: at(1.6)), .relock])
+    }
+
+    // MARK: A lock that was refused
+
+    /// A lock loginwindow refused leaves no press: the key did nothing, and if macOS then locks on it, that
+    /// lock is followed.
+    func testALockThatFailedLeavesNoPressToFollow() {
+        var rule = LockRule(screenIsLocked: false)
+        XCTAssertEqual(rule.handle(.keyDown, at: at(0)), [.lock])
+        rule.lockFailed()
+        XCTAssertEqual(rule.handle(.macOSLocksForKey, at: at(0.31)), [.followedMacOSLock])
+    }
+
     // MARK: A stream that has just started
 
     /// A lock the log did not show, taken from the window server: the press that follows is a press on the

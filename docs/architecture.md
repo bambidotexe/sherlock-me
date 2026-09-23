@@ -20,13 +20,13 @@ SherlockMeCore  ←  SherlockMePlatform  ←  SherlockMeApp
 
 | Layer | Files | What they own |
 |---|---|---|
-| Core | `TouchIDLog`, `LockRule`, `Watcher` | The feature: the lines SherlockMe reads and what each means, the rule that turns them into a lock or a relock, when a stream that ended starts again. Values in, a decision out. |
+| Core | `TouchIDLog`, `LockRule`, `Watcher` | The feature: the lines SherlockMe reads and what each means (the key, the sensor, the screen, loginwindow's Touch ID hold), the rule that turns them into a lock, a relock or a press left to macOS, when a stream that ended starts again. Values in, a decision out. |
 | | `Settings`, `Constants` (`K`), `AppIdentity`, `Paths`, `QuietLaunch`, `SupportLink` | The values the rest of the app is built on. |
 | | `UpdateCheck`, `UpdateSchedule`, `UpdatePanel`, `UpdateSession`, `StagedUpdateCheck`, `UpdateInstallScript` | Every rule of the update that does not need a network or a disk. |
 | | `UninstallPlan` | What an uninstall removes, and the text of the helper that finishes it. |
 | | `Health`, `HealthRules`, `HealthReport` | The Health page's two tables (checks, readings) from plain facts, and the one colour rule every page's states follow. |
 | | `Localization`, `Strings*` | Every sentence the user reads, in both languages. |
-| Platform | `TouchIDLogStream`, `SessionAgent`, `LoginSession` | The feature's system boundary: the `log stream` child, loginwindow's immediate lock through the private login.framework, whether the screen is locked and whether the user is an administrator. |
+| Platform | `TouchIDLogStream`, `SessionAgent`, `LoginSession` | The feature's system boundary: the `log stream` child, read for the user it runs as; loginwindow's immediate lock through the private login.framework; whether the screen is locked, whether this session is at the keyboard and whether the user is an administrator. |
 | | `LoginItem`, `SettingsStore`, `Log` | The rest of the system boundary. |
 | | `CrashReports` | What the Health page reads about the app itself: its crash reports. |
 | | `UpdateChecker` + `UpdateDownload`, `UpdateStager`, `CodeSignature`, `UpdateInstaller`, `DetachedProcess` | The update's I/O. The only network code in the app. |
@@ -42,7 +42,9 @@ SherlockMeCore  ←  SherlockMePlatform  ←  SherlockMeApp
   user-interactive): the stream's lines, the rule, the lock call, and three timers: the relock's, the stream's
   restart, and the settle `K.watchSettle` after each start, so a window being drawn never delays a lock. The
   menu and the Health page read its status, a copy kept under a lock, and never wait on that queue; the one
-  wait on it is `stop()` at quit, which returns once the `log` child has been sent its end.
+  wait on it is `stop()` at quit, which returns once the `log` child has been sent its end, or after
+  `K.watchStopWait` (2 s) when the queue is held by a lock call loginwindow has not answered, so a quit is
+  never held to loginwindow.
 - **Two exceptions, both in the update.** `URLSession` calls its delegate on its own queue and the caller
   hops; unpacking a disk image runs on one serial queue of its own, because it mounts, copies and verifies,
   and two of those at once would share a mount point.

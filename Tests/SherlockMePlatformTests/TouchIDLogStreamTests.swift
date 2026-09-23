@@ -33,6 +33,20 @@ final class TouchIDLogStreamTests: XCTestCase {
         }
     }
 
+    /// Another session's lock is not an event of this one: the stream reads for the user it runs as.
+    func testAnotherSessionsLinesAreNotEvents() throws {
+        let otherSession = Self.locked.replacingOccurrences(of: "object:501", with: "object:502")
+        var events: [TouchIDEvent] = []
+        let ended = expectation(description: "the end")
+        let stream = TouchIDLogStream(queue: queue, executable: URL(fileURLWithPath: "/bin/sh"),
+                                      arguments: script([otherSession, Self.locked], exit: 0), uid: 501,
+                                      onEvent: { _, event in events.append(event) },
+                                      onEnd: { _ in ended.fulfill() })
+        try queue.sync { try stream.start() }
+        wait(for: [ended], timeout: 5)
+        queue.sync { XCTAssertEqual(events, [.screenLocked]) }
+    }
+
     func testAStopIsNotAnEnd() throws {
         let noEnd = expectation(description: "no end")
         noEnd.isInverted = true
