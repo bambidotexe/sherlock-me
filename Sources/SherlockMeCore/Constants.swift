@@ -2,9 +2,44 @@ import Foundation
 
 /// Every number the app is built on, once, with the evidence for it beside it. A number that is a matter of
 /// taste is not here and is not offered as a setting either: it is a rule.
-///
-/// TEMPLATE: the app's own numbers go above the update's, each with the measurement that chose it.
 public enum K {
+    // MARK: - The Touch ID key
+
+    /// A read of the sensor that begins this long after the lock is not the lock screen's. Measured: the lock
+    /// screen starts reading 0.03 to 0.15 s after the screen locked, which comes 0.1 to 0.4 s after the key.
+    public static let readAfterLock: TimeInterval = 3
+
+    /// A finger seen this soon after the read began was already on the sensor: the finger that pressed the
+    /// key, resting. Measured on the owner's presses: resting fingers 0.001 to 0.42 s into the read,
+    /// deliberate touches 0.97 s and later (the owner's log, runs 1, 1b, 4, 7, 8, 9).
+    public static let restingFinger: TimeInterval = 0.5
+
+    /// A finger that leaves this soon after it was seen was the key coming up, not a finger resting.
+    /// Measured: 17 ms (run 4).
+    public static let keyBlip: TimeInterval = 0.1
+
+    /// When the resting finger is the one that unlocked, the unlock comes this soon after it leaves: the
+    /// match lands 0.2 to 0.25 s after the finger that gave the image leaves. A later unlock was another touch.
+    public static let matchAfterLift: TimeInterval = 0.5
+
+    /// An unlock this soon after the lock the rule follows may be undone. Every unwanted unlock came 0.9 to
+    /// 1.6 s after the press.
+    public static let relockWindow: TimeInterval = 6
+
+    /// How long after the unwanted unlock the Mac is locked again. At once, the desktop showed for 0.10 to
+    /// 0.12 s and the relocked screen stayed on the wallpaper with no login box until a key was pressed
+    /// (run 7). After 1 s, a normal lock screen, and the Mac unlocked for 1.16 to 1.19 s (run 8). After
+    /// 0.5 s, a normal lock screen, unlocked for 0.61 to 0.64 s (run 9): the owner's choice.
+    public static let relockDelay: TimeInterval = 0.5
+
+    /// Relocks per press. In 23 relocks (runs 7 to 9) not one Mac unlocked by itself afterwards, so a second
+    /// one could only undo a deliberate unlock.
+    public static let relocksPerPress = 1
+
+    /// loginwindow's own lock on the key belongs to the press whose key line came this soon before it.
+    /// Measured: loginwindow hears of the key 0.305 to 0.321 s after it goes down (ten presses).
+    public static let sameKeyPress: TimeInterval = 1
+
     // MARK: - Updates
 
     /// How long after launch the first check nobody asked for is made. Late enough that it never competes
