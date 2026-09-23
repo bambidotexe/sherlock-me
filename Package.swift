@@ -26,8 +26,9 @@ let package = Package(
         .executableTarget(name: "axprobe", path: "Tools/axprobe"),
         // The Touch ID probe: what happens around a Touch ID key press, read off the unified log, and the
         // hold and lock calls the design rests on, tried on the owner's hardware. Never put in the bundle
-        // either; every run ends by itself.
-        .executableTarget(name: "touchprobe", path: "Tools/touchprobe"),
+        // either; every run ends by itself. Its `fixtures/` are the owner's recorded presses: data, not
+        // source.
+        .executableTarget(name: "touchprobe", path: "Tools/touchprobe", exclude: ["fixtures"]),
         .testTarget(name: "SherlockMeCoreTests", dependencies: ["SherlockMeCore"]),
         // SherlockMeCore is declared explicitly: the platform tests use Core's own types, and relying on
         // SwiftPM's transitive module search path for that is incidental, not a guarantee.
