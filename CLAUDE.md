@@ -64,7 +64,7 @@ there, not in this app's own documents.
 | the uninstall | `Core/UninstallPlan.swift` (the helper's text and why it waits for the pid), `Platform/Uninstall.swift` (the order), the Uninstall group of `App/SettingsGeneralPage.swift`, `Core/StringsGeneralPage.swift` | `functional.md` §6 |
 | **any sentence the user reads**, in either language | `Core/Strings*.swift` (one table per surface; a string is one accessor switching over `Language`, so the two languages are added together or not at all), `Core/Localization.swift` — `LocalizationTests`, which also reads the tables off disk | `functional.md` §7 |
 | the app's name, its identifier or its repository | **`scripts/signing.env` only.** `make-app.sh` writes all three into the built `Info.plist` and `Core/AppIdentity.swift` reads them back | `docs/shared/conventions.md` §7 |
-| the icon | `Resources/AppIcon.icon` (re-export from Icon Composer, never hand-edit `icon.json`), `Resources/previews/SherlockMe-preview-1024.png`, `Resources/ICON-NOTES.md`, the mark in `App/MenuBarController.swift` | `architecture.md` *Build and signing* |
+| the icon | `Resources/AppIcon.icon` (re-export from Icon Composer, never hand-edit `icon.json`), `Resources/previews/SherlockMe-preview-1024.png`, `Resources/MenuBarMark.svg`, `Resources/ICON-NOTES.md`, the mark in `App/MenuBarController.swift` | `architecture.md` *Build and signing* |
 | the signing identity, the build or the release | `scripts/signing.env`, `scripts/make-app.sh`, `Resources/SherlockMe.entitlements`, `scripts/make-dmg.sh`, `scripts/release.sh` | `architecture.md` *Build and signing* |
 
 ## Commands
@@ -193,4 +193,3 @@ Known limitations, in plain words:
 - **The replay of the owner's recorded presses** (`Tools/touchprobe/fixtures/`) through the rule is written
   in the build plan (`docs/superpowers/plans/2026-09-23-sherlockme-core.md`, *Replay the owner's recordings*)
   and not in the tree yet.
-- The icon is the template's placeholder (`Resources/ICON-NOTES.md`).

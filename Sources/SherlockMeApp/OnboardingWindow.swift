@@ -40,9 +40,10 @@ final class OnboardingWindowController: NSWindowController, NSWindowDelegate {
     /// gates without a timer of its own.
     private let grantMayHaveChanged: () -> Void
 
-    /// The app icon's own colour (`Resources/AppIcon.icon/icon.json`), used to accent one word of the
-    /// headline and to tint the capsules. TEMPLATE: change it with the icon.
-    private static let brand = NSColor(srgbRed: 0.36078, green: 0.40000, blue: 0.85882, alpha: 1)
+    /// The brass of the app icon's lens (`Resources/AppIcon.icon/Assets/3_brass.svg`, `#CDA455`), used to
+    /// accent one word of the headline and to tint the capsules. Not the document's fill, a cream that no
+    /// word would read against.
+    private static let brand = NSColor(srgbRed: 0.80392, green: 0.64314, blue: 0.33333, alpha: 1)
 
     private var step = 0
     private var observers: [NSObjectProtocol] = []

@@ -89,22 +89,39 @@ final class MenuBarController: NSObject, NSMenuDelegate {
     // MARK: - The mark
 
     /// The brand mark, drawn rather than shipped as an asset so that it rebuilds from source and follows
-    /// the menu bar's own colour as a template image. It is the same drawing as the app icon's
-    /// (`Resources/AppIcon.icon/Assets/mark.svg`), fitted to an 18 pt canvas.
+    /// the menu bar's own colour as a template image. It is the app icon's drawing on an 18 pt canvas.
     ///
-    /// TEMPLATE: a placeholder, a rounded outline with a dot at its centre. Draw the app's own mark here
-    /// and in the SVG, so the two agree.
+    /// A magnifying glass over a fingerprint: a ring, a handle with a rounded end, one ridge that stops
+    /// short of closing, and a dot. The numbers are those of `Resources/MenuBarMark.svg`, in its own
+    /// top-left coordinates, which is why the image is flipped; its paths are these circles cut into
+    /// straight segments. The ring's hole is a second circle cut out by the even-odd rule.
     static func icon() -> NSImage {
-        let side: CGFloat = 18
-        let image = NSImage(size: NSSize(width: side, height: side), flipped: false) { _ in
-            let stroke: CGFloat = 1.2
-            let outline = NSRect(x: 2.5, y: 2.5, width: 13, height: 13).insetBy(dx: stroke / 2, dy: stroke / 2)
-            let path = NSBezierPath(roundedRect: outline, xRadius: 3.2, yRadius: 3.2)
-            path.lineWidth = stroke
-            NSColor.black.setStroke()
-            path.stroke()
+        let image = NSImage(size: NSSize(width: 18, height: 18), flipped: true) { _ in
             NSColor.black.setFill()
-            NSBezierPath(ovalIn: NSRect(x: 6.5, y: 6.5, width: 5, height: 5)).fill()
+            NSColor.black.setStroke()
+            let lens = NSPoint(x: 8.2, y: 8.2)
+            let ring = NSBezierPath()
+            ring.windingRule = .evenOdd
+            ring.appendOval(in: NSRect(x: lens.x - 6.6, y: lens.y - 6.6, width: 13.2, height: 13.2))
+            ring.appendOval(in: NSRect(x: lens.x - 5.2, y: lens.y - 5.2, width: 10.4, height: 10.4))
+            ring.fill()
+            // The handle leaves the ring from the middle of its band, square, so no cap reaches into the
+            // lens; its rounded end is a circle of its own width.
+            let tip = NSPoint(x: 16.33, y: 16.33)
+            let handle = NSBezierPath()
+            handle.move(to: NSPoint(x: lens.x + 5.9 / 2.squareRoot(), y: lens.y + 5.9 / 2.squareRoot()))
+            handle.line(to: tip)
+            handle.lineWidth = 2.6
+            handle.stroke()
+            NSBezierPath(ovalIn: NSRect(x: tip.x - 1.3, y: tip.y - 1.3, width: 2.6, height: 2.6)).fill()
+            // The ridge runs the long way round, through the bottom, and leaves its gap at the upper right.
+            let ridge = NSBezierPath()
+            ridge.appendArc(withCenter: NSPoint(x: 8.19, y: 8.24), radius: 2.96,
+                            startAngle: -34.9, endAngle: 284.7, clockwise: false)
+            ridge.lineWidth = 1.2
+            ridge.lineCapStyle = .round
+            ridge.stroke()
+            NSBezierPath(ovalIn: NSRect(x: 8.19 - 0.8, y: 8.15 - 0.8, width: 1.6, height: 1.6)).fill()
             return true
         }
         image.isTemplate = true
