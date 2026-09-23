@@ -3,7 +3,7 @@
 <plist version="1.0"><dict>
   <!-- Not sandboxed, like every app of this family: the things they do (event taps, the Accessibility API,
        IOKit, a removable volume) are not things a sandbox allows. Nothing else is claimed: no network
-       entitlement is needed for the update check. TEMPLATE: an app that sends Apple events adds
-       com.apple.security.automation.apple-events, which the Hardened Runtime refuses them without. -->
+       entitlement is needed for the update check, and SherlockMe sends no Apple event, so it needs no
+       com.apple.security.automation.apple-events either. -->
   <key>com.apple.security.app-sandbox</key><false/>
 </dict></plist>

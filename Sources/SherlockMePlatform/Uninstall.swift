@@ -8,8 +8,6 @@ public enum UninstallStep: Sendable, Hashable {
     case loginItem
     case bundleToTrash
     case storedState
-    // TEMPLATE: one case per system registration the app makes and must give back, for instance a
-    // `permissionGrant` reset with `tccutil`, or a launch agent booted out.
 }
 
 public struct UninstallFailure: Sendable, Hashable {
@@ -32,10 +30,8 @@ public enum Uninstall {
     /// reset` against a bundle identifier with no bundle behind it fails, and nothing puts that right
     /// afterwards, so this runs before the app goes anywhere.
     ///
-    /// TEMPLATE: a permission the app was granted is given back here first, with
-    /// `run("/usr/bin/tccutil", ["reset", "<Service>", bundleIdentifier])`; it exits non-zero when it had
-    /// nothing to reset as well as when it failed, so the sentence the user reads names where to look
-    /// either way.
+    /// SherlockMe is granted no permission: the login item and the notification authorization are all it
+    /// registers.
     @MainActor
     public static func removeSystemRegistrations() -> [UninstallFailure] {
         var failed: [UninstallFailure] = []

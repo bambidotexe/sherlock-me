@@ -3,14 +3,10 @@ import SherlockMeCore
 import SherlockMePlatform
 import SwiftUI
 
-/// What the app needs from macOS, and whether it has it. This app needs nothing yet, so the page holds only
-/// the way back to the wizard.
-///
-/// TEMPLATE: a permission is one group here, and a state the user can fix is three things: the row
-/// (`StatusRow`, green *Granted* or red *Denied*); while it is denied, a `ButtonRow` to the pane it is fixed
-/// in and a warning naming the exact switch; once granted, the button and the warning go and the row stays,
-/// so the link between the app and the permission stays visible. `status` follows the system while the
-/// window is open. The `macos-building-settings-pages` skill has the rest.
+/// What the app needs from macOS, and whether it has it. SherlockMe asks for no permission, so the page holds
+/// only the way back to the wizard. An account that cannot read the log is not here either: nothing in the
+/// app can change that, and a state with nothing to press beside it goes on Health (the
+/// `macos-building-settings-pages` skill).
 struct SystemPage: View {
     @ObservedObject var store: SettingsStore
     @ObservedObject var status: SystemStatus

@@ -55,8 +55,9 @@ done
 iconutil -c icns "$ICONSET" -o "$ROOT/build/AppIcon.icns"
 cp "$ROOT/build/AppIcon.icns" "$APP/Contents/Resources/AppIcon.icns"
 
-# TEMPLATE: a permission macOS asks about with a sentence (Apple events, removable volumes, the camera)
-# needs its NS…UsageDescription key in the Info.plist below AND its translation in each InfoPlist.strings:
+# SherlockMe asks for no permission. One that macOS asks about with a sentence (Apple events, removable
+# volumes, the camera) would need its NS…UsageDescription key in the Info.plist below AND its translation in
+# each InfoPlist.strings:
 # macOS reads a usage string from the bundle, not from the running app, so it is the one piece of
 # user-facing text the Swift string tables cannot hold. Accessibility has no such key. The two .lproj
 # directories ship anyway, because their presence beside CFBundleLocalizations is what puts the app in
@@ -96,7 +97,7 @@ ${ICON_NAME_KEY}
     <key>NSHumanReadableCopyright</key><string>Personal build.</string>
     <!-- Where the update check looks. Written from scripts/signing.env so that GITHUB_REPO is named in one
          place and the app reads its own back (Sources/SherlockMeCore/AppIdentity.swift). -->
-    <!-- TEMPLATE: NS…UsageDescription keys go here, one per permission macOS explains with a sentence. -->
+    <!-- No NS…UsageDescription key: SherlockMe asks for no permission. -->
     <key>AppUpdateRepository</key><string>${GITHUB_REPO}</string>
 </dict>
 </plist>

@@ -70,9 +70,22 @@ macOS 27.0 (26A428), a MacBook Pro (Mac16,8) and a Magic Keyboard with Touch ID 
   privileged `LFSessionAgentListenerInterface` (`com.apple.private.sessionagent.spi`) holds
   `SACLockScreenWhenBroughtOnConsole:`, read off the Objective-C runtime.
 
-Not measured yet: the built-in button's timeline (every run used the Magic Keyboard, the lid closed),
-whether an event tap sees the subtype-16 event of either keyboard, and whether loginwindow's own lock,
-arriving on a Mac SherlockMe has already locked, changes anything (the design's first open question).
+Not measured yet, and what the app does meanwhile:
 
-TEMPLATE: the APIs the feature calls, what each one answers, and what was measured on which macOS. Every
-API named here has a call site in `Sources/`.
+- **The built-in button's timeline**: every run used the Magic Keyboard, the lid closed. If its press does
+  not reach biometrickitd's key line, SherlockMe follows the press from loginwindow's own lock on it: the
+  relock still works, and the lock is macOS's own, 0.31 s after the key.
+- **loginwindow's own lock arriving on a Mac SherlockMe has already locked.** Read from loginwindow, not
+  measured: its handler declines while the shield is up, and SherlockMe's lock, 0.09 to 0.14 s after the
+  key, is in place before loginwindow hears of the key at 0.31 s. SherlockMe takes no hold, so nothing stops
+  loginwindow either way; `docs/manual-test-checklist.md` §1 is where it is looked at.
+- Whether an event tap sees the subtype-16 event of either keyboard. SherlockMe has no event tap.
+
+## What the app calls
+
+| Call | Where | What it answers |
+|---|---|---|
+| `/usr/bin/log stream --style ndjson --predicate …` | `TouchIDLogStream` | one JSON line per entry that matches `TouchIDLog.predicate`, until it is stopped; started only on an administrator account |
+| `SACLockScreenImmediate()`, login.framework, through `dlsym` | `SessionAgent.lockScreen` | an `int32`, 0 on success; the screen locked 0.09 to 0.14 s after the key's line when called on it (macOS 27.0, 26A428) |
+| `CGSessionCopyCurrentDictionary()`, `CGSSessionScreenIsLocked` | `LoginSession.screenIsLocked` | whether the screen is locked; read when a stream starts, and again `K.watchSettle` (2 s) after, when a lock the log did not show is taken from it (`LockRule.settle`) |
+| `CBUserIdentity.isMember(ofGroup:)` against the `admin` group (80) | `LoginSession.userIsAdministrator` | whether the account may read the log; the functions of `<membership.h>` are not visible to Swift |

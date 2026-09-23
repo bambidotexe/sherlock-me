@@ -48,8 +48,8 @@ struct SettingsView: View {
 /// selection cannot disagree about which page a click means.
 ///
 /// General first, then the features in the order a user meets them, then what the app needs from the
-/// system, then its health, then the tip jar last. TEMPLATE: a feature page goes between `general` and
-/// `system`, with its title and symbol below and its `Settings<Feature>Page.swift` beside the others.
+/// system, then its health, then the tip jar last. SherlockMe has no setting of its own, so it has no
+/// feature page; one would go between `general` and `system`.
 enum SettingsPageID: String, CaseIterable, Sendable {
     case general, system, health, tip
 
@@ -110,8 +110,6 @@ final class SystemStatus: ObservableObject {
     /// What `SMAppService` says, including the one state the General page's switch cannot show: registered,
     /// then switched off in System Settings. The Health page reports that one.
     @Published private(set) var loginItem: LoginItemState
-    // TEMPLATE: `@Published private(set) var accessibilityGranted: Bool`, read in `refresh()` with the
-    // permission's reader and never its ask, for an app that needs a permission.
 
     /// The General page's switch: on only while the system would open the app at login.
     var launchAtLogin: Bool { loginItem == .enabled }

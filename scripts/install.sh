@@ -53,8 +53,8 @@ MOUNT="$(mktemp -d)"
 # and the same menu bar, and a process running from a path that no longer exists keeps the old behaviour
 # with nothing on screen to say so. A signal and not an Apple event — `tell application … to quit` needs an
 # Automation grant this script cannot be sure of, shows a dialog when it is missing, and *launches* the app
-# when it is not running. TEMPLATE: an app with state to put back on the way out (a kernel flag, parked
-# windows, a launch agent to boot out) needs a gentler stop here; see the shared conventions.
+# when it is not running. SherlockMe has no state to put back on the way out: it holds nothing in macOS,
+# and the `log stream` child a signal leaves behind ends at its next line (docs/pitfalls.md, Open issues).
 /usr/bin/pkill -x "$APP_NAME" 2>/dev/null || true
 i=0
 while [ $i -lt 50 ]; do

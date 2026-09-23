@@ -1,8 +1,9 @@
 // swift-tools-version:5.10
 import PackageDescription
 
-// TEMPLATE: the four names SwiftPM cannot read from scripts/signing.env are the target names below and the
-// directories under Sources/ and Tests/ they point at. scripts/new-app.sh renames all of them together.
+// The four names SwiftPM cannot read from scripts/signing.env are the target names below and the
+// directories under Sources/ and Tests/ they point at: a rename changes them with that file, and
+// scripts/new-app.sh in ~/Projects/macos-app-template does all of it at once.
 let package = Package(
     name: "sherlockme",
     // Tools 5.10 has no `.v26`, so the target is spelled out. Not lower: SwiftPM records the deployment

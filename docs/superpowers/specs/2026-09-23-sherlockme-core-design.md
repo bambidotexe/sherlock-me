@@ -1,10 +1,11 @@
 # SherlockMe: the core, design
 
 What SherlockMe does and how, chosen with the owner after every alternative was measured on the owner's
-hardware. The mechanism was approved by the owner; this document waits for the owner's review before the
-build plan is written. The platform facts it rests on are in `docs/macOS.md`; the approaches that were
-tried and fail are in `docs/pitfalls.md`, with their measurements. **Read both before changing anything
-here.**
+hardware. The owner approved the mechanism and this document; the build followed
+`docs/superpowers/plans/2026-09-23-sherlockme-core.md`, and the last section here is what it decided. Since
+the build, **`docs/functional.md` is the authority on behaviour**. The platform facts it rests on are in
+`docs/macOS.md`; the approaches that were tried and fail are in `docs/pitfalls.md`, with their
+measurements. **Read both before changing anything here.**
 
 ## The problem
 
@@ -177,3 +178,28 @@ because it needed the admin rule.
 
 The recordings of the two morning bugs and of runs 7 to 9 are in `Tools/touchprobe/fixtures/`, one line per
 log line (time, process, message).
+
+## What the build decided
+
+The owner approved this document and asked for the build to run to its end without questions, so the four
+open questions were answered without a new measurement. Each answer is reversible.
+
+1. **No hold.** SherlockMe's lock lands 0.09 to 0.14 s after the key goes down, before loginwindow hears of
+   the key at 0.31 s, and loginwindow's handler declines while the shield is up (read from loginwindow, not
+   measured with SherlockMe running). Without the hold there is no crash window: SherlockMe gone is macOS's
+   own behaviour at once. `docs/manual-test-checklist.md` §1 looks at loginwindow's own lock arriving second.
+2. **The built-in button** is not measured. The rule also follows a press known only from loginwindow's own
+   lock on it (`handleSystemEvent:` … `calling to lock screen immediate`), so a keyboard whose press never
+   reaches biometrickitd's key line still gets the relock; only the instant lock is then macOS's.
+3. **No launch agent.** Without the hold a crash costs the protection and nothing else; the family's login
+   item starts SherlockMe at login, and the Health page shows the crash.
+4. **An account that is not an administrator**: nothing is started, and the menu's line, the Health page and
+   the wizard's last page say so. Not the System page: it holds only what has a button beside it, and nothing
+   in the app can make an account an administrator.
+5. **A lock the log did not show.** A stream shows nothing logged before it attached, so a lock landing
+   while one starts would be missed. `K.watchSettle` (2 s) after each start, a lock the window server reports
+   and the rule has not seen is taken as read (`LockRule.settle`); an unlock never is.
+
+Two things differ in shape from the sections above: the Health page has one check, *Watching the Touch ID
+key*, whatever stops it (one cause, one line), and its readings are the last lock and the last unlock caught.
+The replay of the owner's recorded presses is written and held for the owner (the plan's Task H).

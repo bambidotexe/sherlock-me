@@ -88,9 +88,11 @@ new measurement that says otherwise.**
 ### 10. A Touch ID hold outlives the process that took it
 - **Measured.** loginwindow keeps each hold per client name and pid and drops it 60 s after it was last
   taken; nothing clears it when the process dies.
-- **What holds.** Until the design's first open question is answered, the hold is given back on every way
-  out, and SherlockMe locks on loginwindow's "declined because of a hold" line when it has not locked for
-  that press. A crash still leaves the key not locking for up to 60 s.
+- **What holds.** SherlockMe takes no hold: its own lock comes 0.09 to 0.14 s after the key, before
+  loginwindow hears of the key at 0.31 s, so there is nothing to stop, and a crash leaves the key as macOS
+  makes it.
+- **Rule.** A hold comes back only with a measurement that SherlockMe's lock alone is not enough, and then
+  with a way to give it back that survives a crash.
 
 ---
 
@@ -102,3 +104,5 @@ Known, bounded, and left alone.
   helper has installed and rolled back a stand-in app under a real `/bin/sh`; the notification, the window
   and the app installing over itself are `manual-test-checklist.md`.
 - **The uninstall has not been walked.** Its two halves are tested apart.
+- **After a crash, SherlockMe's `log stream` child can outlive it** until the next line it would write, a press
+  of the Touch ID key, which ends it on a broken pipe. It holds nothing and changes nothing meanwhile.

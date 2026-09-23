@@ -17,7 +17,25 @@ swift run axprobe hit <x> <y>           # what a real hit test finds at a point
 
 ## 1. The feature
 
-TEMPLATE: one line per thing to do and what to expect, as `- [ ]` items.
+**Every item locks the Mac: the owner at the keyboard, and nobody else.** Keep
+`/usr/bin/log stream --predicate 'subsystem == "dev.rubens.SherlockMe" AND category == "touchid"'` open in a
+Terminal: it says what SherlockMe decided at each press.
+
+- [ ] The menu's status line reads *Watching the Touch ID key*.
+- [ ] Click the Touch ID key and lift the finger: the Mac locks at once, and stays locked.
+- [ ] Click it and leave the finger on the key: the Mac locks, may show the desktop for about half a second,
+      then locks again and stays locked until you unlock it. The log says "locked again".
+- [ ] Unlock with a touch once the lock screen is up: it stays unlocked. The log says "unlock left alone".
+- [ ] Click the key on the lock screen to unlock: it stays unlocked.
+- [ ] Unlock with the password: it stays unlocked.
+- [ ] Click the key within 3 s of unlocking: it locks (macOS alone ignores such a press).
+- [ ] With the lid open, the same presses on the built-in button. If the log says "macOS locked on a press
+      whose key line was not read", its press does not reach biometrickitd's key line: write it in
+      `docs/macOS.md`.
+- [ ] At every press, nothing odd when loginwindow's own lock arrives after SherlockMe's: no second lock
+      screen, no flash, the login box there. Anything seen goes in `docs/pitfalls.md`.
+- [ ] Quit SherlockMe: `pgrep -lf 'log stream --style ndjson'` lists nothing of SherlockMe's, and a click with
+      the finger left on the key locks and unlocks again, as macOS does alone.
 
 ## 2. This app's Settings
 

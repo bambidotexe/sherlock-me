@@ -127,10 +127,6 @@ public struct GeneralPageStrings {
 
     // MARK: Uninstall
 
-    // TEMPLATE: an app that was granted a permission says so in the hint, the warning and the confirmation:
-    // "Gives back the Accessibility permission, removes the entry in Login Items, and …", and adds the
-    // sentence shown when giving it back failed.
-
     public var uninstallTitle: String {
         switch language {
         case .en: "Uninstall"

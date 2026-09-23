@@ -165,7 +165,18 @@ restated. This app's own:
 ## Traps
 
 `docs/shared/pitfalls.md` is the family's list and `docs/pitfalls.md` this app's own, with the measurements.
-TEMPLATE: the five or six that cost the most, one line each, once the app has some.
+The six that cost the most:
+
+- A lock that waits for the key to come up does not stop a resting finger, and neither does putting the
+  displays to sleep first (pitfalls 1, 2).
+- `bioutil` wants the user's password, and switching Touch ID for unlock off and on again makes macOS demand
+  it at the next unlock (pitfalls 3, 4).
+- Relocking at once leaves a lock screen with no login box; 0.5 s is the owner's number (pitfalls 5).
+- A relock decided by time alone undoes a deliberate unlock: each condition of the rule is what keeps it
+  from doing so (pitfalls 6).
+- `DisableScreenLockImmediate` stops every immediate lock, SherlockMe's included, and outlives the app
+  (pitfalls 7).
+- A Touch ID hold outlives the process that took it, for up to 60 s (pitfalls 10).
 
 ## Status
 
@@ -176,6 +187,9 @@ Known limitations, in plain words:
 
 - **Nothing is published**, so every update check answers *No release published yet* until the repository is
   public and carries a release.
-- **The core is designed, not built**: the app does nothing about the Touch ID key yet. The design waits
-  for the owner's review, then a build plan.
-- Not walked on hardware: the built-in button (every run used the Magic Keyboard, the lid closed).
+- **The feature has not been walked on hardware.** It was built while the owner was away, and not installed.
+  `docs/manual-test-checklist.md` §1 is the walk, with the built-in button (every measurement used the Magic
+  Keyboard, the lid closed) and loginwindow's own lock arriving after SherlockMe's.
+- **The replay of the owner's recorded presses** (`Tools/touchprobe/fixtures/`) through the rule is written
+  in the build plan, `docs/superpowers/plans/2026-09-23-sherlockme-core.md` Task H, and not in the tree yet.
+- The icon is the template's placeholder (`Resources/ICON-NOTES.md`).

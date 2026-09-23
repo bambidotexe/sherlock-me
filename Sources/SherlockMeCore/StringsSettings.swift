@@ -43,7 +43,7 @@ public struct StatusWords {
 }
 
 /// Everything the Settings window shows: the page titles, the shared status vocabulary, and one table
-/// per page. TEMPLATE: a feature page adds its title here and its own `Strings<Feature>Page.swift`.
+/// per page.
 public struct SettingsStrings {
     private let language: Language
     init(_ language: Language) { self.language = language }

@@ -11,7 +11,6 @@ import SherlockMePlatform
 /// Which row this is, whatever its title and its place in a list.
 enum GrantID: String, CaseIterable, Sendable {
     case openAtLogin, menuBarIcon
-    // TEMPLATE: one case per permission the app needs, for instance `accessibility`.
 }
 
 /// One grant the app depends on, or one thing the user may want set up: what the onboarding lists.
@@ -128,11 +127,6 @@ final class FocusReturnWatch {
 /// has been refused. Nothing outside these actions ever calls a request API.
 @MainActor
 enum GrantCatalogue {
-    // TEMPLATE: an app that needs a permission adds a `permissions` list here, one `GrantItem` per grant,
-    // required when the app cannot work without it, `mayOpen: systemSettings` on every one of them, and
-    // a list page for it in `OnboardingWindowController.make`. The `macos-building-onboarding` skill names
-    // the reader and the ask for each grant, and where the row's sentences go.
-
     /// Where the app lives: both optional, both undoable here, and neither is a permission. The login item
     /// is `SMAppService.mainApp`, which needs no dialog and opens no pane, so `mayOpen` stays nil.
     static func home(store: SettingsStore) -> [GrantItem] {

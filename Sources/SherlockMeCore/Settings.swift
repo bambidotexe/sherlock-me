@@ -7,8 +7,9 @@ import Foundation
 /// rest of it. A value the system owns (the login item) is never mirrored here: it is read from the system
 /// every time.
 ///
-/// TEMPLATE: a user-facing setting is a stored property here and a control in the Settings window; every
-/// other number is a `static let` in `Constants.swift`, deliberately not reachable by `defaults write`.
+/// SherlockMe has no setting of its own (`docs/functional.md` §1): the switches here are the family's. A
+/// user-facing setting would be a stored property here and a control in the Settings window; every other
+/// number is a `static let` in `Constants.swift`, deliberately not reachable by `defaults write`.
 /// `SettingsTests` pins the roster.
 public struct Settings: Codable, Equatable, Sendable {
     /// The menu-bar item. Hiding it leaves the app working; opening the bundle again is the way back to
