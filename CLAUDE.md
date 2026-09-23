@@ -52,7 +52,7 @@ there, not in this app's own documents.
 
 | To change… | Edit | Then document in |
 |---|---|---|
-| the Touch ID key: what is read, the rule, a lock | **`functional.md` §0 and `docs/pitfalls.md` first.** `Core/TouchIDLog.swift` (the lines), `Core/LockRule.swift` (the rule), `Core/Watcher.swift` (the restarts), the Touch ID numbers in `Core/Constants.swift` — `TouchIDLogTests`, `LockRuleTests`, `WatcherTests`; `Platform/TouchIDLogStream.swift`, `SessionAgent.swift`, `LoginSession.swift` — their tests; `App/TouchIDGuard.swift` | `functional.md` §0, §1 |
+| the Touch ID key: what is read, the rule, a lock | **`functional.md` §0 and `docs/pitfalls.md` first.** `Core/TouchIDLog.swift` (the lines), `Core/LockRule.swift` (the rule), `Core/Watcher.swift` (the restarts), the Touch ID numbers in `Core/Constants.swift` — `TouchIDLogTests`, `LockRuleTests`, `LockRuleReplayTests` (the owner's recordings, `Tools/touchprobe/fixtures/`), `WatcherTests`; `Platform/TouchIDLogStream.swift`, `SessionAgent.swift`, `LoginSession.swift` — their tests; `App/TouchIDGuard.swift` | `functional.md` §0, §1 |
 | a constant | `Core/Constants.swift`, with its measurement in the comment | the section that states it |
 | a user setting | **Invoke the `macos-building-settings-pages` skill first.** `Core/Settings.swift` + a row on its page + `SettingsTests` | `functional.md` §2 |
 | the Settings window's pages, look or copy | **Invoke the `macos-building-settings-pages` skill first**: it holds every rule of the window's structure, numbers and wording. `App/SettingsKit.swift` (the kit and `SettingsMetrics`), `App/SettingsView.swift` (`SettingsPageID`, `SystemStatus`), `App/SettingsWindow.swift`, `App/Settings…Page.swift`. **The words are not in the page files**: they are `Core/Strings<Page>Page.swift` | `functional.md` §2 |
@@ -197,6 +197,3 @@ Known limitations, in plain words:
   presses on the lock screen, and loginwindow's own lock declining after SherlockMe's. Not walked yet
   (`docs/manual-test-checklist.md` §1): the built-in button, a click of the sensor during another app's
   Touch ID read, a second user's session, an account that is not an administrator.
-- **The replay of the owner's recorded presses** (`Tools/touchprobe/fixtures/`) through the rule is written
-  in the build plan (`docs/superpowers/plans/2026-09-23-sherlockme-core.md`, *Replay the owner's recordings*)
-  and not in the tree yet.
