@@ -40,6 +40,14 @@ public enum K {
     /// Measured: loginwindow hears of the key 0.305 to 0.321 s after it goes down (ten presses).
     public static let sameKeyPress: TimeInterval = 1
 
+    /// The waits before `log stream` is started again after it ended, by how many times in a row it has
+    /// ended; the last one repeats. Not measured: the stream never ended in any run. They keep a stream that
+    /// cannot start from being started again in a tight loop, and bring a working one back within a second.
+    public static let watchRestartDelays: [TimeInterval] = [1, 5, 30, 60]
+
+    /// A stream that ran this long before it ended was working: its end starts the waits over.
+    public static let watchSteadyAfter: TimeInterval = 60
+
     // MARK: - Updates
 
     /// How long after launch the first check nobody asked for is made. Late enough that it never competes
