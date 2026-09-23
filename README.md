@@ -20,25 +20,29 @@
 
 ## Why does this app even exist?
 
-Good question. It shouldn't.
+Honestly? **Why the fuck does this app even have to exist?**
 
 Apple put a button on the Mac that locks it, and made that same button the sensor that unlocks it. Then
-nobody asked what happens to the finger that just pressed it. What happens is that the finger is still
-there, the lock screen reads it, and your Mac unlocks itself about a second after you locked it. A debounce,
-the thing every keyboard and every doorbell has, would have fixed it. There isn't one. Presumably the people
-who ship Liquid Glass had bigger things to polish.
+nobody in Cupertino stopped to ask what happens to the finger that just pressed it. Here's what happens: the
+finger is still there, the lock screen reads it, and your Mac unlocks itself about a second after you locked
+it. Well done.
 
-And the lock itself is a mood. Sometimes a click locks the Mac. Sometimes it doesn't, for no reason it cares
-to share. Sometimes it wants a long press, sometimes a short one, and which one it wants today is for you to
-find out.
+What it needed was a debounce. **A FUCKING DEBOUNCE.** The thing every keyboard, every mouse and every
+doorbell has had for decades. Lock, then ignore the finger that did it for a moment. That's it. But hey,
+what do I know, I'm not a world-class UX genius. The people who shipped Liquid Glass clearly had more
+important things to polish.
 
-So here is a menu-bar app that makes a button do what a button does. You're welcome, Cupertino.
+And the lock itself? Sometimes a click locks the Mac. Sometimes macOS just goes *fuck you, I'm not locking*,
+and doesn't. Sometimes it wants a long press, sometimes a short one, and which one it wants today is yours
+to find out.
+
+So here is a menu-bar app that makes a button do what a button does. You're welcome, Apple.
 
 ## What it does
 
 **1. Click the key, the Mac locks. Every time.** No long press, no short press, no guessing. SherlockMe
 locks the instant the key goes down: 0.09 to 0.14 s after the press, where macOS on its own takes 0.38 s,
-on the occasions it bothers at all.
+on the days it can be fucked to lock at all.
 
 **2. The finger that locked the Mac doesn't unlock it.** macOS gives an app no way to stop the lock screen
 from reading a finger. Every way around that was tried and measured, and each one fails
