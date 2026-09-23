@@ -104,5 +104,6 @@ Known, bounded, and left alone.
   helper has installed and rolled back a stand-in app under a real `/bin/sh`; the notification, the window
   and the app installing over itself are `manual-test-checklist.md`.
 - **The uninstall has not been walked.** Its two halves are tested apart.
-- **After a crash, SherlockMe's `log stream` child can outlive it** until the next line it would write, a press
-  of the Touch ID key, which ends it on a broken pipe. It holds nothing and changes nothing meanwhile.
+- **After a crash or a signal, SherlockMe's `log stream` child can outlive it** until the next line it would
+  write (a lock, an unlock, a press of the Touch ID key), which ends it on a broken pipe. It holds nothing and
+  changes nothing meanwhile.

@@ -187,9 +187,10 @@ Known limitations, in plain words:
 
 - **Nothing is published**, so every update check answers *No release published yet* until the repository is
   public and carries a release.
-- **The feature has not been walked on hardware.** It was built while the owner was away, and not installed.
+- **The feature has not been walked on hardware.** It has not been installed or run.
   `docs/manual-test-checklist.md` §1 is the walk, with the built-in button (every measurement used the Magic
   Keyboard, the lid closed) and loginwindow's own lock arriving after SherlockMe's.
 - **The replay of the owner's recorded presses** (`Tools/touchprobe/fixtures/`) through the rule is written
-  in the build plan, `docs/superpowers/plans/2026-09-23-sherlockme-core.md` Task H, and not in the tree yet.
+  in the build plan (`docs/superpowers/plans/2026-09-23-sherlockme-core.md`, *Replay the owner's recordings*)
+  and not in the tree yet.
 - The icon is the template's placeholder (`Resources/ICON-NOTES.md`).

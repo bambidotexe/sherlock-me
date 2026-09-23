@@ -2,7 +2,7 @@ import XCTest
 import SherlockMeCore
 
 /// The switches, the flag the onboarding wizard writes, and the rule that keeps an older settings file
-/// from resetting the rest. Every stored property gets a line in each test below.
+/// from resetting the rest. Every stored property gets a line in the older-file test and in the round trip.
 final class SettingsTests: XCTestCase {
     func testTheDefaults() {
         let settings = Settings()

@@ -182,7 +182,8 @@ log line (time, process, message).
 ## What the build decided
 
 The owner approved this document and asked for the build to run to its end without questions, so the four
-open questions were answered without a new measurement. Each answer is reversible.
+open questions were answered without a new measurement (items 1 to 4), with one more that came up while
+building (item 5). Each answer is reversible.
 
 1. **No hold.** SherlockMe's lock lands 0.09 to 0.14 s after the key goes down, before loginwindow hears of
    the key at 0.31 s, and loginwindow's handler declines while the shield is up (read from loginwindow, not
@@ -200,6 +201,10 @@ open questions were answered without a new measurement. Each answer is reversibl
    while one starts would be missed. `K.watchSettle` (2 s) after each start, a lock the window server reports
    and the rule has not seen is taken as read (`LockRule.settle`); an unlock never is.
 
-Two things differ in shape from the sections above: the Health page has one check, *Watching the Touch ID
-key*, whatever stops it (one cause, one line), and its readings are the last lock and the last unlock caught.
-The replay of the owner's recorded presses is written and held for the owner (the plan's Task H).
+Four things differ from the sections above. The Health page has one check, *Watching the Touch ID key*,
+whatever stops it (one cause, one line), and its readings are the last lock and the last unlock caught. A key
+line that a macOS update changes is not detected: SherlockMe follows the press from macOS's own lock on it, so
+the relock still comes, and the Health page stays green. The screen's state comes from loginwindow's own log
+lines of `com.apple.screenIsLocked` and `com.apple.screenIsUnlocked`, not from subscribing to the
+notifications, so every event reaches the rule from one stream with the log's own times. And the replay of the
+owner's recorded presses is written and held for the owner (the plan's *Replay the owner's recordings*).
