@@ -25,10 +25,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         menuBar.openSettings = { [weak self] in self?.showSettings() }
         menuBar.setup()
 
-        // TEMPLATE: start the app's own behaviour here, in the layer that owns it. Nothing here may ask
-        // macOS for a permission: the wizard's own button is the only thing in the app that does, because a
-        // prompt nobody clicked for arrives with no explanation beside it and macOS remembers a refusal for
-        // good (the macos-building-onboarding skill).
+        // The Touch ID key, from now until the app quits. Nothing here asks macOS for a permission: an
+        // administrator account reads the log without one, and on any other account the key is left to
+        // macOS and the menu says so.
+        TouchIDGuard.shared.start()
 
         // The wizard on a first run the person started. A login item whose onboarding was simply never
         // finished still opens no window. An app that cannot work without a permission also opens the wizard
@@ -42,10 +42,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         Log.app.notice("\(AppIdentity.name, privacy: .public) \(AppIdentity.version, privacy: .public) launched")
     }
 
-    /// Reached by every quit, the menu's, the Settings button's and the update's alike, because all three go
-    /// through `NSApplication.terminate`. TEMPLATE: put back here anything the app changed on the Mac that
-    /// must not outlive it.
+    /// Reached by every quit, the menu's, the Settings button's, the update's and the uninstall's alike,
+    /// because all of them go through `NSApplication.terminate`. The `log stream` child is stopped here so it
+    /// does not outlive the app; SherlockMe changes nothing else on the Mac.
     func applicationWillTerminate(_ notification: Notification) {
+        TouchIDGuard.shared.stop()
         Log.app.notice("\(AppIdentity.name, privacy: .public) quit")
     }
 

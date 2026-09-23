@@ -4,7 +4,7 @@
 
 ```
 SherlockMeCore  ←  SherlockMePlatform  ←  SherlockMeApp
-                                  ←  Tools/axprobe (its own, imports nothing of the app's)
+                                  ←  Tools/axprobe, Tools/touchprobe (their own, import nothing of the app's)
 ```
 
 - **`SherlockMeCore`** imports **Foundation and CoreGraphics and nothing else**, and never reads a clock:
@@ -13,38 +13,43 @@ SherlockMeCore  ←  SherlockMePlatform  ←  SherlockMeApp
 - **`SherlockMePlatform`** is the only code that talks to the system. Nothing above it opens a URL, reads a
   file outside the bundle, or asks the system a question.
 - **`SherlockMeApp`** owns the run loop, the windows and the wiring.
-- **`Tools/axprobe`** never ships. `scripts/make-app.sh` copies one executable into the bundle and this is
-  not it.
+- **`Tools/axprobe`** and **`Tools/touchprobe`** never ship. `scripts/make-app.sh` copies one executable into
+  the bundle, and neither is it.
 
 ### What lives where
 
 | Layer | Files | What they own |
 |---|---|---|
-| Core | TEMPLATE: the feature's rules | Values in, a decision out. |
+| Core | `TouchIDLog`, `LockRule`, `Watcher` | The feature: the lines SherlockMe reads and what each means, the rule that turns them into a lock or a relock, when a stream that ended starts again. Values in, a decision out. |
 | | `Settings`, `Constants` (`K`), `AppIdentity`, `Paths`, `QuietLaunch`, `SupportLink` | The values the rest of the app is built on. |
 | | `UpdateCheck`, `UpdateSchedule`, `UpdatePanel`, `UpdateSession`, `StagedUpdateCheck`, `UpdateInstallScript` | Every rule of the update that does not need a network or a disk. |
 | | `UninstallPlan` | What an uninstall removes, and the text of the helper that finishes it. |
 | | `Health`, `HealthRules`, `HealthReport` | The Health page's two tables (checks, readings) from plain facts, and the one colour rule every page's states follow. |
 | | `Localization`, `Strings*` | Every sentence the user reads, in both languages. |
-| Platform | TEMPLATE: the one call that touches the system for the feature | |
+| Platform | `TouchIDLogStream`, `SessionAgent`, `LoginSession` | The feature's system boundary: the `log stream` child, loginwindow's immediate lock through the private login.framework, whether the screen is locked and whether the user is an administrator. |
 | | `LoginItem`, `SettingsStore`, `Log` | The rest of the system boundary. |
 | | `CrashReports`, `ProcessStats` | What the Health page reads about the app itself: its crash reports, its age and memory. |
 | | `UpdateChecker` + `UpdateDownload`, `UpdateStager`, `CodeSignature`, `UpdateInstaller`, `DetachedProcess` | The update's I/O. The only network code in the app. |
 | | `Uninstall` | The registrations an uninstall gives back. |
-| App | `SherlockMeMain`, `AppDelegate`, `MenuBarController` | The app, and TEMPLATE: the one object that decides the behaviour. |
+| App | `SherlockMeMain`, `AppDelegate`, `MenuBarController`, `TouchIDGuard` | The app, and the one object that runs the behaviour: the stream's lines into the rule, the rule's actions out. |
 | | `OnboardingWindow` + `GrantCatalogue` + `ControlActionHandler`, `SettingsKit`, `SettingsWindow`, `SettingsView`, `Settings…Page`, `HealthCheck` | The windows. The wizard is the one hand-built AppKit window; everything else is SwiftUI in a hosting controller. |
 | | `UpdateController`, `UpdateNotifier`, `UpdateWindow` | The update's one owner and its two surfaces. |
 
 ## Threading
 
-- Everything is on the **main actor**: the windows, the settings store, the wiring. TEMPLATE: a feature
-  that must answer fast, or that blocks, gets a queue of its own and says so here.
+- Everything is on the **main actor**: the windows, the settings store, the wiring, **except the Touch ID
+  key**. `TouchIDGuard` runs on one serial queue of its own (`<bundle identifier>.touchid`,
+  user-interactive): the stream's lines, the rule, the lock call and the relock's timer, so a window being
+  drawn never delays a lock. The menu and the Health page read its status, a copy kept under a lock, and
+  never wait on that queue; the one wait on it is `stop()` at quit, which returns once the `log` child has
+  been sent its end.
 - **Two exceptions, both in the update.** `URLSession` calls its delegate on its own queue and the caller
   hops; unpacking a disk image runs on one serial queue of its own, because it mounts, copies and verifies,
   and two of those at once would share a mount point.
 - **Nothing polls while idle.** With no window open, the only timer armed is the update schedule's, which is
   coarse (`K.updateTick`) and tolerant. The Settings window starts and stops its own two-second poll; the
-  onboarding wizard starts and stops the other, also two seconds.
+  onboarding wizard starts and stops the other, also two seconds. The `log stream` child is not a poll: it
+  writes only when one of the lines SherlockMe reads is logged, a few per press.
 
 ## Persistence
 

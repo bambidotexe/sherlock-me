@@ -9,10 +9,76 @@ in the code is the one that counts.
 
 ---
 
+## 0. The guarantees
+
+**SherlockMe must never leave the Touch ID key unable to lock the Mac, and never undo an unlock the user made
+on purpose.** The sections below are the rules the app follows; these are the rules every other one is held
+to. **A request that would loosen one is a conflict** under step 2 of `docs/shared/workflow.md`: the rule is
+quoted to the owner, and nothing changes until the owner has said so for that rule. `LockRuleTests` pins 2
+and 3.
+
+1. **It holds nothing in macOS**: no hold on loginwindow, no preference, no Touch ID setting. Whenever
+   SherlockMe is not running, has crashed or cannot read the log, the key does exactly what macOS makes it
+   do. §1.
+2. **It locks the Mac again at most `K.relocksPerPress` (1) time per press**, and only after an unlock that
+   comes within `K.relockWindow` (6 s) of the lock, by the finger the lock screen found resting on the
+   sensor as it began to read. §1.
+3. **A press of the key on the lock screen, a password, a touch later in the read and every unlock outside
+   that window are left alone.** §1.
+4. **It never touches the Touch ID settings, and never runs anything as root.** §1.
+5. **It asks for no permission.** §4.
+6. **Nothing it does waits on the main thread**, so a window being drawn never delays a lock.
+   `docs/architecture.md`, *Threading*.
+
 ## 1. The feature
 
-TEMPLATE: every rule of what the app does, in order, with the numbers and the "never"s. What it looks at,
-what it leaves alone, what happens when it cannot answer.
+SherlockMe does one thing: **when the Touch ID key is clicked, the Mac locks, and stays locked.** macOS alone
+locks 0.31 s after the key goes down, and the lock screen then reads the finger still resting on the sensor
+and unlocks the Mac again, 1.1 to 1.4 s after the press (`docs/macOS.md`). There is no setting.
+
+**What it watches**: one `/usr/bin/log stream` child process, reading these lines and no other
+(`TouchIDLog`). All are logged at the default level, which an administrator account reads without sudo.
+
+| Line | What it means |
+|---|---|
+| biometrickitd `touchIDButtonPressed: 1` | the key went down, the built-in button or a Magic Keyboard with Touch ID |
+| loginwindow `handleSystemEvent:` … `calling to lock screen immediate` | macOS locking on the key itself, 0.31 s after it went down |
+| biometrickitd `match:withOptions:` | something started reading the sensor |
+| biometrickitd status 63, status 64 | a finger arrived on the sensor, left it; reported only while it is read |
+| loginwindow `com.apple.screenIsLocked`, `com.apple.screenIsUnlocked` | the screen locked, unlocked |
+
+**What it does** (`LockRule`), on the log's own times:
+
+1. **The key goes down while the screen is unlocked: SherlockMe locks the Mac at once**, with loginwindow's
+   own immediate lock (`SACLockScreenImmediate`). Measured: locked 0.09 to 0.14 s after the key went down,
+   where macOS alone takes 0.38 s. That press is the current one. A press whose key line was not read, known
+   only from macOS locking on it, becomes the current one the same way.
+2. **The lock screen starts reading the sensor within `K.readAfterLock` (3 s) of that lock**: when it did is
+   kept.
+3. **A finger seen within `K.restingFinger` (0.5 s) of that read beginning was already there**: the finger
+   that pressed the key, resting. One that leaves within `K.keyBlip` (0.1 s) was the key coming up, and is
+   forgotten.
+4. **The screen unlocks within `K.relockWindow` (6 s) of the lock, with that finger still on the sensor or
+   gone at most `K.matchAfterLift` (0.5 s) before: SherlockMe locks the Mac again `K.relockDelay` (0.5 s)
+   later**, if the screen has stayed unlocked. Once per press (`K.relocksPerPress`). The Mac is unlocked for
+   about 0.6 s in between, and in every measured run a Mac locked again stayed locked until the owner
+   unlocked it.
+5. **Everything else is left alone**: the key pressed on the lock screen (the user unlocking, which also
+   gives up a relock still to come), a finger that arrives later in the read, a password, an Apple Watch, an
+   unlock after the window, and any unlock that follows no press.
+
+**When it cannot watch**, the key does exactly what macOS makes it do, and the menu and the Health page say
+why:
+
+- **An account that is not an administrator** cannot read the log: nothing is started. The wizard's last
+  page says so too.
+- **The stream ends or cannot start**: it is started again after 1, 5, 30, then every 60 s
+  (`K.watchRestartDelays`); a stream that ran `K.watchSteadyAfter` (60 s) or longer before it ended starts
+  the waits over. Each start reads again whether the screen is locked and forgets any press under way.
+
+**What it logs**, category `touchid`: the stream starting, ending and starting again; every lock and relock
+with loginwindow's answer; every unlock left alone soon after a lock, and why; at `debug`, every line the
+rule was given.
 
 ## 2. Settings
 
@@ -135,15 +201,15 @@ its button reads *Skip* until every required grant is there.
 
 **Settings › General › Uninstall**, after an alert that says what will go. In this order:
 
-1. The **login item**, while the bundle it names is still where it names it. TEMPLATE: a permission the app
-   was granted is given back first, in the same step, for the same reason: `tccutil reset` against a bundle
-   identifier with no bundle behind it fails, and nothing puts that right afterwards.
+1. The **login item**, while the bundle it names is still where it names it. SherlockMe is granted no
+   permission, so there is none to give back.
 2. The notification authorization, so that a reinstall can be asked again.
 3. The **bundle to the Trash**, not deleted: the app the user has just removed is still there to put back.
 4. The **preferences and the support folder**, handed to a detached helper that waits for this process to
    go. `cfprefsd` writes the domain out again as the process exits whatever happens, so removing them in
    the app leaves an empty plist where a Mac that never had the app has no file at all.
-5. The app quits. Whatever could not be done is named, with what the system said about it.
+5. The app quits, and the `log stream` it started stops with it. Whatever could not be done is named, with
+   what the system said about it.
 
 **Dragging the bundle to the Trash is not an uninstall**, and the Uninstall group says so permanently: the
 Login Items entry would stay, pointing at an app that is gone.

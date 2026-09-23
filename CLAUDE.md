@@ -5,12 +5,12 @@ The operating manual for an agent working in this tree. Read it whole before the
 ## What this project is
 
 SherlockMe fixes one thing: clicking the Touch ID key locks the Mac, and the finger that clicked it, still on
-the sensor, unlocks it again about a second later. **Its core is designed and not built yet.** It will lock
-the Mac the instant the key goes down (0.1 s, against macOS's 0.38 s) and, when the finger that pressed the
-key unlocks it anyway, lock it again 0.5 s later, once per press; a deliberate unlock is never undone. It
+the sensor, unlocks it again about a second later. SherlockMe locks the Mac the instant the key goes down
+(0.1 s, against macOS's 0.38 s) and, when the finger that pressed the key unlocks it anyway, locks it again
+0.5 s later, once per press; a deliberate unlock is never undone. It
 watches the key through the unified log (`log stream`: an administrator account, no permission prompt, no
 event tap) and locks through the private login.framework. **The one thing it must never do is leave the key
-unable to lock.** **Before changing the mechanism, read the design
+unable to lock**: `docs/functional.md` §0 holds its guarantees. **Before changing the mechanism, read the design
 (`docs/superpowers/specs/2026-09-23-sherlockme-core-design.md`) and `docs/pitfalls.md`**: every other way of
 stopping the finger was measured on the owner's Mac and fails, and the reasons are there.
 
@@ -52,7 +52,7 @@ there, not in this app's own documents.
 
 | To change… | Edit | Then document in |
 |---|---|---|
-| TEMPLATE: the feature | `Core/…` for anything decidable from values alone, `Platform/…` for the one call that touches the system, `App/…` for wiring and windows | `functional.md` §1 |
+| the Touch ID key: what is read, the rule, a lock | **`functional.md` §0 and `docs/pitfalls.md` first.** `Core/TouchIDLog.swift` (the lines), `Core/LockRule.swift` (the rule), `Core/Watcher.swift` (the restarts), the Touch ID numbers in `Core/Constants.swift` — `TouchIDLogTests`, `LockRuleTests`, `WatcherTests`; `Platform/TouchIDLogStream.swift`, `SessionAgent.swift`, `LoginSession.swift` — their tests; `App/TouchIDGuard.swift` | `functional.md` §0, §1 |
 | a constant | `Core/Constants.swift`, with its measurement in the comment | the section that states it |
 | a user setting | **Invoke the `macos-building-settings-pages` skill first.** `Core/Settings.swift` + a row on its page + `SettingsTests` | `functional.md` §2 |
 | the Settings window's pages, look or copy | **Invoke the `macos-building-settings-pages` skill first**: it holds every rule of the window's structure, numbers and wording. `App/SettingsKit.swift` (the kit and `SettingsMetrics`), `App/SettingsView.swift` (`SettingsPageID`, `SystemStatus`), `App/SettingsWindow.swift`, `App/Settings…Page.swift`. **The words are not in the page files**: they are `Core/Strings<Page>Page.swift` | `functional.md` §2 |
@@ -109,7 +109,9 @@ make release     # skill: macos-publish-release. The same, plus tag, push, GitHu
   the only thing that moves it. No releases yet → the tree is `0.0.1`.
 - `/usr/bin/log stream --predicate 'subsystem == "dev.rubens.SherlockMe"' --level debug` — the app's log
   (`log` alone is a zsh builtin, hence the full path). Categories: `app`, `update`, `onboarding` (the
-  wizard's poll, the stepping button's word, and at `debug` where that button actually is).
+  wizard's poll, the stepping button's word, and at `debug` where that button actually is), `touchid` (the
+  stream starting and ending, every lock and relock, every unlock left alone and why, and at `debug` every
+  line the rule was given).
 - `SHERLOCKME_UPDATE_FEED=file:///…/latest.json` in the installed app's environment replaces GitHub's reply
   with a stand-in, which is how the whole update is walked offline (`docs/shared/manual-test-checklist.md`).
 
@@ -119,17 +121,21 @@ Three code targets, dependencies pointing one way: Core ← Platform ← App. Fu
 `docs/architecture.md`.
 
 - **`Sources/SherlockMeCore`** — pure rules, **Foundation and CoreGraphics only** (`PurityTests` fails the
-  build otherwise), and it never reads a clock. `Settings` · `Constants` (`K`, every number with its
+  build otherwise), and it never reads a clock. `TouchIDLog` + `LockRule` + `Watcher` (the Touch ID key:
+  what is read, the rule, the restarts) · `Settings` · `Constants` (`K`, every number with its
   measurement) · `AppIdentity` + `Paths` · `QuietLaunch` · `UninstallPlan` · the update's rules
   (`UpdateCheck`, `UpdateSchedule`, `UpdatePanel`, `UpdateSession`, `StagedUpdateCheck`,
   `UpdateInstallScript`) · `Health` + `HealthRules` + `HealthReport` (the Health page's two tables, and the
   colour rule every page's states follow) · `Localization` (`Language`, `Loc`) + `Strings*` (every user-facing
   string, English and French side by side, one table per surface).
-- **`Sources/SherlockMePlatform`** — the only code that talks to the system. `LoginItem` · `SettingsStore` ·
+- **`Sources/SherlockMePlatform`** — the only code that talks to the system. `TouchIDLogStream` +
+  `SessionAgent` + `LoginSession` (the Touch ID key: the `log stream` child, the lock, the session) ·
+  `LoginItem` · `SettingsStore` ·
   `CrashReports` + `ProcessStats` (what the Health page reads about the app itself) ·
   `Log` · the update's I/O (`UpdateChecker` + `UpdateDownload`, the only network code; `UpdateStager`,
   `CodeSignature`, `UpdateInstaller`, `DetachedProcess`) · `Uninstall`.
-- **`Sources/SherlockMeApp`** — `AppDelegate` wires everything. `MenuBarController` · the onboarding wizard
+- **`Sources/SherlockMeApp`** — `AppDelegate` wires everything. `TouchIDGuard` (the behaviour, on a queue of
+  its own) · `MenuBarController` · the onboarding wizard
   (`OnboardingWindow` the controller, the pages, the row and `OnboardingMetrics`; `GrantCatalogue` what a
   grant is and the lists; `ControlActionHandler`) · `UpdateController` (the update's one owner) +
   `UpdateNotifier` + `UpdateWindow` · the settings window (`SettingsKit` the kit, `SettingsWindow` the
@@ -146,7 +152,14 @@ The app target has no automated tests. Its verification is `docs/manual-test-che
 The rules every app of the family keeps are `docs/shared/workflow.md` *Rules*; they hold here and are not
 restated. This app's own:
 
-- TEMPLATE: the invariants of the feature, each one sentence, bold, with the reason.
+- **SherlockMe holds nothing in macOS**: no hold on loginwindow, no preference, no Touch ID setting. Not
+  running must always mean the key does what macOS makes it do (`functional.md` §0).
+- **A relock needs every condition of the rule**: a press SherlockMe followed, the lock screen's read within
+  3 s, a finger in its first half-second, the unlock within 6 s, once. Each one is what keeps a deliberate
+  unlock alone; widening one to catch more undoes one (`docs/pitfalls.md` 6).
+- **Nothing locks the Mac unless the owner is at the keyboard and has said so**: no test, no probe run, no
+  build step. `SessionAgentTests` looks the call up and never makes it.
+- **Everything the key does runs on `TouchIDGuard`'s queue**, never on the main thread.
 - `SherlockMeCore` imports Foundation and CoreGraphics only, and never reads a clock: `now` is passed in.
 
 ## Traps
