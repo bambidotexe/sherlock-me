@@ -4,8 +4,8 @@ import Foundation
 ///
 /// The window's own title is the app's name and is not a sentence, so it is not here.
 ///
-/// TEMPLATE: the pitch and the last page are placeholders; a permission page's header, intro and rows go
-/// between them, each row's title quoted from System Settings' own strings in both languages.
+/// SherlockMe asks for no permission, so no page stands between the pitch and where it lives. The last page
+/// has a second body for an account that cannot read the log.
 public struct OnboardingStrings {
     private let language: Language
     init(_ language: Language) { self.language = language }
@@ -14,8 +14,8 @@ public struct OnboardingStrings {
 
     public var pitchHeadline: String {
         switch language {
-        case .en: "One small thing, done well."
-        case .fr: "Une petite chose, bien faite."
+        case .en: "Locked, and it stays locked."
+        case .fr: "Verrouillé, et il le reste."
         }
     }
 
@@ -23,17 +23,19 @@ public struct OnboardingStrings {
     /// its own word and not a fragment of another.
     public var pitchAccent: String {
         switch language {
-        case .en: "well"
-        case .fr: "bien"
+        case .en: "stays"
+        case .fr: "reste"
         }
     }
 
     public var pitchBody: String {
         switch language {
-        case .en: "\(AppIdentity.name) waits in the menu bar and stays out of the way. This page says what "
-            + "it does, in two or three lines, before anything is asked of you."
-        case .fr: "\(AppIdentity.name) attend dans la barre des menus et ne se met jamais en travers. Cette "
-            + "page dit ce qu'il fait, en deux ou trois lignes, avant de vous demander quoi que ce soit."
+        case .en: "Clicking the Touch ID key locks your Mac, and the finger still on the key unlocks it a "
+            + "second later. \(AppIdentity.name) locks the moment the key goes down, and locks again if that "
+            + "finger gets in anyway."
+        case .fr: "Un clic sur la touche Touch ID verrouille votre Mac, et le doigt encore posé dessus le "
+            + "déverrouille une seconde plus tard. \(AppIdentity.name) verrouille dès que la touche s'enfonce, "
+            + "et reverrouille si ce doigt passe quand même."
         }
     }
 
@@ -134,6 +136,18 @@ public struct OnboardingStrings {
             + "change something."
         case .fr: "Retrouvez \(AppIdentity.name) dans la barre des menus, en haut à droite, pour changer "
             + "un réglage."
+        }
+    }
+
+    /// The last page on an account that is not an administrator, where SherlockMe cannot read the log.
+    public var doneBodyNotAdministrator: String {
+        switch language {
+        case .en: "This account is not an administrator, so \(AppIdentity.name) cannot see the Touch ID key "
+            + "here, and the key locks the Mac the way macOS does. Look for \(AppIdentity.name) in the menu "
+            + "bar, at the top right."
+        case .fr: "Ce compte n'est pas administrateur : \(AppIdentity.name) ne peut pas voir la touche Touch ID "
+            + "ici, et la touche verrouille le Mac comme le fait macOS. Retrouvez \(AppIdentity.name) dans la "
+            + "barre des menus, en haut à droite."
         }
     }
 

@@ -5,8 +5,9 @@
 <h1 align="center">SherlockMe</h1>
 
 <p align="center">
-  <strong>TEMPLATE: one sentence saying what the app does for the person reading this.</strong><br>
-  TEMPLATE: two or three lines on the problem it solves, and that it does nothing else.
+  <strong>Click the Touch ID key, and your Mac locks, and stays locked.</strong><br>
+  macOS locks when the key is clicked, and the finger still resting on it unlocks the Mac a second later.
+  SherlockMe locks the instant the key goes down and catches that unlock. It does nothing else.
 </p>
 
 <p align="center">
@@ -19,20 +20,31 @@
 
 ## What it does
 
-TEMPLATE: a table of *You do* / *What happens*, then the rules a user would want to know, in plain words.
+| You do | What happens |
+|---|---|
+| Click the Touch ID key | The Mac locks the instant the key goes down |
+| Leave your finger on the key after the click | If the lock screen unlocks with it, SherlockMe locks the Mac again half a second later, once |
+| Touch the sensor on the lock screen, click the key there, or type your password | The Mac unlocks, and stays unlocked |
+
+- There is nothing to set up and nothing to choose, and SherlockMe asks for no permission.
+- It needs an **administrator account**: it watches the key through the Mac's own log, which only an
+  administrator can read. On any other account it does nothing, and says so.
+- When SherlockMe is not running, the key works exactly as macOS makes it.
 
 ## Settings
 
-A three-page window, opened from the menu-bar item (⌘,) or by opening the app again, which is the way in
-when the icon is hidden. Every change applies as you make it.
+A four-page window, opened from the menu-bar item (⌘,) or by opening the app again, which is the way in
+when the icon is hidden. Every change applies as you make it. There is nothing to set about the Touch ID key
+itself.
 
 | Page | What is on it |
 |---|---|
 | **General** | Launch at login · Show in menu bar · Updates · Quit · Uninstall |
 | **System** | the way back to the welcome wizard |
+| **Health** | whether SherlockMe is watching the Touch ID key, when it last locked the Mac and last caught an unlock |
 | **Tip** | everything is free and stays free · a one-time tip on Ko-fi |
 
-The menu-bar item carries Launch at Login, Settings and Quit.
+The menu-bar item carries Launch at Login, what SherlockMe is doing, Settings and Quit.
 
 SherlockMe speaks **English and French**, following the language your Mac is set to.
 
@@ -80,6 +92,9 @@ the flat icon without Liquid Glass.
 ## Requirements
 
 - **macOS 26 or later**, and a Swift toolchain to build it.
+- **A Touch ID key**: built into the Mac, or on a Magic Keyboard with Touch ID.
+- **An administrator account.** SherlockMe watches the key through the Mac's own log, which only an
+  administrator can read. On any other account it does nothing and says so.
 - **No permission.** The only thing the app ever sends over the network is its own update check.
 
 ## Documentation

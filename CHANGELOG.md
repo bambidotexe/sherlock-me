@@ -10,9 +10,12 @@ unless a release carries its tag.
 
 The first build. Nothing is published yet, so every update check answers *No release published yet*.
 
-- TEMPLATE: the feature, in the words a user would use.
-- A menu-bar item with Launch at Login, Settings and Quit. A three-page Settings window: General, System,
-  Tip.
+- **The Touch ID key locks, and the Mac stays locked.** A click on the key locks the Mac the instant it goes
+  down, and when the finger still on the key unlocks it, SherlockMe locks it again half a second later, once.
+  An unlock you make on purpose is never undone. It needs an administrator account and asks for no
+  permission.
+- A menu-bar item with Launch at Login, what SherlockMe is doing, Settings and Quit. A four-page Settings
+  window: General, System, Health, Tip.
 - A three-page welcome wizard: what the app does, where it lives, all set.
 - Updates from GitHub releases: checked at launch and weekly, announced by one notification, fetched and
   installed from a window of their own, and rolled back if the new version does not start.

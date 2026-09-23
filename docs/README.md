@@ -1,6 +1,7 @@
 # SherlockMe documentation
 
-TEMPLATE: one line saying what the app is. Swift, SwiftPM, no Xcode project.
+SherlockMe locks the Mac the instant the Touch ID key is clicked, and locks it again when the finger still on
+the key unlocks it. Swift, SwiftPM, no Xcode project.
 
 ## Where to look
 

@@ -48,6 +48,7 @@ final class LocalizationTests: XCTestCase {
                      ("onboarding.turnOffButton", onboarding.turnOffButton),
                      ("onboarding.doneHeadline", onboarding.doneHeadline),
                      ("onboarding.doneBody", onboarding.doneBody),
+                     ("onboarding.doneBodyNotAdministrator", onboarding.doneBodyNotAdministrator),
                      ("onboarding.continueButton", onboarding.continueButton),
                      ("onboarding.skipButton", onboarding.skipButton),
                      ("onboarding.finishButton", onboarding.finishButton)] { add(pair.0, pair.1) }

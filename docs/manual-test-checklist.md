@@ -27,6 +27,7 @@ TEMPLATE: one line per thing to do and what to expect, as `- [ ]` items.
 
 ## 3. This app's wizard
 
-- [ ] The pitch page: the icon, the headline with *well* in the icon's colour, the two capsules. Nothing is
-      cut off, nothing is truncated, every sentence wraps. TEMPLATE: the permission page, if there is one,
-      by the shared checklist's *The permission* section.
+- [ ] The pitch page: the icon, the headline with *stays* (*reste*) in the icon's colour, the two capsules.
+      Nothing is cut off, nothing is truncated, every sentence wraps. There is no permission page.
+- [ ] On an account that is not an administrator (a standard account made for the test), the last page says
+      SherlockMe cannot see the Touch ID key there; Health is red, and the menu line says why.

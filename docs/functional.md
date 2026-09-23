@@ -153,11 +153,9 @@ the bottom right. Its height follows the page around its **top-left** corner: 44
 |---|---|---|
 | 1 | the app icon, the headline with one word in the icon's colour, what the app does, two capsules: *Menu bar*, *Nothing leaves your Mac* | Continue |
 | 2 | **Where it lives**: *Open at Login* and *Show in menu bar*, both optional, each with *Turn On* or *Turn Off* | *Skip* until either is on, then *Continue* |
-| 3 | **All set**: where the menu-bar item is | Finish |
+| 3 | **All set**: where the menu-bar item is; on an account that is not an administrator, first that SherlockMe cannot see the Touch ID key there and that the key locks the Mac the way macOS does | Finish |
 
-TEMPLATE: an app that needs a permission puts a **Permission** page between 1 and 2, one row per grant,
-titled exactly what System Settings calls the switch, marked required when the app cannot work without it;
-its button reads *Skip* until every required grant is there.
+SherlockMe asks for no permission, so there is no **Permission** page.
 
 - **It opens on a first run the person started.** A login item whose wizard was simply never finished opens
   no window. **Opening the app again asks the same question**, so while the wizard is unwalked that is what

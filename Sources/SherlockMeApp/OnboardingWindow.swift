@@ -399,10 +399,9 @@ extension OnboardingWindowController {
     /// The three pages, in order: the pitch, where the app lives, and "All set". A fresh controller is built
     /// every time the wizard is shown, so every row re-reads its state and the walk starts at page one.
     ///
-    /// TEMPLATE: an app that needs a permission puts a list page between the first two, `.list(header:
-    /// words.permissionHeader, intro: words.permissionIntro, items: GrantCatalogue.permissions, advanceWhen:
-    /// everyRequiredGrant, height: OnboardingMetrics.shortListHeight)`, and its pitch page names what the app
-    /// does. The list page here carries two rows, so it takes the short height.
+    /// SherlockMe asks for no permission, so no list page stands between the first two; on an account that
+    /// cannot read the log, the last page says so. The list page here carries two rows, so it takes the short
+    /// height.
     static func make(store: SettingsStore, onFinish: @escaping () -> Void,
                      grantMayHaveChanged: @escaping () -> Void) -> OnboardingWindowController {
         let words = Loc.onboarding
@@ -418,7 +417,9 @@ extension OnboardingWindowController {
                   items: GrantCatalogue.home(store: store),
                   advanceWhen: anyOneDone,
                   height: OnboardingMetrics.shortListHeight),
-            .final(title: words.doneHeadline, body: words.doneBody, button: words.finishButton),
+            .final(title: words.doneHeadline,
+                   body: LoginSession.userIsAdministrator ? words.doneBody : words.doneBodyNotAdministrator,
+                   button: words.finishButton),
         ]
         return OnboardingWindowController(pages: pages, onFinish: onFinish,
                                           grantMayHaveChanged: grantMayHaveChanged)

@@ -57,8 +57,8 @@ guard arguments.count >= 4 else {
 }
 let appName = arguments[1]
 let accent = colour(arguments[2])
-// TEMPLATE: the one line under the app's name on the disk image.
-let description = arguments.count >= 6 ? arguments[5] : "A small menu-bar app for your Mac"
+// The one line under the app's name on the disk image.
+let description = arguments.count >= 6 ? arguments[5] : "Locked, and it stays locked."
 
 let slabTop = colour("2B2D37")
 let slabBottom = colour("16171D")
