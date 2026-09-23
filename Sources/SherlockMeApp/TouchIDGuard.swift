@@ -46,7 +46,8 @@ final class TouchIDGuard: @unchecked Sendable {
                 Log.touchID.notice("not watching: this account is not an administrator, and only one can read the log")
                 return
             }
-            Log.touchID.notice("the lock call is \(SessionAgent.canLock ? "there" : "missing", privacy: .public)")
+            let canLock = SessionAgent.canLock
+            Log.touchID.notice("the lock call is \(canLock ? "there" : "missing", privacy: .public)")
             startStream()
         }
     }
@@ -105,6 +106,14 @@ final class TouchIDGuard: @unchecked Sendable {
 
     private func handle(_ event: TouchIDEvent, at time: Date) {
         Log.touchID.debug("\(String(describing: event), privacy: .public) at \(time.timeIntervalSince1970, privacy: .public)")
+        // The log can miss a lock: one that lands while a stream is starting is never read. A press on a Mac
+        // the window server says is locked is then a press on the lock screen, unless SherlockMe locked it
+        // itself within `K.sameKeyPress`, where the log's own line may simply not have come yet.
+        if event == .keyDown, !rule.screenIsLocked, LoginSession.screenIsLocked,
+           status.lastLock.map({ Date().timeIntervalSince($0) >= K.sameKeyPress }) ?? true {
+            Log.touchID.notice("a press on a Mac the log did not say was locked: taking it as locked")
+            perform(rule.handle(.screenLocked, at: time))
+        }
         perform(rule.handle(event, at: time))
     }
 

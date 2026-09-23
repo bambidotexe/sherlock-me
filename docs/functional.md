@@ -33,8 +33,8 @@ and 3.
 ## 1. The feature
 
 SherlockMe does one thing: **when the Touch ID key is clicked, the Mac locks, and stays locked.** macOS alone
-locks 0.31 s after the key goes down, and the lock screen then reads the finger still resting on the sensor
-and unlocks the Mac again, 1.1 to 1.4 s after the press (`docs/macOS.md`). There is no setting.
+starts locking 0.31 s after the key goes down, and the lock screen then reads the finger still resting on the
+sensor and unlocks the Mac again, 1.1 to 1.4 s after the press (`docs/macOS.md`). There is no setting.
 
 **What it watches**: one `/usr/bin/log stream` child process, reading these lines and no other
 (`TouchIDLog`). All are logged at the default level, which an administrator account reads without sudo.
@@ -66,6 +66,10 @@ and unlocks the Mac again, 1.1 to 1.4 s after the press (`docs/macOS.md`). There
 5. **Everything else is left alone**: the key pressed on the lock screen (the user unlocking, which also
    gives up a relock still to come), a finger that arrives later in the read, a password, an Apple Watch, an
    unlock after the window, and any unlock that follows no press.
+
+**The log can miss a lock** that lands while a stream is starting. A press on a Mac the window server says is
+locked is then a press on the lock screen, unless SherlockMe locked the Mac itself within `K.sameKeyPress`
+(1 s), where the log's own line may not have come yet.
 
 **When it cannot watch**, the key does exactly what macOS makes it do, and the menu and the Health page say
 why:
