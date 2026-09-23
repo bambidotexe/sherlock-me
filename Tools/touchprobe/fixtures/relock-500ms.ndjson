@@ -1,0 +1,603 @@
+{"timestamp": "2026-09-23 16:42:38.545190+0200", "process": "biometrickitd", "message": "touchIDButtonPressed: 1"}
+{"timestamp": "2026-09-23 16:42:38.550827+0200", "process": "loginwindow", "message": "-[LWScreenLock startScreenLock:] | entered kLWLockFromDirectLock (8)"}
+{"timestamp": "2026-09-23 16:42:38.648776+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsLocked, with object:501"}
+{"timestamp": "2026-09-23 16:42:38.652603+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:42:38.653038+0200", "process": "loginwindow", "message": "-[LWScreenLock startUnlock:] | entered newValue: kLWLockFromDirectLock (8), oldValue: kLWLockFromDirectLock (8), isMainThread: 0"}
+{"timestamp": "2026-09-23 16:42:38.675874+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:42:38.680534+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:42:38.681808+0200", "process": "biometrickitd", "message": "match:withOptions:withClient: <private>, <private>, <private>"}
+{"timestamp": "2026-09-23 16:42:38.684391+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:42:38.695781+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:42:38.704154+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:42:38.704193+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:42:38.768382+0200", "process": "biometrickitd", "message": "touchIDButtonPressed: 0"}
+{"timestamp": "2026-09-23 16:42:38.815222+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 63, NSData(length:36), 1790174558817523"}
+{"timestamp": "2026-09-23 16:42:39.362439+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 64, NSData(length:36), 1790174559364602"}
+{"timestamp": "2026-09-23 16:42:39.447171+0200", "process": "biometrickitd", "message": "matchResult:timestamp: MATCH 501: 9192C949-E764-4F62-8BD3-66F3807C6A7A"}
+{"timestamp": "2026-09-23 16:42:39.546371+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:2 - Inactive, message:'(null)'"}
+{"timestamp": "2026-09-23 16:42:39.585137+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsUnlocked, with object:501"}
+{"timestamp": "2026-09-23 16:42:40.111753+0200", "process": "loginwindow", "message": "-[LWScreenLock startScreenLock:] | entered kLWLockFromDirectLock (8)"}
+{"timestamp": "2026-09-23 16:42:40.198804+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsLocked, with object:501"}
+{"timestamp": "2026-09-23 16:42:40.205468+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:42:40.206126+0200", "process": "loginwindow", "message": "-[LWScreenLock startUnlock:] | entered newValue: kLWLockFromDirectLock (8), oldValue: kLWLockFromDirectLock (8), isMainThread: 0"}
+{"timestamp": "2026-09-23 16:42:40.219781+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:42:40.223236+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:42:40.226278+0200", "process": "biometrickitd", "message": "match:withOptions:withClient: <private>, <private>, <private>"}
+{"timestamp": "2026-09-23 16:42:40.228569+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:42:40.245733+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:42:40.267081+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:42:40.267091+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:42:42.548660+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 63, NSData(length:36), 1790174562550941"}
+{"timestamp": "2026-09-23 16:42:42.963376+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 64, NSData(length:36), 1790174562965722"}
+{"timestamp": "2026-09-23 16:42:43.177337+0200", "process": "biometrickitd", "message": "matchResult:timestamp: MATCH 501: 9192C949-E764-4F62-8BD3-66F3807C6A7A"}
+{"timestamp": "2026-09-23 16:42:43.273653+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:2 - Inactive, message:'(null)'"}
+{"timestamp": "2026-09-23 16:42:43.312738+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsUnlocked, with object:501"}
+{"timestamp": "2026-09-23 16:42:44.994180+0200", "process": "biometrickitd", "message": "touchIDButtonPressed: 1"}
+{"timestamp": "2026-09-23 16:42:44.996525+0200", "process": "loginwindow", "message": "-[LWScreenLock startScreenLock:] | entered kLWLockFromDirectLock (8)"}
+{"timestamp": "2026-09-23 16:42:45.079990+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsLocked, with object:501"}
+{"timestamp": "2026-09-23 16:42:45.086664+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:42:45.087088+0200", "process": "loginwindow", "message": "-[LWScreenLock startUnlock:] | entered newValue: kLWLockFromDirectLock (8), oldValue: kLWLockFromDirectLock (8), isMainThread: 0"}
+{"timestamp": "2026-09-23 16:42:45.105341+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:42:45.109266+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:42:45.112275+0200", "process": "biometrickitd", "message": "match:withOptions:withClient: <private>, <private>, <private>"}
+{"timestamp": "2026-09-23 16:42:45.118451+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:42:45.129832+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:42:45.146881+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:42:45.149199+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:42:45.190253+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 63, NSData(length:36), 1790174565192555"}
+{"timestamp": "2026-09-23 16:42:45.265235+0200", "process": "biometrickitd", "message": "touchIDButtonPressed: 0"}
+{"timestamp": "2026-09-23 16:42:45.814336+0200", "process": "biometrickitd", "message": "matchResult:timestamp: MATCH 501: 06CEA50B-2F79-4B80-93B6-C0AF11F57671"}
+{"timestamp": "2026-09-23 16:42:45.896527+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:2 - Inactive, message:'(null)'"}
+{"timestamp": "2026-09-23 16:42:45.936672+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsUnlocked, with object:501"}
+{"timestamp": "2026-09-23 16:42:46.017211+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 64, NSData(length:36), 1790174565904531"}
+{"timestamp": "2026-09-23 16:42:46.463805+0200", "process": "loginwindow", "message": "-[LWScreenLock startScreenLock:] | entered kLWLockFromDirectLock (8)"}
+{"timestamp": "2026-09-23 16:42:46.545364+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsLocked, with object:501"}
+{"timestamp": "2026-09-23 16:42:46.550448+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:42:46.551067+0200", "process": "loginwindow", "message": "-[LWScreenLock startUnlock:] | entered newValue: kLWLockFromDirectLock (8), oldValue: kLWLockFromDirectLock (8), isMainThread: 0"}
+{"timestamp": "2026-09-23 16:42:46.562965+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:42:46.568571+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:42:46.574933+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:42:46.575764+0200", "process": "biometrickitd", "message": "match:withOptions:withClient: <private>, <private>, <private>"}
+{"timestamp": "2026-09-23 16:42:46.593375+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:42:46.600334+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:42:46.600411+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:42:48.729490+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 63, NSData(length:36), 1790174568731402"}
+{"timestamp": "2026-09-23 16:42:49.144103+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 64, NSData(length:36), 1790174569146486"}
+{"timestamp": "2026-09-23 16:42:49.352719+0200", "process": "biometrickitd", "message": "matchResult:timestamp: MATCH 501: 9192C949-E764-4F62-8BD3-66F3807C6A7A"}
+{"timestamp": "2026-09-23 16:42:49.418693+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:2 - Inactive, message:'(null)'"}
+{"timestamp": "2026-09-23 16:42:49.442868+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsUnlocked, with object:501"}
+{"timestamp": "2026-09-23 16:42:52.345057+0200", "process": "biometrickitd", "message": "touchIDButtonPressed: 1"}
+{"timestamp": "2026-09-23 16:42:52.346596+0200", "process": "loginwindow", "message": "-[LWScreenLock startScreenLock:] | entered kLWLockFromDirectLock (8)"}
+{"timestamp": "2026-09-23 16:42:52.452871+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsLocked, with object:501"}
+{"timestamp": "2026-09-23 16:42:52.457905+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:42:52.458258+0200", "process": "loginwindow", "message": "-[LWScreenLock startUnlock:] | entered newValue: kLWLockFromDirectLock (8), oldValue: kLWLockFromDirectLock (8), isMainThread: 0"}
+{"timestamp": "2026-09-23 16:42:52.469672+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:42:52.474076+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:42:52.476566+0200", "process": "biometrickitd", "message": "match:withOptions:withClient: <private>, <private>, <private>"}
+{"timestamp": "2026-09-23 16:42:52.485052+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:42:52.502841+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:42:52.511375+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:42:52.511606+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:42:52.555599+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 63, NSData(length:36), 1790174572557997"}
+{"timestamp": "2026-09-23 16:42:52.570806+0200", "process": "biometrickitd", "message": "touchIDButtonPressed: 0"}
+{"timestamp": "2026-09-23 16:42:52.968534+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 64, NSData(length:36), 1790174572970865"}
+{"timestamp": "2026-09-23 16:42:53.184158+0200", "process": "biometrickitd", "message": "matchResult:timestamp: MATCH 501: 9192C949-E764-4F62-8BD3-66F3807C6A7A"}
+{"timestamp": "2026-09-23 16:42:53.259950+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:2 - Inactive, message:'(null)'"}
+{"timestamp": "2026-09-23 16:42:53.301029+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsUnlocked, with object:501"}
+{"timestamp": "2026-09-23 16:42:53.827101+0200", "process": "loginwindow", "message": "-[LWScreenLock startScreenLock:] | entered kLWLockFromDirectLock (8)"}
+{"timestamp": "2026-09-23 16:42:53.912058+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsLocked, with object:501"}
+{"timestamp": "2026-09-23 16:42:53.920625+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:42:53.921379+0200", "process": "loginwindow", "message": "-[LWScreenLock startUnlock:] | entered newValue: kLWLockFromDirectLock (8), oldValue: kLWLockFromDirectLock (8), isMainThread: 0"}
+{"timestamp": "2026-09-23 16:42:53.935001+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:42:53.938347+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:42:53.940607+0200", "process": "biometrickitd", "message": "match:withOptions:withClient: <private>, <private>, <private>"}
+{"timestamp": "2026-09-23 16:42:53.949222+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:42:53.959298+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:42:53.978561+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:42:53.978595+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:42:55.331118+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 63, NSData(length:36), 1790174575333355"}
+{"timestamp": "2026-09-23 16:42:55.744144+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 64, NSData(length:36), 1790174575746512"}
+{"timestamp": "2026-09-23 16:42:55.956392+0200", "process": "biometrickitd", "message": "matchResult:timestamp: MATCH 501: 9192C949-E764-4F62-8BD3-66F3807C6A7A"}
+{"timestamp": "2026-09-23 16:42:56.027732+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:2 - Inactive, message:'(null)'"}
+{"timestamp": "2026-09-23 16:42:56.064680+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsUnlocked, with object:501"}
+{"timestamp": "2026-09-23 16:42:58.073428+0200", "process": "biometrickitd", "message": "touchIDButtonPressed: 1"}
+{"timestamp": "2026-09-23 16:42:58.074922+0200", "process": "loginwindow", "message": "-[LWScreenLock startScreenLock:] | entered kLWLockFromDirectLock (8)"}
+{"timestamp": "2026-09-23 16:42:58.159885+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsLocked, with object:501"}
+{"timestamp": "2026-09-23 16:42:58.169724+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:42:58.170169+0200", "process": "loginwindow", "message": "-[LWScreenLock startUnlock:] | entered newValue: kLWLockFromDirectLock (8), oldValue: kLWLockFromDirectLock (8), isMainThread: 0"}
+{"timestamp": "2026-09-23 16:42:58.176008+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:42:58.179961+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:42:58.182324+0200", "process": "biometrickitd", "message": "match:withOptions:withClient: <private>, <private>, <private>"}
+{"timestamp": "2026-09-23 16:42:58.183544+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:42:58.197162+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:42:58.209178+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:42:58.211309+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:42:58.254690+0200", "process": "biometrickitd", "message": "touchIDButtonPressed: 0"}
+{"timestamp": "2026-09-23 16:43:00.864005+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 63, NSData(length:36), 1790174580866301"}
+{"timestamp": "2026-09-23 16:43:01.278379+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 64, NSData(length:36), 1790174581280745"}
+{"timestamp": "2026-09-23 16:43:01.491204+0200", "process": "biometrickitd", "message": "matchResult:timestamp: MATCH 501: 06CEA50B-2F79-4B80-93B6-C0AF11F57671"}
+{"timestamp": "2026-09-23 16:43:01.566699+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:2 - Inactive, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:01.611914+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsUnlocked, with object:501"}
+{"timestamp": "2026-09-23 16:43:03.098490+0200", "process": "biometrickitd", "message": "touchIDButtonPressed: 1"}
+{"timestamp": "2026-09-23 16:43:03.101050+0200", "process": "loginwindow", "message": "-[LWScreenLock startScreenLock:] | entered kLWLockFromDirectLock (8)"}
+{"timestamp": "2026-09-23 16:43:03.207945+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsLocked, with object:501"}
+{"timestamp": "2026-09-23 16:43:03.212772+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:03.213299+0200", "process": "loginwindow", "message": "-[LWScreenLock startUnlock:] | entered newValue: kLWLockFromDirectLock (8), oldValue: kLWLockFromDirectLock (8), isMainThread: 0"}
+{"timestamp": "2026-09-23 16:43:03.223441+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:03.228046+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:03.232374+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:03.234145+0200", "process": "biometrickitd", "message": "match:withOptions:withClient: <private>, <private>, <private>"}
+{"timestamp": "2026-09-23 16:43:03.245847+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:03.249889+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:03.250453+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:03.265134+0200", "process": "biometrickitd", "message": "touchIDButtonPressed: 0"}
+{"timestamp": "2026-09-23 16:43:05.723537+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 63, NSData(length:36), 1790174585725945"}
+{"timestamp": "2026-09-23 16:43:06.123620+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 64, NSData(length:36), 1790174586125944"}
+{"timestamp": "2026-09-23 16:43:06.339800+0200", "process": "biometrickitd", "message": "matchResult:timestamp: MATCH 501: 9192C949-E764-4F62-8BD3-66F3807C6A7A"}
+{"timestamp": "2026-09-23 16:43:06.413943+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:2 - Inactive, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:06.445876+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsUnlocked, with object:501"}
+{"timestamp": "2026-09-23 16:43:07.944538+0200", "process": "biometrickitd", "message": "touchIDButtonPressed: 1"}
+{"timestamp": "2026-09-23 16:43:07.946670+0200", "process": "loginwindow", "message": "-[LWScreenLock startScreenLock:] | entered kLWLockFromDirectLock (8)"}
+{"timestamp": "2026-09-23 16:43:08.061564+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsLocked, with object:501"}
+{"timestamp": "2026-09-23 16:43:08.066926+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:08.067373+0200", "process": "loginwindow", "message": "-[LWScreenLock startUnlock:] | entered newValue: kLWLockFromDirectLock (8), oldValue: kLWLockFromDirectLock (8), isMainThread: 0"}
+{"timestamp": "2026-09-23 16:43:08.083300+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:08.086435+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:08.088700+0200", "process": "biometrickitd", "message": "match:withOptions:withClient: <private>, <private>, <private>"}
+{"timestamp": "2026-09-23 16:43:08.092662+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:08.103917+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:08.105782+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:08.114096+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:08.155230+0200", "process": "biometrickitd", "message": "touchIDButtonPressed: 0"}
+{"timestamp": "2026-09-23 16:43:10.523685+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 63, NSData(length:36), 1790174590526126"}
+{"timestamp": "2026-09-23 16:43:10.716340+0200", "process": "biometrickitd", "message": "touchIDButtonPressed: 1"}
+{"timestamp": "2026-09-23 16:43:10.765073+0200", "process": "biometrickitd", "message": "touchIDButtonPressed: 0"}
+{"timestamp": "2026-09-23 16:43:10.938186+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 64, NSData(length:36), 1790174590940712"}
+{"timestamp": "2026-09-23 16:43:11.150391+0200", "process": "biometrickitd", "message": "matchResult:timestamp: MATCH 501: 06CEA50B-2F79-4B80-93B6-C0AF11F57671"}
+{"timestamp": "2026-09-23 16:43:11.220417+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:2 - Inactive, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:11.252945+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsUnlocked, with object:501"}
+{"timestamp": "2026-09-23 16:43:18.204242+0200", "process": "biometrickitd", "message": "touchIDButtonPressed: 1"}
+{"timestamp": "2026-09-23 16:43:18.209309+0200", "process": "loginwindow", "message": "-[LWScreenLock startScreenLock:] | entered kLWLockFromDirectLock (8)"}
+{"timestamp": "2026-09-23 16:43:18.316859+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsLocked, with object:501"}
+{"timestamp": "2026-09-23 16:43:18.321348+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:18.321729+0200", "process": "loginwindow", "message": "-[LWScreenLock startUnlock:] | entered newValue: kLWLockFromDirectLock (8), oldValue: kLWLockFromDirectLock (8), isMainThread: 0"}
+{"timestamp": "2026-09-23 16:43:18.342157+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:18.345657+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:18.347766+0200", "process": "biometrickitd", "message": "match:withOptions:withClient: <private>, <private>, <private>"}
+{"timestamp": "2026-09-23 16:43:18.350305+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:18.361399+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:18.363186+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:18.375318+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:18.429349+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 63, NSData(length:36), 1790174598431825"}
+{"timestamp": "2026-09-23 16:43:18.444833+0200", "process": "biometrickitd", "message": "touchIDButtonPressed: 0"}
+{"timestamp": "2026-09-23 16:43:18.843336+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 64, NSData(length:36), 1790174598845845"}
+{"timestamp": "2026-09-23 16:43:19.056928+0200", "process": "biometrickitd", "message": "matchResult:timestamp: MATCH 501: 06CEA50B-2F79-4B80-93B6-C0AF11F57671"}
+{"timestamp": "2026-09-23 16:43:19.133529+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:2 - Inactive, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:19.173828+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsUnlocked, with object:501"}
+{"timestamp": "2026-09-23 16:43:19.703162+0200", "process": "loginwindow", "message": "-[LWScreenLock startScreenLock:] | entered kLWLockFromDirectLock (8)"}
+{"timestamp": "2026-09-23 16:43:19.799917+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsLocked, with object:501"}
+{"timestamp": "2026-09-23 16:43:19.806536+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:19.807510+0200", "process": "loginwindow", "message": "-[LWScreenLock startUnlock:] | entered newValue: kLWLockFromDirectLock (8), oldValue: kLWLockFromDirectLock (8), isMainThread: 0"}
+{"timestamp": "2026-09-23 16:43:19.816048+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:19.821167+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:19.828477+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:19.828664+0200", "process": "biometrickitd", "message": "match:withOptions:withClient: <private>, <private>, <private>"}
+{"timestamp": "2026-09-23 16:43:19.847895+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:19.855017+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:19.855799+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:21.278869+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 63, NSData(length:36), 1790174601281298"}
+{"timestamp": "2026-09-23 16:43:21.686907+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 64, NSData(length:36), 1790174601689318"}
+{"timestamp": "2026-09-23 16:43:21.906790+0200", "process": "biometrickitd", "message": "matchResult:timestamp: MATCH 501: 9192C949-E764-4F62-8BD3-66F3807C6A7A"}
+{"timestamp": "2026-09-23 16:43:21.980926+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:2 - Inactive, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:22.019154+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsUnlocked, with object:501"}
+{"timestamp": "2026-09-23 16:43:23.183931+0200", "process": "biometrickitd", "message": "touchIDButtonPressed: 1"}
+{"timestamp": "2026-09-23 16:43:23.187597+0200", "process": "loginwindow", "message": "-[LWScreenLock startScreenLock:] | entered kLWLockFromDirectLock (8)"}
+{"timestamp": "2026-09-23 16:43:23.306004+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsLocked, with object:501"}
+{"timestamp": "2026-09-23 16:43:23.317435+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:23.318020+0200", "process": "loginwindow", "message": "-[LWScreenLock startUnlock:] | entered newValue: kLWLockFromDirectLock (8), oldValue: kLWLockFromDirectLock (8), isMainThread: 0"}
+{"timestamp": "2026-09-23 16:43:23.332782+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:23.336311+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:23.339691+0200", "process": "biometrickitd", "message": "match:withOptions:withClient: <private>, <private>, <private>"}
+{"timestamp": "2026-09-23 16:43:23.352013+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:23.362920+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:23.365467+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:23.371107+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:23.395482+0200", "process": "biometrickitd", "message": "touchIDButtonPressed: 0"}
+{"timestamp": "2026-09-23 16:43:23.410493+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 63, NSData(length:36), 1790174603413051"}
+{"timestamp": "2026-09-23 16:43:24.039250+0200", "process": "biometrickitd", "message": "matchResult:timestamp: MATCH 501: 06CEA50B-2F79-4B80-93B6-C0AF11F57671"}
+{"timestamp": "2026-09-23 16:43:24.135689+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:2 - Inactive, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:24.177747+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsUnlocked, with object:501"}
+{"timestamp": "2026-09-23 16:43:24.702294+0200", "process": "loginwindow", "message": "-[LWScreenLock startScreenLock:] | entered kLWLockFromDirectLock (8)"}
+{"timestamp": "2026-09-23 16:43:24.798838+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsLocked, with object:501"}
+{"timestamp": "2026-09-23 16:43:24.802858+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:24.803477+0200", "process": "loginwindow", "message": "-[LWScreenLock startUnlock:] | entered newValue: kLWLockFromDirectLock (8), oldValue: kLWLockFromDirectLock (8), isMainThread: 0"}
+{"timestamp": "2026-09-23 16:43:24.827453+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:24.830383+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:24.833060+0200", "process": "biometrickitd", "message": "match:withOptions:withClient: <private>, <private>, <private>"}
+{"timestamp": "2026-09-23 16:43:24.833533+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 63, NSData(length:36), 1790174604835844"}
+{"timestamp": "2026-09-23 16:43:24.840457+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:24.847748+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:24.850204+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:24.864864+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:27.160032+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 64, NSData(length:36), 1790174607162506"}
+{"timestamp": "2026-09-23 16:43:28.718801+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 63, NSData(length:36), 1790174608721345"}
+{"timestamp": "2026-09-23 16:43:29.141473+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 64, NSData(length:36), 1790174609144020"}
+{"timestamp": "2026-09-23 16:43:29.355946+0200", "process": "biometrickitd", "message": "matchResult:timestamp: MATCH 501: 9192C949-E764-4F62-8BD3-66F3807C6A7A"}
+{"timestamp": "2026-09-23 16:43:29.420943+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:2 - Inactive, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:29.449118+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsUnlocked, with object:501"}
+{"timestamp": "2026-09-23 16:43:30.985033+0200", "process": "biometrickitd", "message": "touchIDButtonPressed: 1"}
+{"timestamp": "2026-09-23 16:43:30.986637+0200", "process": "loginwindow", "message": "-[LWScreenLock startScreenLock:] | entered kLWLockFromDirectLock (8)"}
+{"timestamp": "2026-09-23 16:43:31.094747+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsLocked, with object:501"}
+{"timestamp": "2026-09-23 16:43:31.100575+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:31.101247+0200", "process": "loginwindow", "message": "-[LWScreenLock startUnlock:] | entered newValue: kLWLockFromDirectLock (8), oldValue: kLWLockFromDirectLock (8), isMainThread: 0"}
+{"timestamp": "2026-09-23 16:43:31.111642+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:31.116063+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:31.119428+0200", "process": "biometrickitd", "message": "match:withOptions:withClient: <private>, <private>, <private>"}
+{"timestamp": "2026-09-23 16:43:31.128011+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:31.144055+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:31.156136+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:31.159067+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:31.180186+0200", "process": "biometrickitd", "message": "touchIDButtonPressed: 0"}
+{"timestamp": "2026-09-23 16:43:31.208288+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 63, NSData(length:36), 1790174611210898"}
+{"timestamp": "2026-09-23 16:43:31.827728+0200", "process": "biometrickitd", "message": "matchResult:timestamp: MATCH 501: 06CEA50B-2F79-4B80-93B6-C0AF11F57671"}
+{"timestamp": "2026-09-23 16:43:31.913322+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:2 - Inactive, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:31.957713+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsUnlocked, with object:501"}
+{"timestamp": "2026-09-23 16:43:32.485798+0200", "process": "loginwindow", "message": "-[LWScreenLock startScreenLock:] | entered kLWLockFromDirectLock (8)"}
+{"timestamp": "2026-09-23 16:43:32.573921+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsLocked, with object:501"}
+{"timestamp": "2026-09-23 16:43:32.583525+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:32.583848+0200", "process": "loginwindow", "message": "-[LWScreenLock startUnlock:] | entered newValue: kLWLockFromDirectLock (8), oldValue: kLWLockFromDirectLock (8), isMainThread: 0"}
+{"timestamp": "2026-09-23 16:43:32.589446+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:32.591483+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:32.595717+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:32.596912+0200", "process": "biometrickitd", "message": "match:withOptions:withClient: <private>, <private>, <private>"}
+{"timestamp": "2026-09-23 16:43:32.597353+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 63, NSData(length:36), 1790174612599747"}
+{"timestamp": "2026-09-23 16:43:32.609874+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:32.631157+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:32.633214+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:33.443647+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 64, NSData(length:36), 1790174613446256"}
+{"timestamp": "2026-09-23 16:43:34.104290+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 63, NSData(length:36), 1790174614106704"}
+{"timestamp": "2026-09-23 16:43:34.511020+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 64, NSData(length:36), 1790174614513582"}
+{"timestamp": "2026-09-23 16:43:34.726501+0200", "process": "biometrickitd", "message": "matchResult:timestamp: MATCH 501: 06CEA50B-2F79-4B80-93B6-C0AF11F57671"}
+{"timestamp": "2026-09-23 16:43:34.821642+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:2 - Inactive, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:34.857471+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsUnlocked, with object:501"}
+{"timestamp": "2026-09-23 16:43:36.623530+0200", "process": "biometrickitd", "message": "touchIDButtonPressed: 1"}
+{"timestamp": "2026-09-23 16:43:36.625672+0200", "process": "loginwindow", "message": "-[LWScreenLock startScreenLock:] | entered kLWLockFromDirectLock (8)"}
+{"timestamp": "2026-09-23 16:43:36.713757+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsLocked, with object:501"}
+{"timestamp": "2026-09-23 16:43:36.722907+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:36.723379+0200", "process": "loginwindow", "message": "-[LWScreenLock startUnlock:] | entered newValue: kLWLockFromDirectLock (8), oldValue: kLWLockFromDirectLock (8), isMainThread: 0"}
+{"timestamp": "2026-09-23 16:43:36.726941+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:36.729888+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:36.733497+0200", "process": "biometrickitd", "message": "match:withOptions:withClient: <private>, <private>, <private>"}
+{"timestamp": "2026-09-23 16:43:36.740452+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:36.751904+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:36.764292+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:36.766538+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:36.804760+0200", "process": "biometrickitd", "message": "touchIDButtonPressed: 0"}
+{"timestamp": "2026-09-23 16:43:36.819814+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 63, NSData(length:36), 1790174616822414"}
+{"timestamp": "2026-09-23 16:43:37.339449+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 64, NSData(length:36), 1790174617342002"}
+{"timestamp": "2026-09-23 16:43:37.429318+0200", "process": "biometrickitd", "message": "matchResult:timestamp: MATCH 501: 9192C949-E764-4F62-8BD3-66F3807C6A7A"}
+{"timestamp": "2026-09-23 16:43:37.495976+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:2 - Inactive, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:37.528824+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsUnlocked, with object:501"}
+{"timestamp": "2026-09-23 16:43:38.054324+0200", "process": "loginwindow", "message": "-[LWScreenLock startScreenLock:] | entered kLWLockFromDirectLock (8)"}
+{"timestamp": "2026-09-23 16:43:38.169020+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsLocked, with object:501"}
+{"timestamp": "2026-09-23 16:43:38.178278+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:38.178706+0200", "process": "loginwindow", "message": "-[LWScreenLock startUnlock:] | entered newValue: kLWLockFromDirectLock (8), oldValue: kLWLockFromDirectLock (8), isMainThread: 0"}
+{"timestamp": "2026-09-23 16:43:38.182515+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:38.186124+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:38.188553+0200", "process": "biometrickitd", "message": "match:withOptions:withClient: <private>, <private>, <private>"}
+{"timestamp": "2026-09-23 16:43:38.192823+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:38.204108+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:38.219144+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:38.221284+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:39.804682+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 63, NSData(length:36), 1790174619807338"}
+{"timestamp": "2026-09-23 16:43:40.211734+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 64, NSData(length:36), 1790174620214329"}
+{"timestamp": "2026-09-23 16:43:40.426887+0200", "process": "biometrickitd", "message": "matchResult:timestamp: MATCH 501: 06CEA50B-2F79-4B80-93B6-C0AF11F57671"}
+{"timestamp": "2026-09-23 16:43:40.522176+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:2 - Inactive, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:40.559914+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsUnlocked, with object:501"}
+{"timestamp": "2026-09-23 16:43:42.008654+0200", "process": "biometrickitd", "message": "touchIDButtonPressed: 1"}
+{"timestamp": "2026-09-23 16:43:42.011723+0200", "process": "loginwindow", "message": "-[LWScreenLock startScreenLock:] | entered kLWLockFromDirectLock (8)"}
+{"timestamp": "2026-09-23 16:43:42.099962+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsLocked, with object:501"}
+{"timestamp": "2026-09-23 16:43:42.109989+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:42.110710+0200", "process": "loginwindow", "message": "-[LWScreenLock startUnlock:] | entered newValue: kLWLockFromDirectLock (8), oldValue: kLWLockFromDirectLock (8), isMainThread: 0"}
+{"timestamp": "2026-09-23 16:43:42.114052+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:42.116786+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:42.120042+0200", "process": "biometrickitd", "message": "match:withOptions:withClient: <private>, <private>, <private>"}
+{"timestamp": "2026-09-23 16:43:42.121271+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:42.133090+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:42.144670+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:42.146731+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:42.189455+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 63, NSData(length:36), 1790174622191997"}
+{"timestamp": "2026-09-23 16:43:42.234632+0200", "process": "biometrickitd", "message": "touchIDButtonPressed: 0"}
+{"timestamp": "2026-09-23 16:43:42.685915+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 64, NSData(length:36), 1790174622688469"}
+{"timestamp": "2026-09-23 16:43:42.896983+0200", "process": "biometrickitd", "message": "matchResult:timestamp: MATCH 501: 9192C949-E764-4F62-8BD3-66F3807C6A7A"}
+{"timestamp": "2026-09-23 16:43:42.957770+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:2 - Inactive, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:42.995583+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsUnlocked, with object:501"}
+{"timestamp": "2026-09-23 16:43:43.523227+0200", "process": "loginwindow", "message": "-[LWScreenLock startScreenLock:] | entered kLWLockFromDirectLock (8)"}
+{"timestamp": "2026-09-23 16:43:43.609982+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsLocked, with object:501"}
+{"timestamp": "2026-09-23 16:43:43.615544+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:43.616340+0200", "process": "loginwindow", "message": "-[LWScreenLock startUnlock:] | entered newValue: kLWLockFromDirectLock (8), oldValue: kLWLockFromDirectLock (8), isMainThread: 0"}
+{"timestamp": "2026-09-23 16:43:43.632038+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:43.634789+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:43.638191+0200", "process": "biometrickitd", "message": "match:withOptions:withClient: <private>, <private>, <private>"}
+{"timestamp": "2026-09-23 16:43:43.641041+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:43.654797+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:43.673781+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:43.673801+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:44.995246+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 63, NSData(length:36), 1790174624997838"}
+{"timestamp": "2026-09-23 16:43:45.415969+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 64, NSData(length:36), 1790174625418580"}
+{"timestamp": "2026-09-23 16:43:45.629291+0200", "process": "biometrickitd", "message": "matchResult:timestamp: MATCH 501: 06CEA50B-2F79-4B80-93B6-C0AF11F57671"}
+{"timestamp": "2026-09-23 16:43:45.701505+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:2 - Inactive, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:45.737637+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsUnlocked, with object:501"}
+{"timestamp": "2026-09-23 16:43:46.823579+0200", "process": "biometrickitd", "message": "touchIDButtonPressed: 1"}
+{"timestamp": "2026-09-23 16:43:46.826909+0200", "process": "loginwindow", "message": "-[LWScreenLock startScreenLock:] | entered kLWLockFromDirectLock (8)"}
+{"timestamp": "2026-09-23 16:43:46.951995+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsLocked, with object:501"}
+{"timestamp": "2026-09-23 16:43:46.956816+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:46.957210+0200", "process": "loginwindow", "message": "-[LWScreenLock startUnlock:] | entered newValue: kLWLockFromDirectLock (8), oldValue: kLWLockFromDirectLock (8), isMainThread: 0"}
+{"timestamp": "2026-09-23 16:43:46.968362+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:46.974266+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:46.979065+0200", "process": "biometrickitd", "message": "match:withOptions:withClient: <private>, <private>, <private>"}
+{"timestamp": "2026-09-23 16:43:46.998575+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:47.010032+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:47.015576+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:47.020026+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:47.050145+0200", "process": "biometrickitd", "message": "touchIDButtonPressed: 0"}
+{"timestamp": "2026-09-23 16:43:50.633455+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 63, NSData(length:36), 1790174630636174"}
+{"timestamp": "2026-09-23 16:43:51.034727+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 64, NSData(length:36), 1790174631037223"}
+{"timestamp": "2026-09-23 16:43:51.243430+0200", "process": "biometrickitd", "message": "matchResult:timestamp: MATCH 501: 06CEA50B-2F79-4B80-93B6-C0AF11F57671"}
+{"timestamp": "2026-09-23 16:43:51.302615+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:2 - Inactive, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:51.332359+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsUnlocked, with object:501"}
+{"timestamp": "2026-09-23 16:43:54.608757+0200", "process": "biometrickitd", "message": "touchIDButtonPressed: 1"}
+{"timestamp": "2026-09-23 16:43:54.612792+0200", "process": "loginwindow", "message": "-[LWScreenLock startScreenLock:] | entered kLWLockFromDirectLock (8)"}
+{"timestamp": "2026-09-23 16:43:54.717713+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsLocked, with object:501"}
+{"timestamp": "2026-09-23 16:43:54.723150+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:54.723683+0200", "process": "loginwindow", "message": "-[LWScreenLock startUnlock:] | entered newValue: kLWLockFromDirectLock (8), oldValue: kLWLockFromDirectLock (8), isMainThread: 0"}
+{"timestamp": "2026-09-23 16:43:54.730348+0200", "process": "biometrickitd", "message": "touchIDButtonPressed: 0"}
+{"timestamp": "2026-09-23 16:43:54.740483+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:54.744139+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:54.747163+0200", "process": "biometrickitd", "message": "match:withOptions:withClient: <private>, <private>, <private>"}
+{"timestamp": "2026-09-23 16:43:54.748695+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:54.764615+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:54.771352+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:54.784445+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:56.918339+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 63, NSData(length:36), 1790174636921083"}
+{"timestamp": "2026-09-23 16:43:56.949851+0200", "process": "biometrickitd", "message": "touchIDButtonPressed: 1"}
+{"timestamp": "2026-09-23 16:43:57.159479+0200", "process": "biometrickitd", "message": "touchIDButtonPressed: 0"}
+{"timestamp": "2026-09-23 16:43:57.362453+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 64, NSData(length:36), 1790174637364968"}
+{"timestamp": "2026-09-23 16:43:57.523600+0200", "process": "biometrickitd", "message": "matchResult:timestamp: MATCH 501: 06CEA50B-2F79-4B80-93B6-C0AF11F57671"}
+{"timestamp": "2026-09-23 16:43:57.607677+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:2 - Inactive, message:'(null)'"}
+{"timestamp": "2026-09-23 16:43:57.652000+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsUnlocked, with object:501"}
+{"timestamp": "2026-09-23 16:44:00.849405+0200", "process": "biometrickitd", "message": "touchIDButtonPressed: 1"}
+{"timestamp": "2026-09-23 16:44:00.852161+0200", "process": "loginwindow", "message": "-[LWScreenLock startScreenLock:] | entered kLWLockFromDirectLock (8)"}
+{"timestamp": "2026-09-23 16:44:00.975121+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsLocked, with object:501"}
+{"timestamp": "2026-09-23 16:44:00.984785+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:00.985416+0200", "process": "loginwindow", "message": "-[LWScreenLock startUnlock:] | entered newValue: kLWLockFromDirectLock (8), oldValue: kLWLockFromDirectLock (8), isMainThread: 0"}
+{"timestamp": "2026-09-23 16:44:00.988778+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:00.991771+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:00.994220+0200", "process": "biometrickitd", "message": "match:withOptions:withClient: <private>, <private>, <private>"}
+{"timestamp": "2026-09-23 16:44:01.000098+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:01.011990+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:01.026414+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:01.028629+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:01.059652+0200", "process": "biometrickitd", "message": "touchIDButtonPressed: 0"}
+{"timestamp": "2026-09-23 16:44:04.193669+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 63, NSData(length:36), 1790174644196325"}
+{"timestamp": "2026-09-23 16:44:04.225479+0200", "process": "biometrickitd", "message": "touchIDButtonPressed: 1"}
+{"timestamp": "2026-09-23 16:44:04.429168+0200", "process": "biometrickitd", "message": "touchIDButtonPressed: 0"}
+{"timestamp": "2026-09-23 16:44:04.652039+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 64, NSData(length:36), 1790174644654739"}
+{"timestamp": "2026-09-23 16:44:04.819106+0200", "process": "biometrickitd", "message": "matchResult:timestamp: MATCH 501: 06CEA50B-2F79-4B80-93B6-C0AF11F57671"}
+{"timestamp": "2026-09-23 16:44:04.887178+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:2 - Inactive, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:04.925062+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsUnlocked, with object:501"}
+{"timestamp": "2026-09-23 16:44:07.585452+0200", "process": "biometrickitd", "message": "touchIDButtonPressed: 1"}
+{"timestamp": "2026-09-23 16:44:07.589853+0200", "process": "loginwindow", "message": "-[LWScreenLock startScreenLock:] | entered kLWLockFromDirectLock (8)"}
+{"timestamp": "2026-09-23 16:44:07.703371+0200", "process": "biometrickitd", "message": "touchIDButtonPressed: 0"}
+{"timestamp": "2026-09-23 16:44:07.710888+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsLocked, with object:501"}
+{"timestamp": "2026-09-23 16:44:07.722054+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:07.723493+0200", "process": "loginwindow", "message": "-[LWScreenLock startUnlock:] | entered newValue: kLWLockFromDirectLock (8), oldValue: kLWLockFromDirectLock (8), isMainThread: 0"}
+{"timestamp": "2026-09-23 16:44:07.725701+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:07.728097+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:07.732905+0200", "process": "biometrickitd", "message": "match:withOptions:withClient: <private>, <private>, <private>"}
+{"timestamp": "2026-09-23 16:44:07.740440+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:07.755248+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:07.765673+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:07.768152+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:09.566958+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 63, NSData(length:36), 1790174649569684"}
+{"timestamp": "2026-09-23 16:44:09.978227+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 64, NSData(length:36), 1790174649981031"}
+{"timestamp": "2026-09-23 16:44:10.193240+0200", "process": "biometrickitd", "message": "matchResult:timestamp: MATCH 501: 06CEA50B-2F79-4B80-93B6-C0AF11F57671"}
+{"timestamp": "2026-09-23 16:44:10.251890+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:2 - Inactive, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:10.286318+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsUnlocked, with object:501"}
+{"timestamp": "2026-09-23 16:44:11.304074+0200", "process": "biometrickitd", "message": "touchIDButtonPressed: 1"}
+{"timestamp": "2026-09-23 16:44:11.306426+0200", "process": "loginwindow", "message": "-[LWScreenLock startScreenLock:] | entered kLWLockFromDirectLock (8)"}
+{"timestamp": "2026-09-23 16:44:11.392890+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsLocked, with object:501"}
+{"timestamp": "2026-09-23 16:44:11.398474+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:11.399641+0200", "process": "loginwindow", "message": "-[LWScreenLock startUnlock:] | entered newValue: kLWLockFromDirectLock (8), oldValue: kLWLockFromDirectLock (8), isMainThread: 0"}
+{"timestamp": "2026-09-23 16:44:11.415145+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:11.419274+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:11.421230+0200", "process": "biometrickitd", "message": "match:withOptions:withClient: <private>, <private>, <private>"}
+{"timestamp": "2026-09-23 16:44:11.424509+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:11.437658+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:11.453518+0200", "process": "biometrickitd", "message": "touchIDButtonPressed: 0"}
+{"timestamp": "2026-09-23 16:44:11.454594+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:11.456844+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:11.514712+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 63, NSData(length:36), 1790174651517505"}
+{"timestamp": "2026-09-23 16:44:12.133832+0200", "process": "biometrickitd", "message": "matchResult:timestamp: MATCH 501: 06CEA50B-2F79-4B80-93B6-C0AF11F57671"}
+{"timestamp": "2026-09-23 16:44:12.200510+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:2 - Inactive, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:12.234799+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsUnlocked, with object:501"}
+{"timestamp": "2026-09-23 16:44:12.761607+0200", "process": "loginwindow", "message": "-[LWScreenLock startScreenLock:] | entered kLWLockFromDirectLock (8)"}
+{"timestamp": "2026-09-23 16:44:12.860536+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsLocked, with object:501"}
+{"timestamp": "2026-09-23 16:44:12.867283+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:12.867875+0200", "process": "loginwindow", "message": "-[LWScreenLock startUnlock:] | entered newValue: kLWLockFromDirectLock (8), oldValue: kLWLockFromDirectLock (8), isMainThread: 0"}
+{"timestamp": "2026-09-23 16:44:12.882581+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:12.885786+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:12.888019+0200", "process": "biometrickitd", "message": "match:withOptions:withClient: <private>, <private>, <private>"}
+{"timestamp": "2026-09-23 16:44:12.888515+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 63, NSData(length:36), 1790174652891070"}
+{"timestamp": "2026-09-23 16:44:12.890182+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:12.904900+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:12.925526+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:12.927532+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:13.148420+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 64, NSData(length:36), 1790174653151204"}
+{"timestamp": "2026-09-23 16:44:14.333158+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 63, NSData(length:36), 1790174654336005"}
+{"timestamp": "2026-09-23 16:44:14.733156+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 64, NSData(length:36), 1790174654735940"}
+{"timestamp": "2026-09-23 16:44:14.947508+0200", "process": "biometrickitd", "message": "matchResult:timestamp: MATCH 501: 9192C949-E764-4F62-8BD3-66F3807C6A7A"}
+{"timestamp": "2026-09-23 16:44:15.022011+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:2 - Inactive, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:15.063765+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsUnlocked, with object:501"}
+{"timestamp": "2026-09-23 16:44:16.345530+0200", "process": "biometrickitd", "message": "touchIDButtonPressed: 1"}
+{"timestamp": "2026-09-23 16:44:16.350129+0200", "process": "loginwindow", "message": "-[LWScreenLock startScreenLock:] | entered kLWLockFromDirectLock (8)"}
+{"timestamp": "2026-09-23 16:44:16.473260+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsLocked, with object:501"}
+{"timestamp": "2026-09-23 16:44:16.478845+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:16.479309+0200", "process": "loginwindow", "message": "-[LWScreenLock startUnlock:] | entered newValue: kLWLockFromDirectLock (8), oldValue: kLWLockFromDirectLock (8), isMainThread: 0"}
+{"timestamp": "2026-09-23 16:44:16.494413+0200", "process": "biometrickitd", "message": "touchIDButtonPressed: 0"}
+{"timestamp": "2026-09-23 16:44:16.494927+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:16.498244+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:16.500596+0200", "process": "biometrickitd", "message": "match:withOptions:withClient: <private>, <private>, <private>"}
+{"timestamp": "2026-09-23 16:44:16.505744+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:16.516834+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:16.519596+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:16.534900+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:16.614577+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 63, NSData(length:36), 1790174656617431"}
+{"timestamp": "2026-09-23 16:44:17.242183+0200", "process": "biometrickitd", "message": "matchResult:timestamp: MATCH 501: 06CEA50B-2F79-4B80-93B6-C0AF11F57671"}
+{"timestamp": "2026-09-23 16:44:17.314990+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:2 - Inactive, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:17.355899+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsUnlocked, with object:501"}
+{"timestamp": "2026-09-23 16:44:17.441192+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 64, NSData(length:36), 1790174657248344"}
+{"timestamp": "2026-09-23 16:44:17.881904+0200", "process": "loginwindow", "message": "-[LWScreenLock startScreenLock:] | entered kLWLockFromDirectLock (8)"}
+{"timestamp": "2026-09-23 16:44:17.965523+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsLocked, with object:501"}
+{"timestamp": "2026-09-23 16:44:17.971340+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:17.971922+0200", "process": "loginwindow", "message": "-[LWScreenLock startUnlock:] | entered newValue: kLWLockFromDirectLock (8), oldValue: kLWLockFromDirectLock (8), isMainThread: 0"}
+{"timestamp": "2026-09-23 16:44:17.983832+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:17.989510+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:17.996131+0200", "process": "biometrickitd", "message": "match:withOptions:withClient: <private>, <private>, <private>"}
+{"timestamp": "2026-09-23 16:44:17.997240+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:18.013831+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:18.020094+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:18.020190+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:19.118989+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 63, NSData(length:36), 1790174659121750"}
+{"timestamp": "2026-09-23 16:44:19.549032+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 64, NSData(length:36), 1790174659551851"}
+{"timestamp": "2026-09-23 16:44:19.759153+0200", "process": "biometrickitd", "message": "matchResult:timestamp: MATCH 501: 9192C949-E764-4F62-8BD3-66F3807C6A7A"}
+{"timestamp": "2026-09-23 16:44:19.826607+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:2 - Inactive, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:19.856121+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsUnlocked, with object:501"}
+{"timestamp": "2026-09-23 16:44:23.785480+0200", "process": "biometrickitd", "message": "touchIDButtonPressed: 1"}
+{"timestamp": "2026-09-23 16:44:23.790700+0200", "process": "loginwindow", "message": "-[LWScreenLock startScreenLock:] | entered kLWLockFromDirectLock (8)"}
+{"timestamp": "2026-09-23 16:44:23.916035+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsLocked, with object:501"}
+{"timestamp": "2026-09-23 16:44:23.920217+0200", "process": "biometrickitd", "message": "touchIDButtonPressed: 0"}
+{"timestamp": "2026-09-23 16:44:23.922091+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:23.922700+0200", "process": "loginwindow", "message": "-[LWScreenLock startUnlock:] | entered newValue: kLWLockFromDirectLock (8), oldValue: kLWLockFromDirectLock (8), isMainThread: 0"}
+{"timestamp": "2026-09-23 16:44:23.937483+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:23.940931+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:23.943528+0200", "process": "biometrickitd", "message": "match:withOptions:withClient: <private>, <private>, <private>"}
+{"timestamp": "2026-09-23 16:44:23.944730+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:23.960894+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:23.966012+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:23.977133+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:25.947735+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 63, NSData(length:36), 1790174665950455"}
+{"timestamp": "2026-09-23 16:44:26.345614+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 64, NSData(length:36), 1790174666348394"}
+{"timestamp": "2026-09-23 16:44:26.557940+0200", "process": "biometrickitd", "message": "matchResult:timestamp: MATCH 501: 06CEA50B-2F79-4B80-93B6-C0AF11F57671"}
+{"timestamp": "2026-09-23 16:44:26.615807+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:2 - Inactive, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:26.647332+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsUnlocked, with object:501"}
+{"timestamp": "2026-09-23 16:44:28.823243+0200", "process": "biometrickitd", "message": "touchIDButtonPressed: 1"}
+{"timestamp": "2026-09-23 16:44:28.825042+0200", "process": "loginwindow", "message": "-[LWScreenLock startScreenLock:] | entered kLWLockFromDirectLock (8)"}
+{"timestamp": "2026-09-23 16:44:28.913243+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsLocked, with object:501"}
+{"timestamp": "2026-09-23 16:44:28.917816+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:28.918358+0200", "process": "loginwindow", "message": "-[LWScreenLock startUnlock:] | entered newValue: kLWLockFromDirectLock (8), oldValue: kLWLockFromDirectLock (8), isMainThread: 0"}
+{"timestamp": "2026-09-23 16:44:28.925865+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:28.929311+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:28.933806+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:28.936101+0200", "process": "biometrickitd", "message": "match:withOptions:withClient: <private>, <private>, <private>"}
+{"timestamp": "2026-09-23 16:44:28.950059+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:28.957634+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:28.959997+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:29.004518+0200", "process": "biometrickitd", "message": "touchIDButtonPressed: 0"}
+{"timestamp": "2026-09-23 16:44:31.178149+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 63, NSData(length:36), 1790174671181016"}
+{"timestamp": "2026-09-23 16:44:31.601728+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 64, NSData(length:36), 1790174671604535"}
+{"timestamp": "2026-09-23 16:44:31.810725+0200", "process": "biometrickitd", "message": "matchResult:timestamp: MATCH 501: 06CEA50B-2F79-4B80-93B6-C0AF11F57671"}
+{"timestamp": "2026-09-23 16:44:31.887530+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:2 - Inactive, message:'(null)'"}
+{"timestamp": "2026-09-23 16:44:31.921677+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsUnlocked, with object:501"}
+{"timestamp": "2026-09-23 16:45:00.715356+0200", "process": "biometrickitd", "message": "touchIDButtonPressed: 1"}
+{"timestamp": "2026-09-23 16:45:00.720347+0200", "process": "loginwindow", "message": "-[LWScreenLock startScreenLock:] | entered kLWLockFromDirectLock (8)"}
+{"timestamp": "2026-09-23 16:45:00.820671+0200", "process": "biometrickitd", "message": "touchIDButtonPressed: 0"}
+{"timestamp": "2026-09-23 16:45:00.834852+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsLocked, with object:501"}
+{"timestamp": "2026-09-23 16:45:00.841010+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:45:00.841479+0200", "process": "loginwindow", "message": "-[LWScreenLock startUnlock:] | entered newValue: kLWLockFromDirectLock (8), oldValue: kLWLockFromDirectLock (8), isMainThread: 0"}
+{"timestamp": "2026-09-23 16:45:00.861143+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:45:00.864707+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:45:00.866612+0200", "process": "biometrickitd", "message": "match:withOptions:withClient: <private>, <private>, <private>"}
+{"timestamp": "2026-09-23 16:45:00.868847+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:45:00.882905+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:45:00.902990+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:45:00.905156+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:45:02.828362+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 63, NSData(length:36), 1790174702831310"}
+{"timestamp": "2026-09-23 16:45:03.244044+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 64, NSData(length:36), 1790174703247078"}
+{"timestamp": "2026-09-23 16:45:03.453051+0200", "process": "biometrickitd", "message": "matchResult:timestamp: MATCH 501: 06CEA50B-2F79-4B80-93B6-C0AF11F57671"}
+{"timestamp": "2026-09-23 16:45:03.539545+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:2 - Inactive, message:'(null)'"}
+{"timestamp": "2026-09-23 16:45:03.574110+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsUnlocked, with object:501"}
+{"timestamp": "2026-09-23 16:45:06.728704+0200", "process": "biometrickitd", "message": "touchIDButtonPressed: 1"}
+{"timestamp": "2026-09-23 16:45:06.732093+0200", "process": "loginwindow", "message": "-[LWScreenLock startScreenLock:] | entered kLWLockFromDirectLock (8)"}
+{"timestamp": "2026-09-23 16:45:06.839070+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsLocked, with object:501"}
+{"timestamp": "2026-09-23 16:45:06.843843+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:45:06.844921+0200", "process": "loginwindow", "message": "-[LWScreenLock startUnlock:] | entered newValue: kLWLockFromDirectLock (8), oldValue: kLWLockFromDirectLock (8), isMainThread: 0"}
+{"timestamp": "2026-09-23 16:45:06.859658+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:45:06.862851+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:45:06.863083+0200", "process": "biometrickitd", "message": "touchIDButtonPressed: 0"}
+{"timestamp": "2026-09-23 16:45:06.865566+0200", "process": "biometrickitd", "message": "match:withOptions:withClient: <private>, <private>, <private>"}
+{"timestamp": "2026-09-23 16:45:06.869188+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:45:06.880416+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:45:06.882142+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:45:06.895979+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:45:08.003868+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 63, NSData(length:36), 1790174708006825"}
+{"timestamp": "2026-09-23 16:45:08.410745+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 64, NSData(length:36), 1790174708413788"}
+{"timestamp": "2026-09-23 16:45:08.622406+0200", "process": "biometrickitd", "message": "matchResult:timestamp: MATCH 501: 9192C949-E764-4F62-8BD3-66F3807C6A7A"}
+{"timestamp": "2026-09-23 16:45:08.681335+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:2 - Inactive, message:'(null)'"}
+{"timestamp": "2026-09-23 16:45:08.709897+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsUnlocked, with object:501"}
+{"timestamp": "2026-09-23 16:45:11.334282+0200", "process": "biometrickitd", "message": "touchIDButtonPressed: 1"}
+{"timestamp": "2026-09-23 16:45:11.337763+0200", "process": "loginwindow", "message": "-[LWScreenLock startScreenLock:] | entered kLWLockFromDirectLock (8)"}
+{"timestamp": "2026-09-23 16:45:11.439343+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsLocked, with object:501"}
+{"timestamp": "2026-09-23 16:45:11.444087+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:45:11.444483+0200", "process": "loginwindow", "message": "-[LWScreenLock startUnlock:] | entered newValue: kLWLockFromDirectLock (8), oldValue: kLWLockFromDirectLock (8), isMainThread: 0"}
+{"timestamp": "2026-09-23 16:45:11.461622+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:45:11.464568+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:45:11.467366+0200", "process": "biometrickitd", "message": "match:withOptions:withClient: <private>, <private>, <private>"}
+{"timestamp": "2026-09-23 16:45:11.468623+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:45:11.483996+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:45:11.484176+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:45:11.501385+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:45:11.530269+0200", "process": "biometrickitd", "message": "touchIDButtonPressed: 0"}
+{"timestamp": "2026-09-23 16:45:12.849575+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 63, NSData(length:36), 1790174712852734"}
+{"timestamp": "2026-09-23 16:45:13.255545+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 64, NSData(length:36), 1790174713258658"}
+{"timestamp": "2026-09-23 16:45:13.471065+0200", "process": "biometrickitd", "message": "matchResult:timestamp: MATCH 501: 9192C949-E764-4F62-8BD3-66F3807C6A7A"}
+{"timestamp": "2026-09-23 16:45:13.537574+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:2 - Inactive, message:'(null)'"}
+{"timestamp": "2026-09-23 16:45:13.575840+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsUnlocked, with object:501"}
+{"timestamp": "2026-09-23 16:45:15.234267+0200", "process": "biometrickitd", "message": "touchIDButtonPressed: 1"}
+{"timestamp": "2026-09-23 16:45:15.239312+0200", "process": "loginwindow", "message": "-[LWScreenLock startScreenLock:] | entered kLWLockFromDirectLock (8)"}
+{"timestamp": "2026-09-23 16:45:15.250458+0200", "process": "biometrickitd", "message": "touchIDButtonPressed: 0"}
+{"timestamp": "2026-09-23 16:45:15.349417+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsLocked, with object:501"}
+{"timestamp": "2026-09-23 16:45:15.353860+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:45:15.354111+0200", "process": "loginwindow", "message": "-[LWScreenLock startUnlock:] | entered newValue: kLWLockFromDirectLock (8), oldValue: kLWLockFromDirectLock (8), isMainThread: 0"}
+{"timestamp": "2026-09-23 16:45:15.370029+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:45:15.373291+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:45:15.375589+0200", "process": "biometrickitd", "message": "match:withOptions:withClient: <private>, <private>, <private>"}
+{"timestamp": "2026-09-23 16:45:15.377937+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:45:15.392732+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:45:15.404945+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:45:15.407083+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:45:15.984813+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 63, NSData(length:36), 1790174715987975"}
+{"timestamp": "2026-09-23 16:45:16.399119+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 64, NSData(length:36), 1790174716402166"}
+{"timestamp": "2026-09-23 16:45:16.610790+0200", "process": "biometrickitd", "message": "matchResult:timestamp: MATCH 501: 9192C949-E764-4F62-8BD3-66F3807C6A7A"}
+{"timestamp": "2026-09-23 16:45:16.677722+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:2 - Inactive, message:'(null)'"}
+{"timestamp": "2026-09-23 16:45:16.709532+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsUnlocked, with object:501"}
+{"timestamp": "2026-09-23 16:45:18.714011+0200", "process": "biometrickitd", "message": "touchIDButtonPressed: 1"}
+{"timestamp": "2026-09-23 16:45:18.718611+0200", "process": "loginwindow", "message": "-[LWScreenLock startScreenLock:] | entered kLWLockFromDirectLock (8)"}
+{"timestamp": "2026-09-23 16:45:18.827956+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsLocked, with object:501"}
+{"timestamp": "2026-09-23 16:45:18.832529+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:45:18.833369+0200", "process": "loginwindow", "message": "-[LWScreenLock startUnlock:] | entered newValue: kLWLockFromDirectLock (8), oldValue: kLWLockFromDirectLock (8), isMainThread: 0"}
+{"timestamp": "2026-09-23 16:45:18.833976+0200", "process": "biometrickitd", "message": "touchIDButtonPressed: 0"}
+{"timestamp": "2026-09-23 16:45:18.853691+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:45:18.857490+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:45:18.859634+0200", "process": "biometrickitd", "message": "match:withOptions:withClient: <private>, <private>, <private>"}
+{"timestamp": "2026-09-23 16:45:18.861505+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:45:18.871522+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:45:18.873384+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:0 - Unknown, message:'(null)'"}
+{"timestamp": "2026-09-23 16:45:18.884782+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:3 - Active, message:'(null)'"}
+{"timestamp": "2026-09-23 16:45:19.418233+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 63, NSData(length:36), 1790174719421322"}
+{"timestamp": "2026-09-23 16:45:19.495984+0200", "process": "biometrickitd", "message": "touchIDButtonPressed: 1"}
+{"timestamp": "2026-09-23 16:45:19.600740+0200", "process": "biometrickitd", "message": "touchIDButtonPressed: 0"}
+{"timestamp": "2026-09-23 16:45:19.861908+0200", "process": "biometrickitd", "message": "statusMessage:withData:timestamp: 64, NSData(length:36), 1790174719865038"}
+{"timestamp": "2026-09-23 16:45:20.037912+0200", "process": "biometrickitd", "message": "matchResult:timestamp: MATCH 501: 9192C949-E764-4F62-8BD3-66F3807C6A7A"}
+{"timestamp": "2026-09-23 16:45:20.094405+0200", "process": "loginwindow", "message": "-[LWAuthServiceState setState:forService:withMessage:] | TouchID state:2 - Inactive, message:'(null)'"}
+{"timestamp": "2026-09-23 16:45:20.122710+0200", "process": "loginwindow", "message": "-[SessionAgentNotificationCenter sendDistributedNotification:object:] | sendDistributedNotification: com.apple.screenIsUnlocked, with object:501"}

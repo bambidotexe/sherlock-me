@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <!-- TEMPLATE: a placeholder mark, a rounded outline with a dot at its centre. The same drawing as the
+       menu-bar mark in MenuBarController.icon(), at 1024. Replace both together. -->
+  <rect x="260" y="260" width="504" height="504" rx="120" fill="none" stroke="#FFFFFF" stroke-width="56"/>
+  <circle cx="512" cy="512" r="104" fill="#FFFFFF"/>
+</svg>

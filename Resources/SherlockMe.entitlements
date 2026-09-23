@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0"><dict>
+  <!-- Not sandboxed, like every app of this family: the things they do (event taps, the Accessibility API,
+       IOKit, a removable volume) are not things a sandbox allows. Nothing else is claimed: no network
+       entitlement is needed for the update check. TEMPLATE: an app that sends Apple events adds
+       com.apple.security.automation.apple-events, which the Hardened Runtime refuses them without. -->
+  <key>com.apple.security.app-sandbox</key><false/>
+</dict></plist>

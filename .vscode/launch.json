@@ -1,0 +1,34 @@
+{
+  "configurations": [
+    {
+      "type": "swift",
+      "request": "launch",
+      "args": [],
+      "cwd": "${workspaceFolder:sherlockme}",
+      "name": "Debug SherlockMe",
+      "target": "SherlockMeApp",
+      "configuration": "debug",
+      "preLaunchTask": "swift: Build Debug SherlockMeApp"
+    },
+    {
+      "type": "swift",
+      "request": "launch",
+      "args": [],
+      "cwd": "${workspaceFolder:sherlockme}",
+      "name": "Release SherlockMe",
+      "target": "SherlockMeApp",
+      "configuration": "release",
+      "preLaunchTask": "swift: Build Release SherlockMeApp"
+    },
+    {
+      "type": "swift",
+      "request": "launch",
+      "args": [],
+      "cwd": "${workspaceFolder:sherlockme}",
+      "name": "Debug axprobe",
+      "target": "axprobe",
+      "configuration": "debug",
+      "preLaunchTask": "swift: Build Debug axprobe"
+    }
+  ]
+}
