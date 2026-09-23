@@ -157,9 +157,10 @@ restated. This app's own:
 - **A relock needs every condition of the rule**: a press SherlockMe followed, the lock screen's read within
   3 s, a finger in its first half-second, the unlock within 6 s, once. Each one is what keeps a deliberate
   unlock alone; widening one to catch more undoes one (`docs/pitfalls.md` 6).
-- **A press macOS ignores for a read of the sensor is macOS's**: while anyone holds loginwindow's Touch ID
-  hold (an app or the lock screen reading the sensor, and 3 s after), SherlockMe does not lock on the key,
-  and it never locks while another session is at the keyboard. `LockRuleTests` pins it (`functional.md` §0).
+- **A press macOS ignores for an app's read of the sensor is macOS's**: while an app holds loginwindow's
+  Touch ID hold (reading the sensor, and 3 s after), SherlockMe does not lock on the key; the lock screen's
+  own hold is the owner's exception, and a click right after a Touch ID unlock locks. It never locks while
+  another session is at the keyboard. `LockRuleTests` pins all of it (`functional.md` §0).
 - **Nothing locks the Mac unless the owner is at the keyboard and has said so**: no test, no probe run, no
   build step. `SessionAgentTests` looks the call up and never makes it.
 - **Everything the key does runs on `TouchIDGuard`'s queue**, never on the main thread.

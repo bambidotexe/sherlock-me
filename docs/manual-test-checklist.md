@@ -29,8 +29,7 @@ Terminal: it says what SherlockMe decided at each press.
       "unlock left alone".
 - [ ] Click the key on the lock screen to unlock: it stays unlocked.
 - [ ] Unlock with the password: it stays unlocked.
-- [ ] Click the key within 3 s of a Touch ID unlock: nothing happens, as macOS alone; the log says "left to
-      macOS", naming coreautha. Click it 4 s after: it locks.
+- [ ] Click the key within 3 s of a Touch ID unlock: it locks (macOS alone ignores such a press).
 - [ ] With a Touch ID prompt up in another app (System Settings › Touch ID & Password, or `sudo` on a
       terminal with Touch ID for sudo), click the sensor: the Mac does not lock and the authentication goes
       on; the log says "left to macOS". Cancel the prompt and click the key 4 s later: it locks.

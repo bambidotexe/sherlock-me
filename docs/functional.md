@@ -25,10 +25,11 @@ quoted to the owner, and nothing changes until the owner has said so for that ru
    sensor as it began to read. §1.
 3. **A press of the key on the lock screen, a password, a touch later in the read and every unlock outside
    that window are left alone.** §1.
-4. **It never locks on a press macOS itself ignores for a read of the sensor.** While an app, System
-   Settings or the lock screen reads the sensor, and for `K.holdDebounce` (3 s) after, loginwindow holds
-   its Touch ID hold and ignores the key; SherlockMe leaves such a press to macOS, so a finger
-   authenticating in another app that clicks the sensor locks nothing. §1.
+4. **It never locks on a press macOS itself ignores for an app's read of the sensor.** While an app or
+   System Settings reads the sensor, and for `K.holdDebounce` (3 s) after, loginwindow holds its Touch ID
+   hold and ignores the key; SherlockMe leaves such a press to macOS, so a finger authenticating in another
+   app that clicks the sensor locks nothing. The lock screen's own read is the exception: a click within
+   3 s of a Touch ID unlock locks, where macOS alone waits. §1.
 5. **It touches nothing outside its own session**: another user's lock and unlock are not its, and nothing
    is locked while another session is at the keyboard. §1.
 6. **It never touches the Touch ID settings, and never runs anything as root.** §1.
@@ -57,15 +58,17 @@ sensor and unlocks the Mac again, 1.1 to 1.4 s after the press (`docs/macOS.md`)
 
 **What it does** (`LockRule`), on the log's own times:
 
-1. **While anyone holds loginwindow's Touch ID hold, a press of the key is macOS's.** coreautha takes the
+1. **While an app holds loginwindow's Touch ID hold, a press of the key is macOS's.** coreautha takes the
    hold the moment any read of the sensor begins (an app's Touch ID prompt, System Settings enrolling a
    finger, the lock screen) and loginwindow keeps it `K.holdDebounce` (3 s) after the read ends, dropping
    one nobody gave back `K.holdTimeout` (60 s) after it was last taken. loginwindow ignores the key while
    it is held, and so does SherlockMe: a finger authenticating in another app that clicks the sensor locks
-   nothing, and a click within 3 s of a Touch ID unlock does what macOS makes it do. If macOS locks on such
-   a press anyway, that lock is followed (2). Measured: coreautha took the hold within 1 ms of 10 of the 11
-   reads made with the screen unlocked on one day of the owner's Mac, System Settings' Touch ID pane the
-   11th (`docs/macOS.md`).
+   nothing. If macOS locks on such a press anyway, that lock is followed (2). **The lock screen's own hold
+   is not the key's business**: its lines arrive while the screen is locked, which tells it from an app's,
+   and a click within 3 s of a Touch ID unlock locks at once, where macOS alone waits (the owner's choice).
+   An app's read that a lock cut short keeps its 3 s. Measured: coreautha took the hold within 1 ms of 10
+   of the 11 reads made with the screen unlocked on one day of the owner's Mac, System Settings' Touch ID
+   pane the 11th (`docs/macOS.md`).
 2. **The key goes down while the screen is unlocked: SherlockMe locks the Mac at once**, with loginwindow's
    own immediate lock (`SACLockScreenImmediate`). Measured: locked 0.09 to 0.14 s after the key went down,
    where macOS alone takes 0.38 s; loginwindow's own lock on the same press, 0.31 s after the key, declines

@@ -223,8 +223,9 @@ of that day's log then measured what the build had left open, and changed one ru
    key while it is held. The rule above locked on every key-down, and so would have locked in the middle of an
    authentication in another app, where the resting finger would then have unlocked and the relock locked
    again. The rule now reads the hold from loginwindow's own lines, with its 3 s debounce and 60 s lapse, and
-   leaves such a press to macOS. That covers the 3 s after a Touch ID unlock as well, where the key now does
-   what macOS makes it do: nothing. The relock is not the key and never waits for the hold.
+   leaves such a press to macOS. The lock screen's own hold, told from an app's by arriving while the screen
+   is locked, is not followed: the owner kept a click within 3 s of a Touch ID unlock locking at once, where
+   macOS alone waits. The relock is not the key and never waits for any hold.
 3. **Another user's session** is not this one: its loginwindow's lines carry its uid and are dropped, and
    nothing is locked while this session is not at the keyboard.
 4. **The lock screen makes one read per lock** (188 of 188), and a NO-MATCH continues that read rather than

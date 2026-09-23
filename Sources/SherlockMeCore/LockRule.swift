@@ -5,12 +5,14 @@ import Foundation
 /// recording of the log plays through it (`RulePlayer`, `LockRuleReplayTests`). `docs/functional.md` §1
 /// states the same rule in words.
 ///
-/// 0. **While anyone holds loginwindow's Touch ID hold, a press of the key is macOS's.** coreautha takes the
-///    hold the moment any read of the sensor begins, an app authenticating or the lock screen, and loginwindow
-///    keeps it `K.holdDebounce` after the read ends and drops one nobody gave back `K.holdTimeout` after it
-///    was last taken. loginwindow refuses to lock on the key while it is held, and so does SherlockMe: a
-///    finger authenticating in an app that clicks the sensor locks nothing. If macOS locks anyway, that lock
-///    is followed (1).
+/// 0. **While an app holds loginwindow's Touch ID hold, a press of the key is macOS's.** coreautha takes the
+///    hold the moment any read of the sensor begins, and loginwindow keeps it `K.holdDebounce` after the read
+///    ends and drops one nobody gave back `K.holdTimeout` after it was last taken. loginwindow refuses to
+///    lock on the key while it is held, and so does SherlockMe: a finger authenticating in an app that clicks
+///    the sensor locks nothing. If macOS locks anyway, that lock is followed (1). **The lock screen's own
+///    hold is not the key's business**: its lines arrive while the screen is locked, which tells it from an
+///    app's, and a click within `K.holdDebounce` of a Touch ID unlock locks at once, where macOS alone waits.
+///    The owner's choice.
 /// 1. **The Touch ID key goes down while the screen is unlocked: lock now.** That press is the current one.
 ///    A press whose key line was not read, known only from loginwindow locking on it, becomes the current
 ///    one the same way, with nothing to lock.
@@ -128,8 +130,13 @@ public struct LockRule: Sendable {
             screenIsLocked = false
             return unlocked(at: time)
         case .holdTaken(let client, let pid):
+            // Taken while the screen is locked, it is the lock screen's own, and not the key's business.
+            guard !screenIsLocked else { break }
             holds[pid] = Hold(client: client, until: time.addingTimeInterval(K.holdTimeout))
         case .holdCleared(let client, let pid):
+            // The lock screen's, unless it ends a hold an app took before the screen locked: that read was
+            // cut short, and its debounce runs as it does in loginwindow.
+            guard !screenIsLocked || holds[pid] != nil else { break }
             holds[pid] = Hold(client: client, until: time.addingTimeInterval(K.holdDebounce))
         }
         return []

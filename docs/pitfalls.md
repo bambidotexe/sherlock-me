@@ -103,9 +103,10 @@ new measurement that says otherwise.**
   pane the 11th, and loginwindow ignores the key while any hold is held (`touchID Screenlock blocked
   assertion, do not lock the screen`, 49 times that day). macOS therefore ignores such a click; a rule that
   locks on every key-down does not.
-- **What holds.** The rule follows the hold from loginwindow's own lines and leaves the key to macOS while it
-  is held, with loginwindow's 3 s debounce and 60 s lapse (`functional.md` §1). The relock is not the key
-  and never waits for it.
+- **What holds.** The rule follows an app's hold from loginwindow's own lines and leaves the key to macOS
+  while it is held, with loginwindow's 3 s debounce and 60 s lapse (`functional.md` §1). The lock screen's
+  own hold, whose lines arrive while the screen is locked, is the owner's exception: a click right after a
+  Touch ID unlock locks. The relock is not the key and never waits for any hold.
 - **Rule.** SherlockMe locks on the key only where loginwindow would. A hold it could not see is the one
   exception (*Open issues*).
 

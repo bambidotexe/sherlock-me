@@ -189,15 +189,27 @@ final class LockRuleTests: XCTestCase {
         XCTAssertEqual(steps, [.leftToMacOS(holder: coreautha), .followedMacOSLock, .wake(at: at(2.7)), .relock])
     }
 
-    /// The lock screen's own read holds it too, and gives it back with the debounce as it unlocks: a click
-    /// within 3 s of a Touch ID unlock is macOS's, which ignores it.
-    func testTheKeyRightAfterATouchIDUnlockIsLeftToMacOS() {
+    /// The lock screen's own read holds it too, and gives it back with the debounce as it unlocks; that hold
+    /// is not the key's business. A click within 3 s of a Touch ID unlock locks at once, where macOS alone
+    /// waits: the owner's choice. The lock screen's hold lines arrive while the screen is locked, which is
+    /// how they are told from an app's.
+    func testTheKeyRightAfterATouchIDUnlockLocksAtOnce() {
         let unlock: [(TimeInterval, TouchIDEvent)] = [
             (0, .screenLocked), (0.02, .holdTaken(client: coreautha, pid: 35068)), (0.03, .readStart),
             (1.0, .fingerOn), (1.5, .holdCleared(client: coreautha, pid: 35068)), (1.6, .screenUnlocked),
         ]
-        XCTAssertEqual(actions(unlock + [(2.0, .keyDown)], screenIsLocked: true), [.leftToMacOS(holder: coreautha)])
-        XCTAssertEqual(actions(unlock + [(4.6, .keyDown)], screenIsLocked: true), [.lock])
+        XCTAssertEqual(actions(unlock + [(2.0, .keyDown)], screenIsLocked: true), [.lock])
+    }
+
+    /// An app's read that the screen locking cut short ends with its debounce, as it does in loginwindow: a
+    /// click after the unlock is macOS's until then, and the key's again after.
+    func testAnAppsHoldCutShortByALockKeepsItsDebounce() {
+        let cut: [(TimeInterval, TouchIDEvent)] = [
+            (0, .holdTaken(client: coreautha, pid: 35068)), (1, .screenLocked),
+            (1.1, .holdCleared(client: coreautha, pid: 35068)), (2, .screenUnlocked),
+        ]
+        XCTAssertEqual(actions(cut + [(3, .keyDown)]), [.leftToMacOS(holder: coreautha)])
+        XCTAssertEqual(actions(cut + [(4.2, .keyDown)]), [.lock])
     }
 
     /// The relock is not the key: the hold the lock screen takes for its read, and its debounce after the

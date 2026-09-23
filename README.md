@@ -60,8 +60,9 @@ be slower than that: the author tried hard to beat it and couldn't. A click of t
 your password, or a touch that comes any later are all left alone.
 
 **4. Touch ID in your other apps is untouched.** While an app reads your finger (a password manager, `sudo`,
-the App Store, System Settings), macOS ignores a click of the sensor, and so does SherlockMe: the key locks
-only where macOS would let it. The same goes for the 3 s after a Touch ID unlock, which macOS ignores too.
+the App Store, System Settings), macOS ignores a click of the sensor, and so does SherlockMe: the
+authentication goes on. The lock screen is the exception: click the key right after unlocking with Touch ID
+and it locks, where macOS alone would ignore you for 3 s.
 
 | You do | What happens |
 |---|---|
