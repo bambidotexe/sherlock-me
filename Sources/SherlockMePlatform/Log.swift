@@ -16,5 +16,7 @@ public enum Log {
     /// actually is. A button drawn in one place and hit-tested in another says nothing on its own, and this
     /// is the line that shows it (the shared pitfalls, *Onboarding*).
     public static let onboarding = Logger(subsystem: AppIdentity.logSubsystem, category: "onboarding")
-    // TEMPLATE: one category per feature, so one predicate reads one behaviour.
+    /// The Touch ID key: the log stream starting, ending and starting again, every lock and relock with
+    /// loginwindow's answer, every unlock left alone and why, and at `debug` every line the rule was given.
+    public static let touchID = Logger(subsystem: AppIdentity.logSubsystem, category: "touchid")
 }
