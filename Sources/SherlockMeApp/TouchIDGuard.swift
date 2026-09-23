@@ -90,7 +90,11 @@ final class TouchIDGuard: @unchecked Sendable {
         // window server once the stream has settled.
         queue.asyncAfter(deadline: .now() + K.watchSettle) { [weak self] in
             guard let self, self.running, self.stream === stream else { return }
+            let before = self.rule.screenIsLocked
             self.perform(self.rule.settle(screenIsLocked: LoginSession.screenIsLocked, at: Date()))
+            if self.rule.screenIsLocked != before {
+                Log.touchID.notice("the stream settled: the screen is locked, and the log had not said so")
+            }
         }
     }
 
@@ -121,16 +125,16 @@ final class TouchIDGuard: @unchecked Sendable {
             switch action {
             case .lock:
                 let result = SessionAgent.lockScreen()
-                update { $0.lastLock = Date() }
                 if result == 0 {
+                    update { $0.lastLock = Date() }
                     Log.touchID.notice("the Touch ID key went down: locked")
                 } else {
                     Log.touchID.error("the Touch ID key went down: the lock failed, result \(result)")
                 }
             case .relock:
                 let result = SessionAgent.lockScreen()
-                update { $0.lastRelock = Date() }
                 if result == 0 {
+                    update { $0.lastRelock = Date() }
                     Log.touchID.notice("the finger that pressed the key unlocked the Mac: locked again")
                 } else {
                     Log.touchID.error("the finger that pressed the key unlocked the Mac: the relock failed, result \(result)")

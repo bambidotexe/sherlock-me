@@ -107,3 +107,7 @@ Known, bounded, and left alone.
 - **After a crash or a signal, SherlockMe's `log stream` child can outlive it** until the next line it would
   write (a lock, an unlock, a press of the Touch ID key), which ends it on a broken pipe. It holds nothing and
   changes nothing meanwhile.
+- **A lock in a starting stream's first moment is not seen until the settle** (`K.watchSettle`, 2 s): a press
+  on that lock screen before then is taken for a press on an unlocked Mac, and the unlock it asks for can be
+  relocked once. It needs a stream start, a lock in the moment before the stream attaches, and a press within
+  2 s; and the settle assumes the stream attaches within 2 s, which is not measured.

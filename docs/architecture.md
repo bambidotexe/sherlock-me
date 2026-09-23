@@ -39,17 +39,20 @@ SherlockMeCore  ←  SherlockMePlatform  ←  SherlockMeApp
 
 - Everything is on the **main actor**: the windows, the settings store, the wiring, **except the Touch ID
   key**. `TouchIDGuard` runs on one serial queue of its own (`<bundle identifier>.touchid`,
-  user-interactive): the stream's lines, the rule, the lock call and the relock's timer, so a window being
-  drawn never delays a lock. The menu and the Health page read its status, a copy kept under a lock, and
-  never wait on that queue; the one wait on it is `stop()` at quit, which returns once the `log` child has
-  been sent its end.
+  user-interactive): the stream's lines, the rule, the lock call, and three timers: the relock's, the stream's
+  restart, and the settle `K.watchSettle` after each start, so a window being drawn never delays a lock. The
+  menu and the Health page read its status, a copy kept under a lock, and never wait on that queue; the one
+  wait on it is `stop()` at quit, which returns once the `log` child has been sent its end.
 - **Two exceptions, both in the update.** `URLSession` calls its delegate on its own queue and the caller
   hops; unpacking a disk image runs on one serial queue of its own, because it mounts, copies and verifies,
   and two of those at once would share a mount point.
-- **Nothing polls while idle.** With no window open, the only timer armed is the update schedule's, which is
-  coarse (`K.updateTick`) and tolerant. The Settings window starts and stops its own two-second poll; the
-  onboarding wizard starts and stops the other, also two seconds. The `log stream` child is not a poll: it
-  writes only when one of the lines SherlockMe reads is logged, a few per press.
+- **Nothing polls while idle.** With no window open, the only repeating timer is the update schedule's, which
+  is coarse (`K.updateTick`) and tolerant. The Touch ID key's timers are one-shots, armed only around a press
+  or when a stream starts or ends: the relock's, the settle's, and the restart's, which a stream that keeps
+  failing arms again every 60 s. The Settings window starts and stops its own two-second poll; the onboarding
+  wizard starts and stops the other, also two seconds. The `log stream` child is not a poll: it writes only
+  when one of the lines SherlockMe reads is logged, a few per press. What keeping the stream open costs the
+  system's log daemons is not measured (`manual-test-checklist.md` §1).
 
 ## Persistence
 

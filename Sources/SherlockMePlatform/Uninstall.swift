@@ -26,12 +26,9 @@ public struct UninstallFailure: Sendable, Hashable {
 /// app that is not there and offering to start it, and any permission the app was granted stays in the
 /// privacy list, where a later build signed by the same team inherits a decision nobody remembers making.
 public enum Uninstall {
-    /// The system registrations, **while the bundle they name is still where they name it**: a `tccutil
-    /// reset` against a bundle identifier with no bundle behind it fails, and nothing puts that right
-    /// afterwards, so this runs before the app goes anywhere.
-    ///
-    /// SherlockMe is granted no permission: the login item and the notification authorization are all it
-    /// registers.
+    /// The system registrations, **while the bundle they name is still where they name it**, so this runs
+    /// before the app goes anywhere. SherlockMe is granted no permission: the login item and the notification
+    /// authorization are all it registers.
     @MainActor
     public static func removeSystemRegistrations() -> [UninstallFailure] {
         var failed: [UninstallFailure] = []

@@ -72,6 +72,9 @@ macOS 27.0 (26A428), a MacBook Pro (Mac16,8) and a Magic Keyboard with Touch ID 
 
 Not measured yet, and what the app does meanwhile:
 
+- **macOS 26.** Every measurement is on 27.0. Where `SACLockScreenImmediate` is missing or refused, the key
+  locks the way macOS does, no relock follows, and the log says the lock call is missing or failed; the Health
+  page does not show it.
 - **The built-in button's timeline**: every run used the Magic Keyboard, the lid closed. If its press does
   not reach biometrickitd's key line, SherlockMe follows the press from loginwindow's own lock on it: the
   relock still works, and the lock is macOS's own, 0.31 s after the key.

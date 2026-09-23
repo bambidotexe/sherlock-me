@@ -92,6 +92,8 @@ the flat icon without Liquid Glass.
 ## Requirements
 
 - **macOS 26 or later**, and a Swift toolchain to build it.
+- Measured on **macOS 27**. SherlockMe has not been tried on macOS 26; whatever happens there, the key still
+  locks the way macOS does.
 - **A Touch ID key**: built into the Mac, or on a Magic Keyboard with Touch ID.
 - **An administrator account.** SherlockMe watches the key through the Mac's own log, which only an
   administrator can read. On any other account it does nothing and says so.

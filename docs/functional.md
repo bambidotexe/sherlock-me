@@ -69,7 +69,9 @@ sensor and unlocks the Mac again, 1.1 to 1.4 s after the press (`docs/macOS.md`)
 
 **The log can miss a lock** that lands while a stream is starting: a stream shows nothing logged before it
 attached. `K.watchSettle` (2 s) after each start, a lock the window server reports and the rule has not seen
-is taken as read. An unlock is never taken that way.
+is taken as read. An unlock is never taken that way. Before that moment is the one exception to §0's third
+guarantee: a press on a lock screen the log missed is taken for a press on an unlocked Mac, and the unlock it
+asks for can be relocked once.
 
 **When it cannot watch**, the key does exactly what macOS makes it do, and the menu and the Health page say
 why:

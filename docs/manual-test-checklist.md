@@ -17,7 +17,7 @@ swift run axprobe hit <x> <y>           # what a real hit test finds at a point
 
 ## 1. The feature
 
-**Every item after the first locks the Mac: the owner at the keyboard, and nobody else.** Keep
+**Every press below locks the Mac: the owner at the keyboard, and nobody else.** Keep
 `/usr/bin/log stream --predicate 'subsystem == "dev.rubens.SherlockMe" AND category == "touchid"'` open in a
 Terminal: it says what SherlockMe decided at each press.
 
@@ -37,6 +37,8 @@ Terminal: it says what SherlockMe decided at each press.
       screen, no flash, the login box there. Anything seen goes in `docs/pitfalls.md`.
 - [ ] Quit SherlockMe: `pgrep -lf 'log stream --style ndjson'` lists nothing of SherlockMe's, and a click with
       the finger left on the key locks and unlocks again, as macOS does alone.
+- [ ] Leave SherlockMe running for an hour on battery: in Activity Monitor, the CPU and energy of `log`,
+      `logd` and `diagnosticd` stay near zero. Write what you see in `docs/macOS.md`.
 
 ## 2. This app's Settings
 

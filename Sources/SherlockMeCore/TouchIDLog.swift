@@ -24,7 +24,8 @@ public enum TouchIDEvent: Equatable, Sendable {
 
 /// Reading those lines: the predicate `log stream` is given, and what one line of its output means.
 public enum TouchIDLog {
-    /// The lines SherlockMe reads and nothing else, so the stream costs nothing between presses.
+    /// The lines SherlockMe reads and nothing else, so the stream prints nothing between presses. What keeping
+    /// it open costs the system's log daemons is not measured (`docs/manual-test-checklist.md` §1).
     public static let predicate = """
         (process == "biometrickitd" AND (eventMessage BEGINSWITH "touchIDButtonPressed: 1" \
         OR eventMessage BEGINSWITH "match:withOptions" \
