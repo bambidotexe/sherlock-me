@@ -5,9 +5,9 @@
 <h1 align="center">SherlockMe</h1>
 
 <p align="center">
-  <strong>Click the Touch ID key, and your Mac locks, and stays locked.</strong><br>
-  macOS locks when the key is clicked, and the finger still resting on it unlocks the Mac a second later.
-  SherlockMe locks the instant the key goes down and catches that unlock. It does nothing else.
+  <strong>Click the Touch ID key. The Mac locks. It stays locked.</strong><br>
+  The Touch ID key has had exactly one job since it shipped, and macOS still fumbles it. SherlockMe does it
+  properly, from the menu bar, and does nothing else.
 </p>
 
 <p align="center">
@@ -18,7 +18,42 @@
   <img alt="English and French" src="https://img.shields.io/badge/languages-English%20%C2%B7%20Fran%C3%A7ais-333333">
 </p>
 
+## Why does this app even exist?
+
+Good question. It shouldn't.
+
+Apple put a button on the Mac that locks it, and made that same button the sensor that unlocks it. Then
+nobody asked what happens to the finger that just pressed it. What happens is that the finger is still
+there, the lock screen reads it, and your Mac unlocks itself about a second after you locked it. A debounce,
+the thing every keyboard and every doorbell has, would have fixed it. There isn't one. Presumably the people
+who ship Liquid Glass had bigger things to polish.
+
+And the lock itself is a mood. Sometimes a click locks the Mac. Sometimes it doesn't, for no reason it cares
+to share. Sometimes it wants a long press, sometimes a short one, and which one it wants today is for you to
+find out.
+
+So here is a menu-bar app that makes a button do what a button does. You're welcome, Cupertino.
+
 ## What it does
+
+**1. Click the key, the Mac locks. Every time.** No long press, no short press, no guessing. SherlockMe
+locks the instant the key goes down: 0.09 to 0.14 s after the press, where macOS on its own takes 0.38 s,
+on the occasions it bothers at all.
+
+**2. The finger that locked the Mac doesn't unlock it.** macOS gives an app no way to stop the lock screen
+from reading a finger. Every way around that was tried and measured, and each one fails
+([docs/pitfalls.md](docs/pitfalls.md)). So SherlockMe does the next best thing: when the lock screen unlocks
+with the finger that was already resting on the key, SherlockMe locks the Mac again half a second later,
+once per press.
+
+In practice you barely ever see it. A lock you can trust means you click and let go, instead of pressing
+and hoping, so your finger is off the sensor long before the lock screen looks. And when it does happen,
+it's half a second.
+
+**3. Unlocking on purpose still works.** Only a finger the lock screen finds within its first half-second
+of reading counts as the one that pressed the key. Lift your finger and put it back to unlock, and you'll
+be slower than that: the author tried hard to beat it and couldn't. A click of the key on the lock screen,
+your password, or a touch that comes any later are all left alone.
 
 | You do | What happens |
 |---|---|
@@ -29,7 +64,8 @@
 - There is nothing to set up and nothing to choose, and SherlockMe asks for no permission.
 - It needs an **administrator account**: it watches the key through the Mac's own log, which only an
   administrator can read. On any other account it does nothing, and says so.
-- When SherlockMe is not running, the key works exactly as macOS makes it.
+- It holds nothing in macOS and changes no setting. When SherlockMe is not running, the key goes back to
+  Apple's version, moods included.
 
 ## Settings
 
@@ -53,7 +89,7 @@ SherlockMe speaks **English and French**, following the language your Mac is set
 Download the disk image from
 [the latest release](https://github.com/bambidotexe/sherlock-me/releases/latest), open it and drag
 **SherlockMe** to Applications, then open it once. It is signed with a Developer ID and notarized by Apple,
-so it opens without a warning.
+so it opens without a warning. No release is published yet; until one is, build it from this repository.
 
 The first launch opens a short welcome wizard: what the app does, then where it lives. Settings › System ›
 Start over opens it again.
@@ -118,5 +154,5 @@ SherlockMe is free and carries no ads. If it saves you trouble, you can leave a 
 ## Notes
 
 - Personal build: English and French.
-- The app icon is a placeholder, generated from the same mark the menu-bar item draws. See
+- The app icon is a magnifying glass over a fingerprint; the menu-bar item draws the same mark. See
   `Resources/ICON-NOTES.md`.
