@@ -96,11 +96,11 @@ make release     # skill: macos-publish-release. The same, plus tag, push, GitHu
 - `make release LEVEL=<patch|minor|major> NOTES=<file>` (`scripts/publish.sh <level> --notes=<file>`) —
   **the other way.** Refuses without release notes (written from every commit since the last tag, skill
   `macos-publish-release`, *Release notes*), on a dirty tree, computes the new version and refuses if that tag already exists, then bumps the version by the
-  level given, commits and pushes that bump, and only then builds — everything `install` does, plus the tag,
+  level given, commits and pushes that bump, and only then builds — the same build `install` makes, then the tag,
   the push and the GitHub release carrying the image. Nothing bumps the version again afterward. Run it only
-  when the owner has asked for a release, and ask which level if they have not said. `sh scripts/publish.sh
-  <level> --notes=<file> --no-install` publishes and leaves `/Applications` alone, which is how the update a user gets is
-  tested.
+  when the owner has asked for a release, and ask which level if they have not said. It leaves
+  `/Applications` alone, so the copy here finds the release and installs it itself, as a user's does; `--install`
+  (`make release … INSTALL=1`) installs it here too, and is passed only when the owner asks for it.
 - **There is no third way.** A bundle left in `build/` is a complete application that Spotlight offers;
   launching it by accident gives a second instance with the same bundle identifier and the same preferences.
   `scripts/no-leftovers.sh` holds that rule.
