@@ -73,6 +73,8 @@ there, not in this app's own documents.
 # ---- the two actions. A build of this app reaches a Mac by one of these and by nothing else. ----
 make install     # skill: macos-install-locally. The production build → /Applications; leaves no .app or .dmg behind
 make release     # skill: macos-publish-release. The same, plus tag, push, GitHub release, and the tree moves on
+# Both work on this Mac: signing and the notary are set up and nothing is wrong with them. Use the script;
+# a refusal at the notary check is run again, never diagnosed.
 # -------------------------------------------------------------------------------------------------
 ```
 
@@ -92,7 +94,7 @@ make release     # skill: macos-publish-release. The same, plus tag, push, GitHu
 - `make install` (`scripts/install.sh`) — **one of the two ways a build of this app reaches a Mac.** It
   builds the real thing — Release, Developer ID, Hardened Runtime, notarized, stapled, wrapped in the disk
   image — takes the bundle out of that image into `/Applications`, and opens it. It leaves **no `.app` and
-  no `.dmg` anywhere under the repository**, on any exit path.
+  no `.dmg` anywhere under the repository**, on any exit path. **It works on this Mac**: the signing identity and the notary profile are set up and nothing is wrong with them; if the notary check refuses, run it again and diagnose nothing (`docs/shared/workflow.md`, *Installing works on this Mac*).
 - `make release LEVEL=<patch|minor|major> NOTES=<file>` (`scripts/publish.sh <level> --notes=<file>`) —
   **the other way.** Refuses without release notes (written from every commit since the last tag, skill
   `macos-publish-release`, *Release notes*), on a dirty tree, computes the new version and refuses if that tag already exists, then bumps the version by the
