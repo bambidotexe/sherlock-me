@@ -106,7 +106,7 @@ make release     # skill: macos-publish-release. The same, plus tag, push, GitHu
   `scripts/no-leftovers.sh` holds that rule.
 - `scripts/version.sh` — the version rule, and the only thing that writes the version: **a local install
   always builds and installs exactly the tree's own version.** `scripts/publish.sh <patch|minor|major>` is
-  the only thing that moves it. No releases yet → the tree is `0.0.1`.
+  the only thing that moves it. The last release is `1.0.0`, and so is the tree.
 - `/usr/bin/log stream --predicate 'subsystem == "dev.rubens.SherlockMe"' --level debug` — the app's log
   (`log` alone is a zsh builtin, hence the full path). Categories: `app`, `update`, `onboarding` (the
   wizard's poll, the stepping button's word, and at `debug` where that button actually is), `touchid` (the
@@ -192,8 +192,6 @@ The seven that cost the most:
 
 Known limitations, in plain words:
 
-- **Nothing is published**, so every update check answers *No release published yet* until the repository is
-  public and carries a release.
 - **The owner has walked the feature on the Magic Keyboard, the lid closed**: the instant lock, the relock,
   presses on the lock screen, and loginwindow's own lock declining after SherlockMe's. Not walked yet
   (`docs/manual-test-checklist.md` §1): the built-in button, a click of the sensor during another app's

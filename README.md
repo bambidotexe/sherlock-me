@@ -99,7 +99,7 @@ SherlockMe speaks **English and French**, following the language your Mac is set
 Download the disk image from
 [the latest release](https://github.com/bambidotexe/sherlock-me/releases/latest), open it and drag
 **SherlockMe** to Applications, then open it once. It is signed with a Developer ID and notarized by Apple,
-so it opens without a warning. No release is published yet; until one is, build it from this repository.
+so it opens without a warning.
 
 The first launch opens a short welcome wizard: what the app does, then where it lives. Settings › System ›
 Start over opens it again.

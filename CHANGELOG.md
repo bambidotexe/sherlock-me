@@ -6,9 +6,9 @@ bumps by that level, commits and pushes the bump before it builds anything, then
 version, and nothing bumps it again afterward. The version at the top of this file is the one being prepared
 unless a release carries its tag.
 
-## 0.0.1
+## 1.0.0
 
-The first build. Nothing is published yet, so every update check answers *No release published yet*.
+The first release.
 
 - **The Touch ID key locks, and the Mac stays locked.** A click on the key locks the Mac the instant it goes
   down, and when the finger still on the key unlocks it, SherlockMe locks it again half a second later, once.
