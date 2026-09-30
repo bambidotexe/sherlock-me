@@ -27,7 +27,7 @@ the key unlocks it. Swift, SwiftPM, no Xcode project.
 ```sh
 swift build                                     # three targets and the probe
 swift test                                      # two bundles; count two summary lines
-make install                                    # production build, notarized, into /Applications
+sh scripts/install.sh                           # production build, notarized, into /Applications
 /usr/bin/log stream --predicate 'subsystem == "dev.rubens.SherlockMe"' --level debug
 ```
 

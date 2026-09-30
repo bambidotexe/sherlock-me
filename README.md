@@ -107,7 +107,7 @@ Start over opens it again.
 From this repository instead:
 
 ```sh
-make install
+sh scripts/install.sh
 ```
 
 That builds the same signed, notarized bundle, puts it in `/Applications` and opens it, leaving no `.app`
@@ -125,13 +125,13 @@ leaves the first behind, pointing at an app that is gone.
 ## Build from source
 
 ```sh
-swift build         # three targets and the probe
-swift test          # two bundles; read both summary lines
-make app            # assembles build/SherlockMe.app
-make install        # the real thing, into /Applications
+swift build              # three targets and the probe
+swift test               # two bundles; read both summary lines
+sh scripts/make-app.sh   # assembles build/SherlockMe.app
+sh scripts/install.sh    # the real thing, into /Applications
 ```
 
-It is a SwiftPM package with no Xcode project and no third-party dependency. `make app` wants full Xcode for
+It is a SwiftPM package with no Xcode project and no third-party dependency. `scripts/make-app.sh` wants full Xcode for
 the `actool` that compiles the app icon; with the Command Line Tools alone it still builds, warns, and ships
 the flat icon without Liquid Glass.
 

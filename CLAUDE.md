@@ -70,9 +70,11 @@ there, not in this app's own documents.
 ## Commands
 
 ```bash
-# ---- the two actions. A build of this app reaches a Mac by one of these and by nothing else. ----
-make install     # skill: macos-install-locally. The production build → /Applications; leaves no .app or .dmg behind
-make release     # skill: macos-publish-release. The same, plus tag, push, GitHub release, and the tree moves on
+# ---- the two scripts. A build of this app reaches a Mac by one of these and by nothing else. ----
+sh scripts/install.sh                                     # skill: macos-install-locally. The production build → /Applications
+sh scripts/publish.sh <patch|minor|major> --notes=<file>  # skill: macos-publish-release. The same, plus tag, push, GitHub release
+# Called directly, never through make. At the end of a change, offer to run the install script and run it
+# only when the owner says so; publish only when the owner asks for a release.
 # Both work on this Mac: signing and the notary are set up and nothing is wrong with them. Use the script;
 # a refusal at the notary check is run again, never diagnosed.
 # -------------------------------------------------------------------------------------------------
@@ -91,18 +93,18 @@ make release     # skill: macos-publish-release. The same, plus tag, push, GitHu
   happens around each press of the key, read off the log; `relock` tries the design's mechanism live and
   `replay` reads the stored log. Every live mode but `watch` locks the Mac, so it runs only with the owner at
   the keyboard and asking first. The owner's recorded presses are in `Tools/touchprobe/fixtures/`.
-- `make install` (`scripts/install.sh`) — **one of the two ways a build of this app reaches a Mac.** It
+- `sh scripts/install.sh` — **one of the two ways a build of this app reaches a Mac.** It
   builds the real thing — Release, Developer ID, Hardened Runtime, notarized, stapled, wrapped in the disk
   image — takes the bundle out of that image into `/Applications`, and opens it. It leaves **no `.app` and
   no `.dmg` anywhere under the repository**, on any exit path. **It works on this Mac**: the signing identity and the notary profile are set up and nothing is wrong with them; if the notary check refuses, run it again and diagnose nothing (`docs/shared/workflow.md`, *Installing works on this Mac*).
-- `make release LEVEL=<patch|minor|major> NOTES=<file>` (`scripts/publish.sh <level> --notes=<file>`) —
+- `sh scripts/publish.sh <patch|minor|major> --notes=<file>` —
   **the other way.** Refuses without release notes (written from every commit since the last tag, skill
   `macos-publish-release`, *Release notes*), on a dirty tree, computes the new version and refuses if that tag already exists, then bumps the version by the
   level given, commits and pushes that bump, and only then builds — the same build `install` makes, then the tag,
   the push and the GitHub release carrying the image. Nothing bumps the version again afterward. Run it only
   when the owner has asked for a release, and ask which level if they have not said. It leaves
   `/Applications` alone, so the copy here finds the release and installs it itself, as a user's does; `--install`
-  (`make release … INSTALL=1`) installs it here too, and is passed only when the owner asks for it.
+  installs it here too, and is passed only when the owner asks for it.
 - **There is no third way.** A bundle left in `build/` is a complete application that Spotlight offers;
   launching it by accident gives a second instance with the same bundle identifier and the same preferences.
   `scripts/no-leftovers.sh` holds that rule.
